@@ -1,6 +1,17 @@
 {{ define "main" }}
-{{ $hero := .Params.heroImage | default "images/news/dejo-ar-mani-2026.jpg" }}
-<section class="hero" style="background-image: linear-gradient(rgba(4,35,71,0.45), rgba(4,35,71,0.65)), url('{{ $hero | relURL }}');">
+{{ $slides := .Site.Params.heroSlides }}
+{{ if not $slides }}
+  {{ $slides = slice (dict "image" (.Params.heroImage | default "images/news/dejo-ar-mani-2026.jpg")) }}
+{{ end }}
+{{ $n := len $slides }}
+{{ $slideSeconds := 6 }}
+{{ $duration := mul $n $slideSeconds }}
+<section class="hero" data-slide-interval="{{ mul $slideSeconds 1000 }}">
+  <div class="hero-slides" aria-hidden="true">
+    {{ range $i, $s := $slides }}
+      <div class="hero-slide{{ if eq $i 0 }} is-active{{ end }}" style="background-image: linear-gradient(rgba(4,35,71,0.45), rgba(4,35,71,0.65)), url('{{ $s.image | relURL }}');"></div>
+    {{ end }}
+  </div>
   <div class="container hero-inner">
     <p class="hero-eyebrow">Londonas Tautas Deju Kopa</p>
     <h1 class="hero-title">Salinieki</h1>
@@ -72,6 +83,25 @@
     </aside>
   </div>
 </section>
+
+{{ if gt $n 1 }}
+<script>
+(function () {
+  var hero = document.querySelector('.hero[data-slide-interval]');
+  if (!hero) return;
+  var slides = hero.querySelectorAll('.hero-slide');
+  if (slides.length < 2) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var interval = parseInt(hero.dataset.slideInterval, 10) || 6000;
+  var i = 0;
+  setInterval(function () {
+    slides[i].classList.remove('is-active');
+    i = (i + 1) % slides.length;
+    slides[i].classList.add('is-active');
+  }, interval);
+})();
+</script>
+{{ end }}
 
 <section class="cta-band">
   <div class="container cta-inner">

@@ -16,6 +16,17 @@ summaryLength = 40
   logo = "images/logo.png"
   copyrightYear = "2025"
 
+[[params.heroSlides]]
+  image = "images/news/dejo-ar-mani-2026.jpg"
+[[params.heroSlides]]
+  image = "images/par-mums/svetki2023-1.jpg"
+[[params.heroSlides]]
+  image = "images/news/dzdds-kopbilde.jpg"
+[[params.heroSlides]]
+  image = "images/par-mums/kanada-1.jpg"
+[[params.heroSlides]]
+  image = "images/news/elks-finals.jpg"
+
 [params.social]
   facebook = "https://www.facebook.com/salinieki/"
   instagram = "https://www.instagram.com/salinieki/"
