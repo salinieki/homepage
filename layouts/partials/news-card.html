@@ -1,0 +1,29 @@
+{{ $hasLink := .Params.hasFullArticle | default false }}
+<article class="news-card">
+  {{ with .Params.coverImage }}
+    {{ if $hasLink }}
+      <a class="news-card-media" href="{{ $.RelPermalink }}">
+        <img src="{{ . | relURL }}" alt="{{ $.Title }}" loading="lazy">
+      </a>
+    {{ else }}
+      <div class="news-card-media">
+        <img src="{{ . | relURL }}" alt="{{ $.Title }}" loading="lazy">
+      </div>
+    {{ end }}
+  {{ end }}
+  <div class="news-card-body">
+    <h3 class="news-card-title">
+      {{ if $hasLink }}<a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ else }}{{ .Title }}{{ end }}
+    </h3>
+    <p class="news-card-meta">
+      <span class="news-card-date">{{ .Date.Format "2. January, 2006." }}</span>
+      {{ with .Params.location }}<span class="news-card-location">{{ . }}</span>{{ end }}
+    </p>
+    <div class="news-card-text">
+      {{ .Params.summary | safeHTML }}
+    </div>
+    {{ if $hasLink }}
+      <p class="news-card-more"><a href="{{ .RelPermalink }}">Lasīt vairāk →</a></p>
+    {{ end }}
+  </div>
+</article>

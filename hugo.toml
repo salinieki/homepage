@@ -1,0 +1,65 @@
+baseURL = "https://salinieki.co.uk/"
+locale = "lv"
+defaultContentLanguage = "lv"
+title = 'Londonas TDK "Salinieki"'
+
+enableRobotsTXT = true
+enableEmoji = false
+summaryLength = 40
+
+[params]
+  description = 'Londonas Tautas Deju Kopa Salinieki — latviešu tautas deju kolektīvs Londonā kopš 2012. gada.'
+  email = "info@salinieki.co.uk"
+  rehearsalAddress = "Daugavas Vanagu nams, 72 Queensborough Terrace, W2 3SH"
+  rehearsalDay = "pirmdienās"
+  rehearsalTime = "19:00"
+  logo = "images/logo.png"
+  copyrightYear = "2025"
+
+[params.social]
+  facebook = "https://www.facebook.com/salinieki/"
+  instagram = "https://www.instagram.com/salinieki/"
+  youtube = "https://www.youtube.com/@saliniekitdk9717"
+
+[[params.calendar]]
+  date = "02.05.2026"
+  title = "Latviešu Kultūras Dienas Lesterā"
+
+[[params.calendar]]
+  date = "20.06.2026"
+  title = "\"(Pa) Saules Ceļu Izdejot\" Īrijā"
+
+[[params.supporters]]
+  name = "Eiropas Latviešu Apvienība"
+  url = "https://ela.lv/"
+  logo = "images/supporters/eiropas-latviesu-apvieniba.png"
+
+[[params.supporters]]
+  name = "Latvijas Kultūras Ministrija"
+  url = "https://www.km.gov.lv/lv"
+  logo = "images/supporters/kulturas-ministrija.png"
+
+[menu]
+[[menu.main]]
+  name = "Aktualitātes"
+  url = "/"
+  weight = 10
+[[menu.main]]
+  name = "Par mums"
+  url = "/par-mums/"
+  weight = 20
+[[menu.main]]
+  name = "Kontakti"
+  url = "/kontakti/"
+  weight = 30
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]

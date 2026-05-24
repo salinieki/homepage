@@ -1,0 +1,69 @@
+{{ define "main" }}
+{{ $hero := .Params.heroImage | default "images/news/dejo-ar-mani-2026.jpg" }}
+<section class="hero" style="background-image: linear-gradient(rgba(4,35,71,0.45), rgba(4,35,71,0.65)), url('{{ $hero | relURL }}');">
+  <div class="container hero-inner">
+    <p class="hero-eyebrow">Londonas Tautas Deju Kopa</p>
+    <h1 class="hero-title">Salinieki</h1>
+    <p class="hero-tagline">Latviešu tautas deju kopa Londonā kopš 2012. gada</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="{{ "/par-mums/" | relURL }}">Par mums</a>
+      <a class="btn btn-ghost" href="{{ "/kontakti/" | relURL }}">Nāc dejot!</a>
+    </div>
+  </div>
+</section>
+
+<section class="intro container">
+  <div class="intro-content">
+    <h2 class="section-title">Par mums</h2>
+    <div class="section-content">
+      {{ .Content }}
+    </div>
+  </div>
+</section>
+
+<section class="news section-band">
+  <div class="container">
+    <h2 class="section-title">Aktualitātes</h2>
+    <div class="news-list">
+      {{ range first 5 (where .Site.RegularPages "Section" "news") }}
+        {{ partial "news-card.html" . }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<section class="sidebar-band">
+  <div class="container sidebar-grid">
+    <div class="sidebar-block">
+      <h3 class="sidebar-title">Sociālie tīkli</h3>
+      {{ partial "social.html" . }}
+    </div>
+    <div class="sidebar-block">
+      <h3 class="sidebar-title">Kalendārs</h3>
+      <ul class="calendar-list">
+        {{ range .Site.Params.calendar }}
+          <li><span class="cal-date">{{ .date }}</span> – {{ .title }}</li>
+        {{ end }}
+      </ul>
+    </div>
+    <div class="sidebar-block">
+      <h3 class="sidebar-title">Mūs atbalsta</h3>
+      <div class="supporter-list">
+        {{ range .Site.Params.supporters }}
+          <a href="{{ .url }}" target="_blank" rel="noopener" aria-label="{{ .name }}">
+            <img src="{{ .logo | relURL }}" alt="{{ .name }}">
+          </a>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-inner">
+    <h2>Nāc dejot!</h2>
+    <p>Pievienojies mūsu kolektīvam! Puiši un pāri laipni aicināti. Iepriekšēja deju pieredze nav nepieciešama.</p>
+    <a class="btn btn-primary" href="mailto:{{ .Site.Params.email }}">Atsūti e-pastu</a>
+  </div>
+</section>
+{{ end }}

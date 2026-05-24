@@ -1,0 +1,23 @@
+{{ define "main" }}
+<article class="page">
+  <header class="page-header container">
+    <h1 class="page-title">{{ .Title }}</h1>
+    {{ if eq .Section "news" }}
+      <p class="page-meta">By Mārtiņš Brūveris / {{ .Date.Format "January 2, 2006" }}</p>
+    {{ end }}
+  </header>
+  <div class="page-content container">
+    {{ .Content }}
+  </div>
+  {{ if eq .Section "news" }}
+    <nav class="page-nav container">
+      {{ with .PrevInSection }}
+        <a class="page-nav-link prev" href="{{ .RelPermalink }}"><span>← Iepriekšējais</span><strong>{{ .Title }}</strong></a>
+      {{ end }}
+      {{ with .NextInSection }}
+        <a class="page-nav-link next" href="{{ .RelPermalink }}"><span>Nākamais →</span><strong>{{ .Title }}</strong></a>
+      {{ end }}
+    </nav>
+  {{ end }}
+</article>
+{{ end }}
