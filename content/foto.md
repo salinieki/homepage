@@ -3,6 +3,14 @@ title: "Foto"
 url: "/foto/"
 ---
 
+### 2026 - Kultūras Diena Lesterā
+
+{{< gallery id="2026-05-lestera-kulturas-diena" alt="Kultūras Diena Lesterā" >}}
+
+### 2026 - Dejo ar Mani, Aberdīna
+
+{{< gallery id="2026-02-dejo-ar-mani" alt="Dejo ar Mani, Aberdīna" >}}
+
 ### 2025 – ELKS III, Bredfordā
 
 {{< gallery id="2025-07-elks" alt="ELKS III" >}}

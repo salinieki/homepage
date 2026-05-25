@@ -1,6 +1,6 @@
 ---
 title: "Aktualitātes"
-heroImage: "images/foto/2026-02-dejo-ar-mani/grupas-bilde.jpg"
+heroImage: "images/foto/2026-02-dejo-ar-mani/01-grupas-bilde.jpg"
 ---
 
 Mēs esam aktīvs deju kolektīvs ar apmēram 25 dejotājiem, kas turpina kopt latviešu tautas deju tradīcijas Londonā.

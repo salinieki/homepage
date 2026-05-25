@@ -17,9 +17,9 @@ summaryLength = 40
   copyrightYear = "2025"
 
 [[params.heroSlides]]
-  image = "images/foto/2026-02-dejo-ar-mani/grupas-bilde.jpg"
+  image = "images/foto/2026-02-dejo-ar-mani/01-grupas-bilde.jpg"
 [[params.heroSlides]]
-  image = "images/foto/2023-07-dziesmu-svetki/svetki2023-1.jpg"
+  image = "images/foto/2023-07-dziesmu-svetki/01-svetki-2023.jpg"
 [[params.heroSlides]]
   image = "images/news/dzdds-kopbilde.jpg"
 [[params.heroSlides]]
