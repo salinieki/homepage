@@ -10,11 +10,22 @@
     {{ .Content }}
   </div>
   {{ if eq .Section "news" }}
+    {{ $all := where (where .Site.RegularPages "Section" "news") "Params.hasFullArticle" true }}
+    {{ $idx := -1 }}
+    {{ range $i, $p := $all }}
+      {{ if eq $p.RelPermalink $.RelPermalink }}{{ $idx = $i }}{{ end }}
+    {{ end }}
+    {{ $prev := false }}
+    {{ $next := false }}
+    {{ if ge $idx 0 }}
+      {{ if lt (add $idx 1) (len $all) }}{{ $prev = index $all (add $idx 1) }}{{ end }}
+      {{ if gt $idx 0 }}{{ $next = index $all (sub $idx 1) }}{{ end }}
+    {{ end }}
     <nav class="page-nav container">
-      {{ with .PrevInSection }}
+      {{ with $prev }}
         <a class="page-nav-link prev" href="{{ .RelPermalink }}"><span>← Iepriekšējais</span><strong>{{ .Title }}</strong></a>
       {{ end }}
-      {{ with .NextInSection }}
+      {{ with $next }}
         <a class="page-nav-link next" href="{{ .RelPermalink }}"><span>Nākamais →</span><strong>{{ .Title }}</strong></a>
       {{ end }}
     </nav>
