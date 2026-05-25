@@ -11,6 +11,10 @@ url: "/foto/"
 
 {{< gallery id="2026-02-dejo-ar-mani" alt="Dejo ar Mani, Aberdīna" >}}
 
+### 2025 - Dziesma Dejo. Deja Skan.
+
+{{< gallery id="2025-08-dziesma-dejo" alt="Dziesma Dejo. Deja Skan." >}}
+
 ### 2025 – ELKS III, Bredfordā
 
 {{< gallery id="2025-07-elks" alt="ELKS III" >}}
