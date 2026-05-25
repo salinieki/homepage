@@ -3,7 +3,13 @@
 <section class="hero" data-slide-interval="{{ mul $slideSeconds 1000 }}">
   <div class="hero-slides" aria-hidden="true">
     {{ range $i, $s := $slides }}
-      <div class="hero-slide{{ if eq $i 0 }} is-active{{ end }}" style="background-image: linear-gradient(rgba(4,35,71,0.45), rgba(4,35,71,0.65)), url('{{ $s.image | relURL }}');"></div>
+      {{ $url := "" }}
+      {{ with resources.Get $s.image }}
+        {{ $url = .RelPermalink }}
+      {{ else }}
+        {{ $url = $s.image | relURL }}
+      {{ end }}
+      <div class="hero-slide{{ if eq $i 0 }} is-active{{ end }}" style="background-image: linear-gradient(rgba(4,35,71,0.45), rgba(4,35,71,0.65)), url('{{ $url }}');"></div>
     {{ end }}
   </div>
   <div class="container hero-inner">

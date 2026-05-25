@@ -1,12 +1,12 @@
 {{- $id := .Get "id" -}}
-{{- $dir := .Get "dir" | default "/images/par-mums" -}}
+{{- $dir := .Get "dir" | default $id -}}
 {{- $alt := .Get "alt" | default "" -}}
-{{- $images := split (.Get "images") "," -}}
+{{- $images := resources.Match (printf "images/foto/%s/*.jpg" $dir) -}}
 <div class="gallery">
   {{- range $images -}}
-    {{- $src := printf "%s/%s" $dir (trim . " ") -}}
-    <a href="{{ $src }}" class="glightbox" data-gallery="{{ $id }}">
-      <img src="{{ $src }}" alt="{{ $alt }}" loading="lazy">
+    {{- $thumb := .Resize "800x q85" -}}
+    <a href="{{ .RelPermalink }}" class="glightbox" data-gallery="{{ $id }}">
+      <img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" alt="{{ $alt }}" loading="lazy">
     </a>
   {{- end -}}
 </div>
