@@ -8,6 +8,19 @@
     });
   }
 
+  var moreBtn = document.querySelector('[data-news-more]');
+  if (moreBtn) {
+    moreBtn.addEventListener('click', function () {
+      var hidden = document.querySelectorAll('.news-list-item.is-hidden');
+      for (var k = 0; k < 5 && k < hidden.length; k++) {
+        hidden[k].classList.remove('is-hidden');
+      }
+      if (document.querySelectorAll('.news-list-item.is-hidden').length === 0) {
+        moreBtn.style.display = 'none';
+      }
+    });
+  }
+
   var hero = document.querySelector('.hero[data-slide-interval]');
   if (!hero) return;
   var slides = hero.querySelectorAll('.hero-slide');

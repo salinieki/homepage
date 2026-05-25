@@ -12,11 +12,19 @@
       </div>
 
       <h2 class="section-title">Aktualitātes</h2>
+      {{ $news := where .Site.RegularPages "Section" "news" }}
       <div class="news-list">
-        {{ range first 5 (where .Site.RegularPages "Section" "news") }}
-          {{ partial "news-card.html" . }}
+        {{ range $i, $p := $news }}
+          <div class="news-list-item{{ if ge $i 5 }} is-hidden{{ end }}">
+            {{ partial "news-card.html" $p }}
+          </div>
         {{ end }}
       </div>
+      {{ if gt (len $news) 5 }}
+        <div class="news-list-actions">
+          <button type="button" class="btn btn-primary" data-news-more>Skatīt vairāk</button>
+        </div>
+      {{ end }}
     </div>
 
     {{ partial "sidebar.html" . }}
