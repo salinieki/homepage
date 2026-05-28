@@ -8,24 +8,23 @@ enableEmoji = false
 summaryLength = 40
 
 [params]
-  description = 'Londonas Tautas Deju Kopa Salinieki — latviešu tautas deju kolektīvs Londonā kopš 2012. gada.'
+  description = "Londonas Tautas Deju Kopa Salinieki — latviešu tautas deju kolektīvs Londonā kopš 2012. gada."
   email = "info@salinieki.co.uk"
-  rehearsalAddress = "Daugavas Vanagu nams, 72 Queensborough Terrace, W2 3SH"
-  rehearsalDay = "pirmdienās"
-  rehearsalTime = "19:00"
   logo = "images/logo.png"
-  copyrightYear = "2025"
+  copyrightYear = "2026"
 
 [[params.heroSlides]]
-  image = "images/foto/2026-02-dejo-ar-mani/01-grupas-bilde.jpg"
+  image = "images/foto/2025-11-neatkaribas-diena/06-grupas-bilde-rokas.jpg"
 [[params.heroSlides]]
-  image = "images/foto/2023-07-dziesmu-svetki/01-svetki-2023.jpg"
+  image = "images/foto/2025-07-elks/01-elks-iii-cover.jpg"
+[[params.heroSlides]]
+  image = "images/foto/2025-07-elks/04-elks-finals.jpg"
 [[params.heroSlides]]
   image = "images/foto/2025-08-dziesma-dejo/01-dzdds-kopbilde.jpg"
 [[params.heroSlides]]
-  image = "images/foto/2019-07-kanada/01-kanada.jpg"
+  image = "images/foto/2026-02-dejo-ar-mani/01-grupas-bilde.jpg"
 [[params.heroSlides]]
-  image = "images/foto/2025-07-elks/04-elks-finals.jpg"
+  image = "images/foto/2026-05-lestera-kulturas-diena/04-grupas-bilde.jpg"
 
 [params.social]
   facebook = "https://www.facebook.com/salinieki/"
@@ -58,15 +57,15 @@ summaryLength = 40
 [[menu.main]]
   name = "Video"
   url = "/video/"
-  weight = 25
+  weight = 30
 [[menu.main]]
   name = "Par mums"
   url = "/par-mums/"
-  weight = 30
+  weight = 40
 [[menu.main]]
   name = "Kontakti"
   url = "/kontakti/"
-  weight = 40
+  weight = 50
 
 [markup]
   [markup.goldmark.renderer]

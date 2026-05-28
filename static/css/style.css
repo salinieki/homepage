@@ -616,7 +616,7 @@ p { margin: 0 0 1em; }
   border-left: 3px solid var(--color-primary);
   box-shadow: var(--shadow-card);
 }
-.page-nav-link.next { border-left: 0; border-right: 3px solid var(--color-primary); text-align: right; }
+.page-nav-link.next { border-left: 0; border-right: 3px solid var(--color-primary); text-align: right; margin-left: auto; }
 .page-nav-link span { display: block; font-size: 0.85rem; color: var(--color-muted); font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.05em; }
 .page-nav-link strong { font-family: var(--font-sans); font-weight: 600; font-size: 1.05rem; }
 .page-nav-link:hover { box-shadow: var(--shadow-hover); }
