@@ -1,1 +1,0 @@
-- Vajag high res bildes no Dziesma Dejo. Deja Skan.
