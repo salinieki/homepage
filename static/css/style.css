@@ -24,7 +24,7 @@
   --color-secondary-soft: #1a3a64;
   --color-text: #2b2b2b;
   --color-muted: #7A7A7A;
-  --color-bg: #ffffff;
+  --color-bg: #f7f5f1;
   --color-bg-alt: #f7f5f1;
   --color-border: #e6e3dd;
   --shadow-card: 0 4px 18px rgba(4, 35, 71, 0.08);
@@ -45,7 +45,12 @@ body {
   color: var(--color-text);
   background: var(--color-bg);
   -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
+.site-main { flex: 1 0 auto; }
+.site-footer { flex-shrink: 0; }
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--color-primary); text-decoration: none; transition: color 0.15s; }
 a:hover { color: var(--color-primary-dark); }
@@ -604,16 +609,17 @@ p { margin: 0 0 1em; }
 .page-nav-link {
   display: block;
   padding: 16px 22px;
-  background: var(--color-bg-alt);
+  background: #fff;
   border-radius: var(--radius);
   color: var(--color-secondary);
   min-width: 220px;
   border-left: 3px solid var(--color-primary);
+  box-shadow: var(--shadow-card);
 }
 .page-nav-link.next { border-left: 0; border-right: 3px solid var(--color-primary); text-align: right; }
 .page-nav-link span { display: block; font-size: 0.85rem; color: var(--color-muted); font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.05em; }
 .page-nav-link strong { font-family: var(--font-sans); font-weight: 600; font-size: 1.05rem; }
-.page-nav-link:hover { background: #efece5; }
+.page-nav-link:hover { box-shadow: var(--shadow-hover); }
 
 /* Contact page styles */
 .contact-grid {
@@ -623,10 +629,11 @@ p { margin: 0 0 1em; }
   margin: 32px 0;
 }
 .contact-card {
-  background: var(--color-bg-alt);
+  background: #fff;
   padding: 28px 32px;
   border-radius: var(--radius);
   border-left: 4px solid var(--color-primary);
+  box-shadow: var(--shadow-card);
 }
 .contact-card h3 {
   margin-top: 0;
