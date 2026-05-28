@@ -11,6 +11,10 @@ url: "/foto/"
 
 {{< gallery id="2026-02-dejo-ar-mani" alt="Dejo ar Mani, Aberdīna" >}}
 
+### 2025 - Latvijas Neatkarības Dienas koncerts
+
+{{< gallery id="2025-11-neatkaribas-diena" alt="Latvijas Neatkarības Diena" >}}
+
 ### 2025 - Dziesma Dejo. Deja Skan.
 
 {{< gallery id="2025-08-dziesma-dejo" alt="Dziesma Dejo. Deja Skan." >}}

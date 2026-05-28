@@ -3,13 +3,27 @@ title: "Par mums"
 url: "/par-mums/"
 ---
 
+Mēs esam aktīvs deju kolektīvs ar apmēram 25 dejotājiem, kas turpina kopt latviešu
+tautas deju tradīcijas Londonā.
+
+Dibināts 2012. gadā, mūsu kolektīvs apvieno dejotājus ar dažādu pieredzi – gan
+ilggadējus dejotājus no Latvijas, gan tos, kuri dejojuši skolas laikā, kā arī
+jaunpienācējus tautas dejā.
+
+**Alda Salma un Elīnas Symon** vadībā mēs mācāmies dejas, uzstājamies koncertos un
+gatavojamies nākamajiem Dziesmu un Deju svētkiem.
+
 ## Vadītāji
 
 <div class="leader-grid">
   <img src="/images/par-mums/leader-elina.jpg" alt="Elīna Symon">
   <div>
     <h3>Elīna Symon</h3>
-    <p>Elīna uzsāka savas dejas gaitas 2 gadu vecumā TDA "Dzintariņš" Rīgā pie Olgas Freibergas. Vēlāk, pārceļoties dzīvot uz Beļģiju, Elīna 10 gadus gāja baleta skolā. 2011. gadā Elīna pārcēlās dzīvot uz Londonu un atsāka tautas dejas 2015. gadā, piedaloties Deju svētkos 2018. un 2023. gados. Kopā ar Aldi, Elīna pārņēma Salinieku vadību 2020. gada septembrī.</p>
+    <p>Elīna uzsāka savas dejas gaitas 2 gadu vecumā TDA "Dzintariņš" Rīgā pie Olgas 
+    Freibergas. Vēlāk, pārceļoties dzīvot uz Beļģiju, Elīna 10 gadus gāja baleta skolā. 
+    2011. gadā Elīna pārcēlās dzīvot uz Londonu un atsāka tautas dejas 2015. gadā, 
+    piedaloties Deju svētkos 2018. un 2023. gados. Kopā ar Aldi, Elīna pārņēma 
+    Salinieku vadību 2020. gada septembrī.</p>
   </div>
 </div>
 
@@ -17,7 +31,12 @@ url: "/par-mums/"
   <img src="/images/par-mums/leader-aldis.jpg" alt="Aldis Salms">
   <div>
     <h3>Aldis Salms</h3>
-    <p>Aldis savas dejotprasmes sāka slīpēt 1. klasē un dejoja pāris gadus līdz tuvākajiem skolēnu deju svētkiem. Tad atsāka dejot 2002. gadā, izkopjot prasmes dažādos Latvijas deju kolektīvos gan A, gan B, gan C grupās un dažādu projektu ietvaros viņam bija iespēja trenēties pie ļoti labiem deju speciālistiem. Aldis 2018. gadā pārcēlās uz Londonu un pievienojās Saliniekiem. Kopā ar Elīnu, Aldis pārņēma Salinieku vadību 2020. gada septembrī.</p>
+    <p>Aldis savas dejotprasmes sāka slīpēt 1. klasē un dejoja pāris gadus līdz 
+    tuvākajiem skolēnu deju svētkiem. Tad atsāka dejot 2002. gadā, izkopjot prasmes 
+    dažādos Latvijas deju kolektīvos gan A, gan B, gan C grupās un dažādu projektu 
+    ietvaros viņam bija iespēja trenēties pie ļoti labiem deju speciālistiem. Aldis 
+    2018. gadā pārcēlās uz Londonu un pievienojās Saliniekiem. Kopā ar Elīnu, Aldis 
+    pārņēma Salinieku vadību 2020. gada septembrī.</p>
   </div>
 </div>
 
@@ -32,11 +51,12 @@ url: "/par-mums/"
 ## Koncerti
 
 <ul class="concert-list">
-<li><strong>2026. Februārs</strong><span>Dejo Ar Mani, Aberdīna, Lielbritānija</span></li>
+<li><strong>2026. Maijs</strong><span>10. Kultūras Dienā Apvienotā Karalistē, Lestera, Lielbritānija</span></li>
+<li><strong>2026. Februāris</strong><span>Dejo Ar Mani, Aberdīna, Lielbritānija</span></li>
 <li><strong>2025. Novembris</strong><span>Latvijas valsts svētku koncerts, Londona, Lielbritānija</span></li>
 <li><strong>2025. Augusts</strong><span>Dziesma Dejo Deja Skan, eposs "Düna", Mežaparks, Latvija</span></li>
 <li><strong>2025. Jūlijs</strong><span>ELKS III, Bredforda, Lielbritānija</span></li>
-<li><strong>2025. Marts</strong><span>Dejo Ar Mani, Aberdīna, Lielbritānija</span></li>
+<li><strong>2025. Februāris</strong><span>Dejo Ar Mani, Aberdīna, Lielbritānija</span></li>
 <li><strong>2024. Novembris</strong><span>Latvijas valsts svētku koncerts, Londona, Lielbritānija</span></li>
 <li><strong>2023. Novembris</strong><span>Latvijas valsts svētku koncerts, Londona, Lielbritānija</span></li>
 <li><strong>2023. Jūlijs</strong><span>XXVII Vispārējie Latviešu Dziesmu un XVII Deju svētki, deju lielkoncerts "Mūžīgais Dzinējs", dejo E grupā un diasporas grupā</span></li>

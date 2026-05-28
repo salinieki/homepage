@@ -4,13 +4,6 @@
 <section class="home-main section-band">
   <div class="container home-grid">
     <div class="home-main-col">
-      <div class="intro-block">
-        <h2 class="section-title">Par mums</h2>
-        <div class="section-content">
-          {{ .Content }}
-        </div>
-      </div>
-
       <h2 class="section-title">Aktualitātes</h2>
       {{ $news := where .Site.RegularPages "Section" "news" }}
       <div class="news-list">

@@ -5,9 +5,7 @@ url: "/kontakti/"
 
 ## Nāc dejot!
 
-Jaunā sezona sāksies **pirmdien, 29. septembrī 2025, plkst. 19:00**.
-
-Mēģinājumi notiek **Daugavas Vanagu namā, 72 Queensborough Terrace, W2 3SH**.
+Mēģinājumi notiek **pirmdienās, plkst. 19:00, Daugavas Vanagu namā, 72 Queensborough Terrace, W2 3SH**.
 
 Puiši un pāri laipni aicināti! Ja ir interese, sazinies ar mums: [info@salinieki.co.uk](mailto:info@salinieki.co.uk)
 
@@ -17,9 +15,9 @@ Puiši un pāri laipni aicināti! Ja ir interese, sazinies ar mums: [info@salini
 
 ### Mēģinājumi
 
-Mēģinājumi notiek **pirmdienās, 19:00–21:30**, Daugavas Vanagu namā.
+**Pirmdienās, 19:00–21:30.**
 
-**Adrese:** 72 Queensborough Terrace, W2 3SH, London
+**Adrese:** Daugavas Vanagu nams, 72 Queensborough Terrace, W2 3SH, London.
 
 </div>
 
