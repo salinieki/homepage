@@ -41,5 +41,20 @@
   <div class="sidebar-block">
     <h3 class="sidebar-title">Sociālie tīkli</h3>
     {{ partial "social.html" . }}
+    {{ with .Site.Params.social.facebook }}
+      <div class="facebook-feed">
+        <iframe
+          src="https://www.facebook.com/plugins/page.php?href={{ . | urlquery }}&tabs=timeline&width=500&height=600&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false"
+          width="100%"
+          height="600"
+          style="border:none;overflow:hidden"
+          scrolling="no"
+          frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+          loading="lazy"
+          title="Salinieki Facebook"
+        ></iframe>
+      </div>
+    {{ end }}
   </div>
 </aside>

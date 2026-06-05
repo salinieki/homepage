@@ -456,6 +456,9 @@ p { margin: 0 0 1em; }
   color: #fff;
   transform: translateY(-2px);
 }
+.facebook-feed {
+  margin-top: 20px;
+}
 
 /* ===== CTA band =========================================== */
 .cta-band {
