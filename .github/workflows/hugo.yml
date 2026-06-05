@@ -1,8 +1,10 @@
 name: Deploy Hugo site to dev.salinieki.co.uk
 
+# Auto-deploy on push is paused while waiting on UnlimitedWebHosting support
+# to sort out FTPS auth / cPHulk. Re-add the `push:` trigger below to resume.
 on:
-  push:
-    branches: [master]
+  # push:
+  #   branches: [master]
   workflow_dispatch:
 
 permissions:
