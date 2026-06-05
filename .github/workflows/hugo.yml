@@ -49,8 +49,9 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftp
-          port: 21
+          protocol: ftps-legacy
+          port: 990
+          security: loose
           local-dir: ./public/
           server-dir: ./dev/
           exclude: |
