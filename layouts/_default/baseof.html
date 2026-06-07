@@ -71,6 +71,62 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3/dist/css/glightbox.min.css">
   <script src="{{ "js/site.js" | relURL }}" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/glightbox@3/dist/js/glightbox.min.js" defer></script>
+  {{ $place := dict
+    "@type" "Place"
+    "name" "Daugavas Vanagu nams"
+    "address" (dict
+      "@type" "PostalAddress"
+      "streetAddress" "72 Queensborough Terrace"
+      "postalCode" "W2 3SH"
+      "addressLocality" "London"
+      "addressCountry" "GB"
+    )
+  }}
+  {{ $org := dict
+    "@context" "https://schema.org"
+    "@type" "DanceGroup"
+    "name" "Salinieki"
+    "alternateName" "Londonas TDK \"Salinieki\""
+    "url" .Site.BaseURL
+    "logo" (absURL "images/logo.png")
+    "email" .Site.Params.email
+    "foundingDate" "2012"
+    "location" $place
+    "sameAs" (slice .Site.Params.social.facebook .Site.Params.social.instagram .Site.Params.social.youtube)
+  }}
+  <script type="application/ld+json">{{ $org | jsonify }}</script>
+  {{ if .Params.showRehearsalEvent }}
+    {{ $isLv := eq .Site.Language.Lang "lv" }}
+    {{ $eventName := cond $isLv "Salinieku tautas deju mēģinājums" "Salinieki folk dance rehearsal" }}
+    {{ $eventDesc := cond $isLv "Iknedēļas mēģinājums. Puiši un pāri laipni aicināti. Iepriekšēja deju pieredze nav nepieciešama." "Weekly rehearsal. Men and couples welcome. No prior dance experience required." }}
+    {{ $event := dict
+      "@context" "https://schema.org"
+      "@type" "Event"
+      "name" $eventName
+      "description" $eventDesc
+      "startDate" "2012-01-09"
+      "eventSchedule" (dict
+        "@type" "Schedule"
+        "byDay" "https://schema.org/Monday"
+        "startTime" "19:00:00"
+        "endTime" "21:30:00"
+        "repeatFrequency" "P1W"
+        "scheduleTimezone" "Europe/London"
+      )
+      "eventStatus" "https://schema.org/EventScheduled"
+      "eventAttendanceMode" "https://schema.org/OfflineEventAttendanceMode"
+      "isAccessibleForFree" true
+      "inLanguage" "lv"
+      "location" $place
+      "organizer" (dict
+        "@type" "DanceGroup"
+        "name" "Salinieki"
+        "url" .Site.BaseURL
+      )
+      "url" .Permalink
+    }}
+    <script type="application/ld+json">{{ $event | jsonify }}</script>
+  {{ end }}
 </head>
 <body class="{{ if .IsHome }}is-home{{ else }}is-page{{ end }}">
   {{ partial "header.html" . }}

@@ -1,5 +1,6 @@
 ---
 title: "Contact"
+showRehearsalEvent: true
 ---
 
 ## Join us!

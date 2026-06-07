@@ -1,6 +1,7 @@
 ---
 title: "Kontakti"
 url: "/kontakti/"
+showRehearsalEvent: true
 ---
 
 ## Nāc dejot!
