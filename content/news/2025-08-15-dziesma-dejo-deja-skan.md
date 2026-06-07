@@ -1,6 +1,7 @@
 ---
 title: Dziesma Dejo. Deja Skan.
 date: 2025-08-15
+author: Mārtiņš Brūveris
 coverImage: images/foto/2025-08-dziesma-dejo/01-dzdds-kopbilde.jpg
 summary: >
   Šī gada augustā Salinieki apvienojās ar Londona Dejo, lai piedalītos šīgada 

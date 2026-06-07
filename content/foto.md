@@ -3,23 +3,23 @@ title: "Foto"
 url: "/foto/"
 ---
 
-### 2026 - Kultūras Diena Lesterā
+### 2026 – Kultūras Diena Lesterā
 
 {{< gallery id="2026-05-lestera-kulturas-diena" alt="Kultūras Diena Lesterā" >}}
 
-### 2026 - Dejo ar Mani, Aberdīna
+### 2026 – Dejo ar Mani, Aberdīna
 
 {{< gallery id="2026-02-dejo-ar-mani" alt="Dejo ar Mani, Aberdīna" >}}
 
-### 2025 - Latvijas Neatkarības Dienas koncerts
+### 2025 – Latvijas Neatkarības Dienas koncerts, Londona
 
 {{< gallery id="2025-11-neatkaribas-diena" alt="Latvijas Neatkarības Diena" >}}
 
-### 2025 - Dziesma Dejo. Deja Skan.
+### 2025 – Dziesma Dejo. Deja Skan.
 
 {{< gallery id="2025-08-dziesma-dejo" alt="Dziesma Dejo. Deja Skan." >}}
 
-### 2025 – ELKS III, Bredfordā
+### 2025 – ELKS III, Bredforda
 
 {{< gallery id="2025-07-elks" alt="ELKS III" >}}
 

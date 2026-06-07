@@ -4,7 +4,7 @@ title: "Contact"
 
 ## Join us!
 
-Rehearsals take place **Mondays at 19:00, at Daugavas Vanagu nams, 72 Queensborough Terrace, W2 3SH**.
+Rehearsals take place **7-9:30pm on Mondays at Daugavas Vanagu nams, 72 Queensborough Terrace, W2 3SH**.
 
 Men and couples especially welcome! If you're interested, get in touch: [info@salinieki.co.uk](mailto:info@salinieki.co.uk)
 

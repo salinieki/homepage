@@ -1,6 +1,7 @@
 ---
 title: Dziesma Dejo. Deja Skan.
 date: 2025-08-15
+author: Mārtiņš Brūveris
 coverImage: images/foto/2025-08-dziesma-dejo/01-dzdds-kopbilde.jpg
 summary: >
   This August, Salinieki joined forces with Londona Dejo to take part in this
@@ -22,7 +23,7 @@ pieces: "Līku loku upe teka", "Alku deja", "Gapsis" and "Rūnu raksti".
 
 Once the dances were learnt, all the dancers — led by Aldis and Anna — set off
 for Latvia, to rehearse from 6 August and then perform on 8–9 August. Latvia
-greeted us with typical summer weather: sun for swimming in Lake Ķīšezers, and
+greeted us with typical summer weather: sun for swimming in lake Ķīšezers, and
 rain to refresh us and wash away the sweat from rehearsals.
 
 {{< figure src="images/foto/2025-08-dziesma-dejo/03-dzdds-baseins.jpg" alt="Swimming in Ķīšezers" >}}

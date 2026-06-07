@@ -1,6 +1,7 @@
 ---
 title: ELKS III, Bredforda
 date: 2025-07-27
+author: Mārtiņš Brūveris
 coverImage: images/foto/2025-07-elks/01-elks-iii-cover.jpg
 summary: >
   Šovasar 19 Salinieku dejotāji brauca uz Bredfordu, lai piedalītos III. Eiropas 

@@ -1,6 +1,7 @@
 ---
 title: ELKS III, Bradford
 date: 2025-07-27
+author: Mārtiņš Brūveris
 coverImage: images/foto/2025-07-elks/01-elks-iii-cover.jpg
 summary: >
   This summer 19 Salinieki dancers travelled to Bradford to take part in the

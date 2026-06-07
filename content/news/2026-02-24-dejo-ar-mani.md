@@ -1,6 +1,7 @@
 ---
 title: Dejo ar Mani, Aberdīna
 date: 2026-02-24
+author: Mārtiņš Brūveris
 location: Aberdīna, Lielbritānija
 coverImage: images/foto/2026-02-dejo-ar-mani/01-grupas-bilde.jpg
 summary: >

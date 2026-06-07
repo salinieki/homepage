@@ -10,7 +10,7 @@ long-time dancers from Latvia, those who danced during their school years, and
 newcomers to folk dance.
 
 Under the leadership of **Aldis Salms and Elīna Symon**, we learn dances,
-perform at concerts and prepare for the next Latvian Song and Dance Festivals.
+perform at concerts and prepare for the next Latvian Song and Dance Festival.
 
 ## Leaders
 
@@ -20,8 +20,8 @@ perform at concerts and prepare for the next Latvian Song and Dance Festivals.
     <h3>Elīna Symon</h3>
     <p>Elīna started dancing at the age of two with the folk-dance group "Dzintariņš"
     in Riga, under Olga Freiberga. After moving to Belgium, she attended ballet
-    school for ten years. In 2011 Elīna moved to London and returned to folk
-    dance in 2015, taking part in the Latvian Song and Dance Festivals in 2018
+    school for ten years. In 2011 Elīna moved to London and a few years later in 2015
+    returned to folk dance taking part in the Latvian Song and Dance Festivals in 2018
     and 2023. Together with Aldis, Elīna took over the leadership of Salinieki
     in September 2020.</p>
   </div>
@@ -31,16 +31,16 @@ perform at concerts and prepare for the next Latvian Song and Dance Festivals.
   <img src="/images/par-mums/leader-aldis.jpg" alt="Aldis Salms">
   <div>
     <h3>Aldis Salms</h3>
-    <p>Aldis began dancing in first grade and danced for a few years up to the
-    school children's dance festival. He returned to dance in 2002, developing
-    his skills in various Latvian dance groups across A, B and C categories and
-    training with excellent choreographers in different projects. Aldis moved
-    to London in 2018 and joined Salinieki. Together with Elīna, he took over
-    the leadership of Salinieki in September 2020.</p>
+    <p>Aldis began dancing in first grade and participated in his first school 
+    children's dance festival. He then took a break from dancing and returned to dance 
+    in 2002, developing his skills in various Latvian dance groups across A, B and C 
+    categories and training with well known choreographers. In 2018 Aldis moved to 
+    London and joined Salinieki. Together with Elīna, he took over the leadership of 
+    Salinieki in September 2020.</p>
   </div>
 </div>
 
-### Leaders over the years
+### Leaders through the years
 
 - **From September 2020** – Elīna Symon, Aldis Salms
 - **March 2017** – Kaspars Frīdmanis
@@ -51,7 +51,7 @@ perform at concerts and prepare for the next Latvian Song and Dance Festivals.
 ## Concerts
 
 <ul class="concert-list">
-<li><strong>May 2026</strong><span>10th Culture Day in the United Kingdom, Leicester, UK</span></li>
+<li><strong>May 2026</strong><span>10th Latvian Culture Day in the United Kingdom, Leicester, UK</span></li>
 <li><strong>February 2026</strong><span>Dejo Ar Mani, Aberdeen, UK</span></li>
 <li><strong>November 2025</strong><span>Latvian Independence Day concert, London, UK</span></li>
 <li><strong>August 2025</strong><span>Dziesma Dejo Deja Skan, epic "Düna", Mežaparks, Latvia</span></li>
@@ -90,5 +90,5 @@ perform at concerts and prepare for the next Latvian Song and Dance Festivals.
 <li><strong>June 2013</strong><span>Latvian Culture Days, London, UK</span></li>
 <li><strong>May 2013</strong><span>Wisbech town festival, Wisbech, UK</span></li>
 <li><strong>March 2013</strong><span>Friendship concert with TDK "Trejdeviņi", Estonian Society House, London, UK</span></li>
-<li><strong>July 2013</strong><span>XXV Latvian Song and XV Dance Festival, grand dance show "Tēvu laipas", dancing in group C</span></li>
+<li><strong>July 2013</strong><span>XXV Latvian Song and XV Dance Festival, grand dance concert "Tēvu laipas", dancing in group C</span></li>
 </ul>

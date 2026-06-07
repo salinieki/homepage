@@ -1,16 +1,17 @@
 ---
 title: 10th Culture Day in Leicester
 date: 2026-05-05
+author: Mārtiņš Brūveris
 location: Leicester, United Kingdom
 coverImage: images/foto/2026-05-lestera-kulturas-diena/04-grupas-bilde.jpg
 summary: >
-  In early May, Salinieki travelled to Leicester to take part in the 10th
+  In early May Salinieki travelled to Leicester to take part in the 10th
   Culture Day in the United Kingdom. We performed Aldis Salms's choreography
   "Dzīvības koks" and "Zeme zeļ, zeme plaukst".
 hasFullArticle: true
 ---
 
-In early May, Salinieki travelled to Leicester to take part in the 10th
+In early May Salinieki travelled to Leicester to take part in the 10th
 Culture Day in the United Kingdom.
 
 The concert took place during the day, so rehearsals started early in the
@@ -24,12 +25,12 @@ concert venue at Jubilee Square.
 
 {{< figure src="images/foto/2026-05-lestera-kulturas-diena/01-gajiens.jpg" alt="Parade" >}}
 
-At the gala concert we performed two dances: Aldis Salms's choreography
+At the main concert we performed two dances: Aldis Salms' choreography
 "Dzīvības koks" and "Zeme zeļ, zeme plaukst".
 
 {{< youtube id="RGPPwNG0G5Q" title="Zeme zeļ, zeme plaukst" >}}
 
-During the gala concert there was also a flash-mob performance at St Peter's
+At the same time as the main concert there was also a flash-mob performance at St Peter's
 Square, where we danced "Mēs ciemiņus gaidīdami".
 
 {{< figure src="images/foto/2026-05-lestera-kulturas-diena/03-ciemini.jpg" alt="Mēs ciemiņus gaidīdami" >}}

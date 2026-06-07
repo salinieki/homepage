@@ -1,6 +1,7 @@
 ---
 title: Latvijas Neatkarības Dienas Koncerts
 date: 2025-11-22
+author: Mārtiņš Brūveris
 coverImage: images/foto/2025-11-neatkaribas-diena/01-grupas-bilde.jpg
 summary: >
   Latvijas Neatkarības dienas koncertā Londonā deju kopa "Salinieki" pirmo reizi 

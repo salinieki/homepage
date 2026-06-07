@@ -2,7 +2,7 @@
 title: "Photos"
 ---
 
-### 2026 – Culture Day in Leicester
+### 2026 – Latvian Culture Day in Leicester
 
 {{< gallery id="2026-05-lestera-kulturas-diena" alt="Culture Day in Leicester" >}}
 
@@ -10,7 +10,7 @@ title: "Photos"
 
 {{< gallery id="2026-02-dejo-ar-mani" alt="Dejo ar Mani, Aberdeen" >}}
 
-### 2025 – Latvian Independence Day Concert
+### 2025 – Latvian Independence Day Concert, London
 
 {{< gallery id="2025-11-neatkaribas-diena" alt="Latvian Independence Day" >}}
 

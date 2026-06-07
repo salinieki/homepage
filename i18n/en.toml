@@ -19,9 +19,6 @@ other = "Show more"
 [news_read_more]
 other = "Read more →"
 
-[news_byline_author]
-other = "Mārtiņš Brūveris"
-
 [news_prev]
 other = "← Previous"
 
@@ -47,7 +44,7 @@ other = "Send us an email"
 other = "Join us!"
 
 [sidebar_cta_body_1]
-other = "Rehearsals take place 7-9pm on Mondays at Daugavas Vanagu nams, 72 Queensborough Terrace, W2 3SH."
+other = "Rehearsals take place 7-9:30pm on Mondays at Daugavas Vanagu nams, 72 Queensborough Terrace, W2 3SH."
 
 [sidebar_cta_body_2]
 other = "Men and couples especially welcome!"

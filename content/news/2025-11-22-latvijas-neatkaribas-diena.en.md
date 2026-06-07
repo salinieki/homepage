@@ -1,6 +1,7 @@
 ---
 title: Latvian Independence Day Concert
 date: 2025-11-22
+author: Mārtiņš Brūveris
 coverImage: images/foto/2025-11-neatkaribas-diena/01-grupas-bilde.jpg
 summary: >
   At the Latvian Independence Day concert in London, "Salinieki" performed for

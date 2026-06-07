@@ -3,7 +3,7 @@
   <header class="page-header container">
     <h1 class="page-title">{{ .Title }}</h1>
     {{ if eq .Section "news" }}
-      <p class="page-meta">{{ i18n "news_byline_author" }} / {{ .Date | time.Format ":date_long" }}</p>
+      <p class="page-meta">{{ with .Params.author }}{{ . }} / {{ end }}{{ .Date | time.Format ":date_long" }}</p>
     {{ end }}
   </header>
   <div class="page-content container">

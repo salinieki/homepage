@@ -1,6 +1,7 @@
 ---
 title: 10. Kultūras Diena Lesterā
 date: 2026-05-05
+author: Mārtiņš Brūveris
 location: Lestera, Lielbritānija
 coverImage: images/foto/2026-05-lestera-kulturas-diena/04-grupas-bilde.jpg
 summary: >
