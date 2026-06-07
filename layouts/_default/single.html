@@ -3,7 +3,7 @@
   <header class="page-header container">
     <h1 class="page-title">{{ .Title }}</h1>
     {{ if eq .Section "news" }}
-      <p class="page-meta">Mārtiņš Brūveris / {{ .Date | time.Format ":date_long" }}</p>
+      <p class="page-meta">{{ i18n "news_byline_author" }} / {{ .Date | time.Format ":date_long" }}</p>
     {{ end }}
   </header>
   <div class="page-content container">
@@ -23,10 +23,10 @@
     {{ end }}
     <nav class="page-nav container">
       {{ with $prev }}
-        <a class="page-nav-link prev" href="{{ .RelPermalink }}"><span>← Iepriekšējais</span><strong>{{ .Title }}</strong></a>
+        <a class="page-nav-link prev" href="{{ .RelPermalink }}"><span>{{ i18n "news_prev" }}</span><strong>{{ .Title }}</strong></a>
       {{ end }}
       {{ with $next }}
-        <a class="page-nav-link next" href="{{ .RelPermalink }}"><span>Nākamais →</span><strong>{{ .Title }}</strong></a>
+        <a class="page-nav-link next" href="{{ .RelPermalink }}"><span>{{ i18n "news_next" }}</span><strong>{{ .Title }}</strong></a>
       {{ end }}
     </nav>
   {{ end }}

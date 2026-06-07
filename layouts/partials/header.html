@@ -4,16 +4,17 @@
       <img src="{{ .Site.Params.logo | relURL }}" alt="Salinieki logo" class="brand-logo">
       <span class="brand-text">Salinieki</span>
     </a>
-    <button class="nav-toggle" aria-label="Atvērt izvēlni" aria-expanded="false">
+    <button class="nav-toggle" aria-label="{{ i18n "open_menu" }}" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
-    <nav class="main-nav" aria-label="Galvenā navigācija">
+    <nav class="main-nav" aria-label="{{ i18n "main_nav" }}">
       <ul>
         {{ range .Site.Menus.main }}
-          {{ $active := or (eq $.RelPermalink .URL) (and (eq .URL "/") $.IsHome) }}
+          {{ $active := or (eq $.RelPermalink .URL) (and (eq .URL "/") $.IsHome) (and (eq .URL "/en/") $.IsHome) }}
           <li><a href="{{ .URL | relURL }}" class="{{ if $active }}is-active{{ end }}">{{ .Name }}</a></li>
         {{ end }}
       </ul>
     </nav>
+    {{ partial "language-switcher.html" . }}
   </div>
 </header>

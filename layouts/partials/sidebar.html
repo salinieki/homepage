@@ -1,8 +1,9 @@
 <aside class="home-side-col">
   <div class="sidebar-block sidebar-cta">
-    <h3 class="sidebar-title">Nāc dejot!</h3>
-    <p>Mēģinājumi: Daugavas Vanagu nams, 72 Queensborough Terrace, W2 3SH, pirmdienās plkst. 19:00. Puiši un pāri laipni aicināti!</p>
-    <p>Ja ir interese, sazinies ar mums: <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a></p>
+    <h3 class="sidebar-title">{{ i18n "sidebar_cta_title" }}</h3>
+    <p>{{ i18n "sidebar_cta_body_1" }}</p>
+    <p>{{ i18n "sidebar_cta_body_2" }}</p>
+    <p>{{ i18n "sidebar_cta_contact" }} <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a></p>
     <div class="sidebar-map">
       <iframe
         src="https://www.google.com/maps?q=Daugavas+Vanagu+nams%2C+72+Queensborough+Terrace%2C+W2+3SH&output=embed"
@@ -11,13 +12,13 @@
         style="border:0;"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
-        title="Daugavas Vanagu nams, 72 Queensborough Terrace, W2 3SH"
+        title="{{ i18n "map_title" }}"
       ></iframe>
     </div>
   </div>
 
   <div class="sidebar-block">
-    <h3 class="sidebar-title">Kalendārs</h3>
+    <h3 class="sidebar-title">{{ i18n "sidebar_calendar_title" }}</h3>
     <ul class="calendar-list">
       {{ range .Site.Params.calendar }}
         {{ $p := split .date "." }}
@@ -28,7 +29,7 @@
   </div>
 
   <div class="sidebar-block">
-    <h3 class="sidebar-title">Mūs atbalsta</h3>
+    <h3 class="sidebar-title">{{ i18n "sidebar_supporters_title" }}</h3>
     <div class="supporter-list">
       {{ range .Site.Params.supporters }}
         <a href="{{ .url }}" target="_blank" rel="noopener" aria-label="{{ .name }}">
@@ -39,7 +40,7 @@
   </div>
 
   <div class="sidebar-block">
-    <h3 class="sidebar-title">Sociālie tīkli</h3>
+    <h3 class="sidebar-title">{{ i18n "sidebar_social_title" }}</h3>
     {{ partial "social.html" . }}
     {{ with .Site.Params.social.facebook }}
       <div class="facebook-feed">
@@ -52,7 +53,7 @@
           frameborder="0"
           allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
           loading="lazy"
-          title="Salinieki Facebook"
+          title="{{ i18n "facebook_title" }}"
         ></iframe>
       </div>
     {{ end }}

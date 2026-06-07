@@ -30,7 +30,7 @@
       {{ .Params.summary | safeHTML }}
     </div>
     {{ if $hasLink }}
-      <p class="news-card-more"><a href="{{ .RelPermalink }}">Lasīt vairāk →</a></p>
+      <p class="news-card-more"><a href="{{ .RelPermalink }}">{{ i18n "news_read_more" }}</a></p>
     {{ end }}
   </div>
 </article>

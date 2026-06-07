@@ -1,0 +1,71 @@
+[brand_aria]
+other = "Sākumlapa"
+
+[open_menu]
+other = "Atvērt izvēlni"
+
+[main_nav]
+other = "Galvenā navigācija"
+
+[language_nav]
+other = "Valoda"
+
+[news_section_title]
+other = "Aktualitātes"
+
+[news_view_more]
+other = "Skatīt vairāk"
+
+[news_read_more]
+other = "Lasīt vairāk →"
+
+[news_byline_author]
+other = "Mārtiņš Brūveris"
+
+[news_prev]
+other = "← Iepriekšējais"
+
+[news_next]
+other = "Nākamais →"
+
+[only_in_latvian]
+other = "Šis raksts pašlaik ir pieejams tikai latviešu valodā."
+
+[hero_eyebrow]
+other = "Londonas Tautas Deju Kopa"
+
+[cta_title]
+other = "Nāc dejot!"
+
+[cta_body]
+other = "Pievienojies mūsu kolektīvam! Puiši un pāri laipni aicināti. Iepriekšēja deju pieredze nav nepieciešama."
+
+[cta_button]
+other = "Atsūti e-pastu"
+
+[sidebar_cta_title]
+other = "Nāc dejot!"
+
+[sidebar_cta_body_1]
+other = "Mēģinājumi: Daugavas Vanagu nams, 72 Queensborough Terrace, W2 3SH, pirmdienās plkst. 19:00."
+
+[sidebar_cta_body_2]
+other = "Puiši un pāri laipni aicināti!"
+
+[sidebar_cta_contact]
+other = "Ir interese? Sazinies ar mums:"
+
+[sidebar_calendar_title]
+other = "Kalendārs"
+
+[sidebar_supporters_title]
+other = "Mūs atbalsta"
+
+[sidebar_social_title]
+other = "Sociālie tīkli"
+
+[map_title]
+other = "Daugavas Vanagu nams, 72 Queensborough Terrace, W2 3SH"
+
+[facebook_title]
+other = "Salinieki Facebook"

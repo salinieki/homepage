@@ -1,14 +1,81 @@
 baseURL = "https://salinieki.co.uk/"
-locale = "lv"
 defaultContentLanguage = "lv"
-title = 'Londonas TDK "Salinieki"'
+defaultContentLanguageInSubdir = false
 
 enableRobotsTXT = true
 enableEmoji = false
 summaryLength = 40
 
+[languages]
+  [languages.lv]
+    label = "Latviski"
+    locale = "lv"
+    weight = 1
+    title = 'Londonas TDK "Salinieki"'
+    [languages.lv.params]
+      description = "Londonas Tautas Deju Kopa Salinieki — latviešu tautas deju kolektīvs Londonā kopš 2012. gada."
+      flag = "images/flags/lv.svg"
+      flagAlt = "Latviski"
+    [[languages.lv.params.calendar]]
+      date = "20.06.2026"
+      title = "\"(Pa) Saules Ceļu Izdejot\" Īrijā"
+    [languages.lv.menu]
+      [[languages.lv.menu.main]]
+        name = "Aktualitātes"
+        url = "/"
+        weight = 10
+      [[languages.lv.menu.main]]
+        name = "Foto"
+        url = "/foto/"
+        weight = 20
+      [[languages.lv.menu.main]]
+        name = "Video"
+        url = "/video/"
+        weight = 30
+      [[languages.lv.menu.main]]
+        name = "Par mums"
+        url = "/par-mums/"
+        weight = 40
+      [[languages.lv.menu.main]]
+        name = "Kontakti"
+        url = "/kontakti/"
+        weight = 50
+
+  [languages.en]
+    label = "English"
+    locale = "en"
+    weight = 2
+    title = 'Salinieki — Latvian Folk Dance Group in London'
+    [languages.en.params]
+      description = "Salinieki is a Latvian folk dance group based in London, performing since 2012."
+      flag = "images/flags/gb.svg"
+      flagAlt = "English"
+    [[languages.en.params.calendar]]
+      date = "20.06.2026"
+      title = "\"(Pa) Saules Ceļu Izdejot\" in Ireland"
+    [languages.en.menu]
+      [[languages.en.menu.main]]
+        name = "News"
+        url = "/en/"
+        weight = 10
+      [[languages.en.menu.main]]
+        name = "Photos"
+        url = "/en/foto/"
+        weight = 20
+      [[languages.en.menu.main]]
+        name = "Videos"
+        url = "/en/video/"
+        weight = 30
+      [[languages.en.menu.main]]
+        name = "About us"
+        url = "/en/par-mums/"
+        weight = 40
+      [[languages.en.menu.main]]
+        name = "Contact"
+        url = "/en/kontakti/"
+        weight = 50
+
 [params]
-  description = "Londonas Tautas Deju Kopa Salinieki — latviešu tautas deju kolektīvs Londonā kopš 2012. gada."
   email = "info@salinieki.co.uk"
   logo = "images/logo.png"
   copyrightYear = "2026"
@@ -31,10 +98,6 @@ summaryLength = 40
   instagram = "https://www.instagram.com/salinieki/"
   youtube = "https://www.youtube.com/@saliniekitdk9717"
 
-[[params.calendar]]
-  date = "20.06.2026"
-  title = "\"(Pa) Saules Ceļu Izdejot\" Īrijā"
-
 [[params.supporters]]
   name = "Eiropas Latviešu Apvienība"
   url = "https://ela.lv/"
@@ -44,28 +107,6 @@ summaryLength = 40
   name = "Latvijas Kultūras Ministrija"
   url = "https://www.km.gov.lv/lv"
   logo = "images/supporters/kulturas-ministrija.png"
-
-[menu]
-[[menu.main]]
-  name = "Aktualitātes"
-  url = "/"
-  weight = 10
-[[menu.main]]
-  name = "Foto"
-  url = "/foto/"
-  weight = 20
-[[menu.main]]
-  name = "Video"
-  url = "/video/"
-  weight = 30
-[[menu.main]]
-  name = "Par mums"
-  url = "/par-mums/"
-  weight = 40
-[[menu.main]]
-  name = "Kontakti"
-  url = "/kontakti/"
-  weight = 50
 
 [markup]
   [markup.goldmark.renderer]

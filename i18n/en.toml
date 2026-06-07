@@ -1,0 +1,71 @@
+[brand_aria]
+other = "Home"
+
+[open_menu]
+other = "Open menu"
+
+[main_nav]
+other = "Main navigation"
+
+[language_nav]
+other = "Language"
+
+[news_section_title]
+other = "News"
+
+[news_view_more]
+other = "Show more"
+
+[news_read_more]
+other = "Read more →"
+
+[news_byline_author]
+other = "Mārtiņš Brūveris"
+
+[news_prev]
+other = "← Previous"
+
+[news_next]
+other = "Next →"
+
+[only_in_latvian]
+other = "This article is currently available only in Latvian."
+
+[hero_eyebrow]
+other = "Latvian Folk Dance Group in London"
+
+[cta_title]
+other = "Join us!"
+
+[cta_body]
+other = "No previous dance experience required. Men and couples especially welcome. "
+
+[cta_button]
+other = "Send us an email"
+
+[sidebar_cta_title]
+other = "Join us!"
+
+[sidebar_cta_body_1]
+other = "Rehearsals take place 7-9pm on Mondays at Daugavas Vanagu nams, 72 Queensborough Terrace, W2 3SH."
+
+[sidebar_cta_body_2]
+other = "Men and couples especially welcome!"
+
+[sidebar_cta_contact]
+other = "Interested? Get in touch:"
+
+[sidebar_calendar_title]
+other = "Calendar"
+
+[sidebar_supporters_title]
+other = "Supported by"
+
+[sidebar_social_title]
+other = "Social media"
+
+[map_title]
+other = "Daugavas Vanagu nams, 72 Queensborough Terrace, W2 3SH"
+
+[facebook_title]
+other = "Salinieki Facebook"

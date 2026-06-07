@@ -4,7 +4,7 @@
 <section class="home-main section-band">
   <div class="container home-grid">
     <div class="home-main-col">
-      <h2 class="section-title">Aktualitātes</h2>
+      <h2 class="section-title">{{ i18n "news_section_title" }}</h2>
       {{ $news := where .Site.RegularPages "Section" "news" }}
       <div class="news-list">
         {{ range $i, $p := $news }}
@@ -15,7 +15,7 @@
       </div>
       {{ if gt (len $news) 5 }}
         <div class="news-list-actions">
-          <button type="button" class="btn btn-primary" data-news-more>Skatīt vairāk</button>
+          <button type="button" class="btn btn-primary" data-news-more>{{ i18n "news_view_more" }}</button>
         </div>
       {{ end }}
     </div>
@@ -26,9 +26,9 @@
 
 <section class="cta-band">
   <div class="container cta-inner">
-    <h2>Nāc dejot!</h2>
-    <p>Pievienojies mūsu kolektīvam! Puiši un pāri laipni aicināti. Iepriekšēja deju pieredze nav nepieciešama.</p>
-    <a class="btn btn-primary" href="mailto:{{ .Site.Params.email }}">Atsūti e-pastu</a>
+    <h2>{{ i18n "cta_title" }}</h2>
+    <p>{{ i18n "cta_body" }}</p>
+    <a class="btn btn-primary" href="mailto:{{ .Site.Params.email }}">{{ i18n "cta_button" }}</a>
   </div>
 </section>
 {{ end }}

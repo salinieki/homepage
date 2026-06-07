@@ -1,0 +1,25 @@
+<div class="lang-switcher" role="navigation" aria-label="{{ i18n "language_nav" }}">
+  {{ $sites := hugo.Sites }}
+  {{ $last := sub (len $sites) 1 }}
+  {{ range $i, $site := $sites }}
+    {{ $lang := $site.Language }}
+    {{ $flag := $lang.Params.flag }}
+    {{ $alt := or $lang.Params.flagAlt $lang.Label }}
+    {{ $isActive := eq $lang.Lang $.Site.Language.Lang }}
+    {{ if $isActive }}
+      <span class="lang-flag is-active" aria-current="true">
+        <img src="{{ $flag | relURL }}" alt="{{ $alt }}" width="30" height="15">
+      </span>
+    {{ else }}
+      {{ $target := "" }}
+      {{ range $.Translations }}
+        {{ if eq .Lang $lang.Lang }}{{ $target = .RelPermalink }}{{ end }}
+      {{ end }}
+      {{ if not $target }}{{ $target = $site.Home.RelPermalink }}{{ end }}
+      <a class="lang-flag" href="{{ $target }}" hreflang="{{ $lang.Lang }}" lang="{{ $lang.Lang }}" aria-label="{{ $alt }}">
+        <img src="{{ $flag | relURL }}" alt="{{ $alt }}" width="30" height="15">
+      </a>
+    {{ end }}
+    {{ if lt $i $last }}<span class="lang-sep" aria-hidden="true">/</span>{{ end }}
+  {{ end }}
+</div>
