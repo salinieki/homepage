@@ -2,19 +2,25 @@
 <article class="news-card">
   {{ with .Params.coverImage }}
     {{ $src := . }}
+    {{ $w := "" }}
+    {{ $h := "" }}
     {{ with resources.Get . }}
       {{ $thumb := .Resize "800x q85" }}
       {{ $src = $thumb.RelPermalink }}
+      {{ $w = $thumb.Width }}
+      {{ $h = $thumb.Height }}
     {{ else }}
       {{ $src = . | relURL }}
     {{ end }}
+    {{ $dim := "" }}
+    {{ with $w }}{{ $dim = printf ` width="%d" height="%d"` $w $h }}{{ end }}
     {{ if $hasLink }}
       <a class="news-card-media" href="{{ $.RelPermalink }}">
-        <img src="{{ $src }}" alt="{{ $.Title }}" loading="lazy">
+        <img src="{{ $src }}" alt="{{ $.Title }}" loading="lazy"{{ $dim | safeHTMLAttr }}>
       </a>
     {{ else }}
       <div class="news-card-media">
-        <img src="{{ $src }}" alt="{{ $.Title }}" loading="lazy">
+        <img src="{{ $src }}" alt="{{ $.Title }}" loading="lazy"{{ $dim | safeHTMLAttr }}>
       </div>
     {{ end }}
   {{ end }}

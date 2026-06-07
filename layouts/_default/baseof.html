@@ -64,13 +64,11 @@
     {{ end }}
   {{ end }}
   <link rel="icon" type="image/png" href="{{ "images/logo.png" | relURL }}">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="{{ "css/nunito.css" | relURL }}">
   <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3/dist/css/glightbox.min.css">
+  <link rel="stylesheet" href="{{ "css/glightbox.min.css" | relURL }}">
   <script src="{{ "js/site.js" | relURL }}" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/glightbox@3/dist/js/glightbox.min.js" defer></script>
+  <script src="{{ "js/glightbox.min.js" | relURL }}" defer></script>
   {{ $place := dict
     "@type" "Place"
     "name" "Daugavas Vanagu nams"
@@ -94,7 +92,7 @@
     "location" $place
     "sameAs" (slice .Site.Params.social.facebook .Site.Params.social.instagram .Site.Params.social.youtube)
   }}
-  <script type="application/ld+json">{{ $org | jsonify }}</script>
+  <script type="application/ld+json">{{ $org | jsonify | safeJS }}</script>
   {{ if .Params.showRehearsalEvent }}
     {{ $isLv := eq .Site.Language.Lang "lv" }}
     {{ $eventName := cond $isLv "Salinieku tautas deju mēģinājums" "Salinieki folk dance rehearsal" }}
@@ -125,7 +123,7 @@
       )
       "url" .Permalink
     }}
-    <script type="application/ld+json">{{ $event | jsonify }}</script>
+    <script type="application/ld+json">{{ $event | jsonify | safeJS }}</script>
   {{ end }}
 </head>
 <body class="{{ if .IsHome }}is-home{{ else }}is-page{{ end }}">

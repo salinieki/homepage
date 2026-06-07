@@ -235,21 +235,28 @@ p { margin: 0 0 1em; }
   z-index: 1;
   max-width: 760px;
 }
+.hero-heading {
+  margin: 0 0 18px;
+  font-weight: 400;
+}
 .hero-eyebrow {
+  display: block;
   font-family: var(--font-hero);
   text-transform: uppercase;
   letter-spacing: 0.25em;
   font-size: 0.85rem;
-  margin: 0 0 16px;
+  color: #fff;
+  margin: 0 0 24px;
   opacity: 0.9;
 }
 .hero-title {
+  display: block;
   font-family: var(--font-hero);
   font-size: clamp(3.5rem, 8vw, 5.5rem);
   color: #fff;
-  margin: 0 0 18px;
   font-weight: 400;
   letter-spacing: 0.02em;
+  line-height: 1;
 }
 .hero-tagline {
   font-family: var(--font-sans);

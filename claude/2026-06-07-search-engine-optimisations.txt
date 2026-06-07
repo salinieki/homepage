@@ -1,0 +1,1436 @@
+╭─── Claude Code v2.1.142 ─────────────────────────────────────────────────────╮
+│                                                    │ Tips for getting        │
+│                Welcome back Martins!               │ started                 │
+│                                                    │ Run /init to create a … │
+│                       ▐▛███▜▌                      │ ─────────────────────── │
+│                      ▝▜█████▛▘                     │ What's new              │
+│                        ▘▘ ▝▝                       │ Internal infrastructur… │
+│ Opus 4.7 · Claude Pro · martins.bruveris@gmx.at's  │ `/usage` now shows a p… │
+│ Organization                                       │ `/diff` detail view ca… │
+│                  ~/code/salinieki                  │ /release-notes for more │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+❯ /clear                                                                        
+  ⎿  (no content)
+
+❯ Can you analyse the website in this project from an SEO point of view? What   
+  are the strong points, what can be done better?                               
+
+  Read 14 files, listed 5 directories (ctrl+o to expand)
+
+⏺ I have enough to write the analysis.
+
+  SEO analysis — salinieki.co.uk
+
+  Strong points
+
+  - Solid technical foundation. Hugo emits semantic HTML (<main>, <article>,
+  <nav>, single <h1> per page), lang attribute set per page, mobile viewport,
+  lazy-loaded images, lazy-loaded iframes (Google Maps, Facebook). Pages are
+  small and fast.
+  - Real, original, keyword-rich content in Latvian — "latviešu tautas deju
+  kolektīvs Londonā", named choreographers, dated concert history going back
+  to 2012. This is exactly the kind of unique content Google likes; almost no
+  other UK page covers this niche.
+  - Bilingual setup (LV/EN) with per-language title and description in
+  hugo.toml:14-50 and a visible language switcher
+  (layouts/partials/language-switcher.html:19) emitting hreflang on the anchor.
+  - Clean URLs and clean menu structure, sitemap + robots enabled (hugo.toml:5),
+   RSS on home and sections.
+  - Alt text on images, descriptive page titles, proper <title> template in
+  baseof.html:18.
+  - Internal linking via prev/next between news articles (single.html:24) helps
+  crawl depth.
+
+  Issues, ordered by impact
+
+  1. The public/ checked into the repo was built by hugo serve, not hugo
+
+  public/sitemap.xml points to http://localhost:1313/lv/sitemap.xml, and
+  public/index.html includes the livereload.js script and <meta 
+  name="generator"> only — no real meta. If this is what gets deployed, search
+  engines see broken sitemap URLs and a dev build. Make sure the deploy pipeline
+   runs plain hugo (or hugo --minify) against the production baseURL, and don't
+  commit public/.
+
+  2. No Open Graph / Twitter Card meta
+
+  baseof.html:18-19 only emits <title> and description. Anything shared on
+  Facebook, WhatsApp, Instagram DMs, or Slack will show no image and a bare URL.
+   For a folk-dance group whose audience is on Facebook, this is the single
+  biggest practical win. Add in <head>:
+
+  <meta property="og:title" content="...">
+  <meta property="og:description" content="...">
+  <meta property="og:image" content="{{ absURL of cover/hero }}">
+  <meta property="og:type" content="{{ "article" or "website" }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:locale" content="lv_LV"> (or en_GB)
+  <meta property="og:locale:alternate" content="en_GB">
+  <meta name="twitter:card" content="summary_large_image">
+
+  For news pages, prefer the article's coverImage; otherwise fall back to a hero
+   shot or the logo.
+
+  3. No hreflang in <head>
+
+  Google's documented signal lives in <head>, not in body anchors. Add to
+  baseof.html:
+
+  {{ range .AllTranslations }}
+    <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
+  {{ end }}
+  <link rel="alternate" hreflang="x-default" href="{{ .Site.BaseURL }}">
+
+  This is the missing piece that tells Google to surface the English page to UK
+  searchers and the Latvian page to Latvian searchers.
+
+  4. No canonical URL
+
+  Add <link rel="canonical" href="{{ .Permalink }}"> in baseof.html. Cheap,
+  prevents duplicate-content issues across /foto/, query strings, etc.
+
+  5. No structured data (JSON-LD)
+
+  Three low-effort wins for this site:
+
+  - Organization / PerformingGroup on every page (name, logo, sameAs
+  Facebook/Instagram/YouTube, foundingDate 2012).
+  - Event for each upcoming entry in params.calendar (hugo.toml:19-21) —
+  eligibility for Google's events rich results, which is unusually high-yield
+  for a small site.
+  - Place/PostalAddress for the rehearsal venue on the Kontakti page — helps
+  "Latvian dance London" / local intent queries.
+
+  6. English URLs use Latvian slugs
+
+  /en/par-mums/, /en/foto/, /en/kontakti/ (hugo.toml:71-75). English speakers
+  search "about us", "contact", "photos". Either translate slugs (/en/about/,
+  /en/contact/, /en/photos/) or live with it — but the current setup loses the
+  easy keyword match in URLs.
+
+  7. robots.txt is essentially empty
+
+  Current output is just User-agent: *. Add a Sitemap: line. Easiest: enable a
+  custom layouts/robots.txt or rely on Hugo's default which does include it —
+  verify what's actually shipped.
+
+  8. Home page lacks keyword-rich <h1> and intro copy
+
+  hero.html:17 is just <h1 class="hero-title">Salinieki</h1>. That's your one h1
+   on the most important page. Consider <h1>Londonas latviešu tautas deju kopa 
+  "Salinieki"</h1> (and the English equivalent on /en/). Also: the home page has
+   no intro paragraph — just hero, news list, CTA. A 2–3 sentence intro under
+  the hero would significantly help ranking for "Latvian folk dance London".
+
+  9. No width/height on news card images
+
+  news-card.html:13,17 — adding intrinsic dimensions prevents layout shift, a
+  Core Web Vitals signal.
+
+  10. Minor
+
+  - Favicon is images/logo.png only — no apple-touch-icon, no favicon.ico, no
+  manifest.json. Doesn't move SEO but affects how the site appears in browser
+  tabs / home screens.
+  - Footer has no NAP (name/address/phone) block — adding rehearsal address
+  would help local SEO and reinforce the Organization schema.
+  - Figure shortcodes use short generic alts ("Mēģinājums", "Gājiens"); slightly
+   more descriptive alts help image search.
+  - categories/ and tags/ directories are generated but probably empty — empty
+  taxonomy pages are thin content. Either populate or disable in hugo.toml with
+  disableKinds = ["taxonomy", "term"].
+  - Google Fonts + jsdelivr CDN: fine for SEO, but self-hosting Nunito would
+  marginally improve LCP and GDPR posture.
+
+  What I'd do first
+
+  1. Fix the build/deploy so public/ isn't a hugo serve artifact.
+  2. Add Open Graph + canonical + head-level hreflang to baseof.html — one edit,
+   big payoff.
+  3. Add Organization + Event JSON-LD.
+  4. Rewrite the home h1 and add an intro paragraph.
+
+  Everything else is incremental.
+
+✻ Baked for 3m 45s
+
+❯ I've fixed the build, so public/ should now the the clean deployment-ready    
+  build. Can you repeat your analysis?                                          
+
+  Read 2 files (ctrl+o to expand)
+
+⏺ Re-checked the new public/. Most of what I flagged before still stands — but
+  the deploy artifact itself is now solid.
+
+  What's fixed
+
+  - Build is clean and minified. Production baseURL used everywhere, no
+  livereload script, single-line minified HTML.
+  - Sitemap is correct. Index points to https://salinieki.co.uk/lv/sitemap.xml
+  and …/en/sitemap.xml; per-language sitemaps include xhtml:link rel="alternate"
+   hreflang" entries for every URL. That's the canonical way to declare hreflang
+   via sitemap and is recognized by Google, so item #3 from my previous list is
+  mostly handled — see caveat below.
+  - Cache-friendly assets. Hugo image processing emits fingerprinted filenames
+  (…_hu_2c28ad…jpg), so you can serve them with long-lived cache headers.
+
+  Still needs attention (in roughly priority order)
+
+  1. No Open Graph / Twitter Card meta — still the biggest practical win
+
+  Still nothing in <head> beyond <title> + description. Anything shared on
+  Facebook/WhatsApp/Slack renders bare. Single edit in
+  layouts/_default/baseof.html.
+
+  2. No canonical link
+
+  Still missing. Add <link rel="canonical" href="{{ .Permalink }}"> in
+  baseof.html head.
+
+  3. hreflang only in sitemap, not in <head>
+
+  The sitemap entries are valid and Google does honor them, but the official
+  recommendation is "use any one method — sitemap, HTTP header, OR HTML head".
+  You're fine for Google, but Bing/Yandex behave better with head-level <link 
+  rel="alternate" hreflang>. Since you're already iterating .AllTranslations
+  would-be trivial, I'd add it.
+
+  4. No structured data (JSON-LD)
+
+  Still nothing. Same recommendation: Organization/PerformingGroup site-wide,
+  Event for params.calendar entries (hugo.toml:19-21), Place for the rehearsal
+  venue on /kontakti/. The Event one is the highest-value because Google has
+  dedicated event rich-result UIs.
+
+  5. robots.txt is still empty
+
+  User-agent: *
+  That's the entire file. No Sitemap: directive. Add a custom
+  layouts/robots.txt:
+  User-agent: *
+  Allow: /
+
+  Sitemap: https://salinieki.co.uk/sitemap.xml
+
+  6. Empty taxonomy pages in the sitemap
+
+  /categories/, /tags/, /en/categories/, /en/tags/ are all in the sitemaps but
+  you don't use categories or tags. These render as empty pages → Google sees
+  thin content. In hugo.toml:
+  disableKinds = ["taxonomy", "term"]
+  Removes 4 dead URLs from the sitemap.
+
+  7. Home <h1> is just "Salinieki"
+
+  layouts/partials/hero.html:17 — same as before. The single most important h1
+  on the site is one word. The eyebrow line ("Londonas Tautas Deju Kopa") above
+  it is actually richer than the heading. Swap them, or use <h1>Londonas tautas 
+  deju kopa "Salinieki"</h1>. Same for /en/.
+
+  8. English URLs still use Latvian slugs
+
+  /en/par-mums/, /en/foto/, /en/kontakti/, /en/video/. English visitors
+  searching "Latvian dance London about" won't get keyword match in the URL.
+
+  9. News card <img> has no width/height
+
+  layouts/partials/news-card.html:13,17 — adds Cumulative Layout Shift, a Core
+  Web Vitals signal. Easy to fix since .Resize returns dimensions:
+  {{ $thumb := .Resize "800x q85" }}
+  <img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ 
+  $thumb.Height }}" …>
+
+  10. Minor polish
+
+  - Favicon still images/logo.png only — no apple-touch-icon, no manifest.
+  - Footer has no address — adding the rehearsal venue (NAP) reinforces local
+  SEO and feeds the Organization schema.
+  - Google Fonts + jsdelivr CDN still external; self-hosting Nunito would shave
+  a couple of round-trips off LCP.
+  - Both GA (gtag) and Simple Analytics are loaded. Intentional? It's double the
+   third-party JS for the same data.
+
+  Suggested order of attack
+
+  1. OG/Twitter tags + canonical + head-level hreflang — one edit to
+  baseof.html, biggest visible impact.
+  2. JSON-LD (Organization + Event).
+  3. disableKinds for taxonomies, Sitemap: line in robots.txt.
+  4. Home h1 + intro paragraph.
+  5. Width/height on news images.
+
+  Happy to implement any/all of these if you want.
+
+✻ Cogitated for 46s
+
+❯ Can you explain your point 1. - No open graph meta - What is the impact and   
+  what change would I observe if it were fixed?                                 
+
+⏺ What Open Graph is
+
+  Open Graph (OG) is a tiny set of <meta> tags in <head> that tells social
+  platforms and chat apps how to render a link preview. Twitter Cards are the
+  equivalent for X/Twitter. Most other platforms (LinkedIn, Slack, Discord,
+  iMessage, WhatsApp, Telegram, Signal, Facebook Messenger) read the OG tags.
+
+  A minimal set looks like:
+
+  <meta property="og:title"       content="10. Kultūras Diena Lesterā">
+  <meta property="og:description" content="Maija sākumā Salinieki devās uz 
+  Lesteri…">
+  <meta property="og:image"       content="https://salinieki.co.uk/images/foto/2
+  026-05-lestera-kulturas-diena/04-grupas-bilde.jpg">
+  <meta property="og:url"         
+  content="https://salinieki.co.uk/news/2026-05-05-lestere-kulturas-diena/">
+  <meta property="og:type"        content="article">
+  <meta property="og:site_name"   content="Salinieki">
+  <meta name="twitter:card"       content="summary_large_image">
+
+  What happens today when someone shares a link
+
+  I just checked public/news/2026-05-05-lestere-kulturas-diena/ — there are no
+  OG tags. So when someone pastes
+  https://salinieki.co.uk/news/2026-05-05-lestere-kulturas-diena/ into Facebook,
+   WhatsApp, Messenger, an Instagram bio link click, a Slack channel, etc., the
+  platform's scraper falls back to:
+
+  - Title: the <title> tag — usually fine
+  - Description: the <meta name="description"> if present, otherwise the first
+  plausible paragraph — often the wrong one (a sidebar line, a menu item)
+  - Image: whatever the scraper picks. With no og:image, it usually grabs the
+  first reasonably-sized image on the page. For your home page that might be a
+  hero slide; for a news article it might be the lazy-loaded cover; for
+  /par-mums/ it could be a leader headshot. Sometimes it picks the 64×64 logo.
+  Sometimes it picks nothing and the preview is a grey rectangle.
+
+  What you'd observe after fixing it
+
+  Concrete, visible changes:
+
+  1. Facebook posts and shares — when you (or anyone) shares a link to a news
+  article on the Salinieki Facebook page, instead of a small thumbnail with a
+  guessed title, you get a large card with the cover photo, the article title,
+  and your chosen description. This is the format that gets clicks. For a folk
+  dance group whose audience lives on Facebook, this is the single biggest
+  payoff.
+  2. WhatsApp and Messenger — when a member shares the link in a group chat, the
+   preview shows the cover image and title instead of just the URL text. People
+  are much more likely to tap a preview with a photo of dancers than a bare
+  link.
+  3. Instagram link-in-bio / Stories link stickers — the preview thumbnail comes
+   from og:image.
+  4. Slack / Discord / Teams — link unfurls show the cover and description
+  rather than the URL.
+  5. iMessage — same; you get a rich preview bubble with the cover photo.
+  6. Search engines — Google does not use OG tags for ranking, but it sometimes
+  uses og:title/og:description as fallbacks when its own snippet extraction is
+  poor. Minor.
+
+  How big is the impact really
+
+  For a public-facing site whose distribution channel is "people sharing it on
+  Facebook," moving from "no preview / wrong image" to "large branded cover
+  image" is the kind of change that meaningfully lifts click-through. There are
+  no hard numbers I can quote for your specific site, but in the industry, rich
+  link previews typically lift CTR on social shares by a substantial multiple
+  over bare-URL previews — particularly on mobile where the URL alone is just a
+  tiny line of text.
+
+  The cost is also tiny: ~10 lines in baseof.html, mapping og:image to
+  .Params.coverImage for news pages and a default hero image for everything
+  else. You can verify the result in the Facebook Sharing Debugger — paste a URL
+   and see exactly what the preview will look like.
+
+  If you want, I can implement it.
+
+✻ Crunched for 28s
+
+❯ Yes, please implement it.                                                     
+
+⏺ I'll add OG and Twitter Card tags to baseof.html, with the image preferring an
+   article's cover image, falling back to the page's hero image, then to the
+  first site-wide hero slide.
+
+⏺ Update(layouts/_default/baseof.html)
+  ⎿  Added 40 lines, removed 1 line
+      16    <script src="https://scripts.simpleanalyticscdn.com/latest.js
+          " data-collect-dnt="true" async></script>
+      17    {{ end }}
+      18    <title>{{ if not .IsHome }}{{ .Title }} – {{ end }}{{ .Site.T
+          itle }}</title>
+      19 -  <meta name="description" content="{{ with .Description }}{{ .
+         - }}{{ else }}{{ .Site.Params.description }}{{ end }}">         
+      19 +  {{ $desc := or .Description .Site.Params.description }}      
+      20 +  {{ $ogTitle := cond .IsHome .Site.Title (printf "%s – %s" .Ti
+         +tle .Site.Title) }}                                            
+      21 +  {{ $ogType := cond (eq .Section "news") "article" "website" }
+         +}                                                              
+      22 +  {{ $ogLocale := cond (eq .Site.Language.Lang "lv") "lv_LV" "e
+         +n_GB" }}                                                       
+      23 +  <meta name="description" content="{{ $desc }}">              
+      24 +  {{ $ogImage := .Params.coverImage }}                         
+      25 +  {{ if not $ogImage }}{{ $ogImage = .Params.heroImage }}{{ end
+         + }}                                                            
+      26 +  {{ if not $ogImage }}                                        
+      27 +    {{ with index .Site.Params.heroSlides 0 }}{{ $ogImage = .im
+         +age }}{{ end }}                                                
+      28 +  {{ end }}                                                    
+      29 +  {{ $ogImageURL := "" }}                                      
+      30 +  {{ $ogImageW := "" }}                                        
+      31 +  {{ $ogImageH := "" }}                                        
+      32 +  {{ with $ogImage }}                                          
+      33 +    {{ with resources.Get . }}                                 
+      34 +      {{ $img := .Fill "1200x630 q85" }}                       
+      35 +      {{ $ogImageURL = $img.Permalink }}                       
+      36 +      {{ $ogImageW = $img.Width }}                             
+      37 +      {{ $ogImageH = $img.Height }}                            
+      38 +    {{ else }}                                                 
+      39 +      {{ $ogImageURL = . | absURL }}                           
+      40 +    {{ end }}                                                  
+      41 +  {{ end }}                                                    
+      42 +  <meta property="og:site_name" content="{{ .Site.Title }}">   
+      43 +  <meta property="og:title" content="{{ $ogTitle }}">          
+      44 +  <meta property="og:description" content="{{ $desc }}">       
+      45 +  <meta property="og:type" content="{{ $ogType }}">            
+      46 +  <meta property="og:url" content="{{ .Permalink }}">          
+      47 +  <meta property="og:locale" content="{{ $ogLocale }}">        
+      48 +  {{ range .Translations }}                                    
+      49 +    <meta property="og:locale:alternate" content="{{ cond (eq .
+         +Lang "lv") "lv_LV" "en_GB" }}">                                
+      50 +  {{ end }}                                                    
+      51 +  {{ with $ogImageURL }}                                       
+      52 +    <meta property="og:image" content="{{ . }}">               
+      53 +    {{ with $ogImageW }}<meta property="og:image:width" content
+         +="{{ . }}">{{ end }}                                           
+      54 +    {{ with $ogImageH }}<meta property="og:image:height" conten
+         +t="{{ . }}">{{ end }}                                          
+      55 +    <meta name="twitter:card" content="summary_large_image">   
+      56 +  {{ else }}                                                   
+      57 +    <meta name="twitter:card" content="summary">               
+      58 +  {{ end }}                                                    
+      59    <link rel="icon" type="image/png" href="{{ "images/logo.png" 
+          | relURL }}">
+      60    <link rel="preconnect" href="https://fonts.googleapis.com">
+      61    <link rel="preconnect" href="https://fonts.gstatic.com" cross
+          origin>
+
+⏺ Now let me build and verify the output renders correctly.
+
+⏺ Bash(hugo --minify --quiet && echo "---HOME---" && grep -oE '<meta
+      (property|name)="(og|twitter)[^"]*"[^>]*>' public/index.html && echo
+      "---NEWS---" && grep -oE '<me…)
+  ⎿  ---HOME---
+     <meta property="og:site_name" content='Londonas TDK "Salinieki"'>
+     <meta property="og:title" content='Londonas TDK "Salinieki"'>
+     … +37 lines (ctrl+o to expand)
+
+⏺ The OG tags are emitting correctly across home (LV), news, and EN home, each
+  with the right image. Let me verify the twitter:card line also rendered — the
+  regex above may have been thrown off by attribute quoting.
+
+  Searched for 1 pattern (ctrl+o to expand)
+
+⏺ One refinement: news articles currently fall back to the site description
+  because they don't set .Description. They do have a summary frontmatter field
+  — let me use that.
+
+⏺ Update(layouts/_default/baseof.html)
+  ⎿  Added 1 line, removed 1 line
+      16    <script src="https://scripts.simpleanalyticscdn.com/latest.js
+          " data-collect-dnt="true" async></script>
+      17    {{ end }}
+      18    <title>{{ if not .IsHome }}{{ .Title }} – {{ end }}{{ .Site.T
+          itle }}</title>
+      19 -  {{ $desc := or .Description .Site.Params.description }}      
+      19 +  {{ $desc := or .Description .Params.summary .Site.Params.desc
+         +ription }}                                                     
+      20    {{ $ogTitle := cond .IsHome .Site.Title (printf "%s – %s" .Ti
+          tle .Site.Title) }}
+      21    {{ $ogType := cond (eq .Section "news") "article" "website" }
+          }
+      22    {{ $ogLocale := cond (eq .Site.Language.Lang "lv") "lv_LV" "e
+          n_GB" }}
+
+⏺ Bash(hugo --minify --quiet && grep -o 'og:description[^>]*'
+      public/news/2026-05-05-lestere-kulturas-diena/index.html
+      public/index.html)
+  ⎿  public/news/2026-05-05-lestere-kulturas-diena/index.html:og:descriptio
+     n" content='Maija sākumā Salinieki devās uz Lesteri lai piedalītos 10.
+      Kultūras Dienā Apvienotā Karalistē. Dejojām Alda Salma horeogrāfēto d
+     … +3 lines (ctrl+o to expand)
+
+⏺ Done. News articles now use their summary for the preview text; non-article
+  pages keep the site description.
+
+  Summary of what shipped
+
+  In layouts/_default/baseof.html, added to <head>:
+
+  - og:site_name, og:title, og:type (article for news, website elsewhere),
+  og:url, og:locale + og:locale:alternate for the other language
+  - og:description — prefers page .Description, falls back to .Params.summary,
+  then site description
+  - og:image — prefers .Params.coverImage, falls back to .Params.heroImage, then
+   the first heroSlides entry from hugo.toml; resized via Hugo image processing
+  to canonical 1200×630 with og:image:width/og:image:height
+  - twitter:card — summary_large_image when an image is available, summary
+  otherwise
+
+  How to verify
+
+  1. Deploy the new public/.
+  2. Open Facebook Sharing Debugger, paste a URL (try the home page and a news
+  article), click Scrape Again to bust Facebook's cache. You should see a large
+  card with the cover photo and the right title/description.
+  3. Same idea for X/Twitter: Card Validator, or just paste into a draft post.
+  4. For WhatsApp/iMessage/Slack — paste a link into a chat to yourself.
+
+  If you later want to override the preview image for a specific page that has
+  no coverImage, just add heroImage: images/foo.jpg to its front matter.
+
+✻ Brewed for 2m 23s
+❯ Let's move on to point 2. - No canonical link. What does that mean?           
+
+⏺ What a canonical link is
+
+  A canonical link is a single line in <head>:
+
+  <link rel="canonical" 
+  href="https://salinieki.co.uk/news/2026-05-05-lestere-kulturas-diena/">
+
+  It tells search engines: "this URL is the authoritative address for this 
+  page." When several different URLs serve the same (or very similar) content,
+  the canonical tag points to the one you want indexed and ranked. Everyone
+  agrees the others are duplicates of it.
+
+  Why duplicates happen even when you didn't plan any
+
+  Even on a clean static site like yours, the same page is reachable through
+  multiple URLs in practice:
+
+  - https://salinieki.co.uk/par-mums/
+  - https://salinieki.co.uk/par-mums (no trailing slash; some servers serve
+  both)
+  - https://www.salinieki.co.uk/par-mums/ (with www; depends on DNS/CDN setup)
+  - http://salinieki.co.uk/par-mums/ (if HTTP isn't strictly redirected)
+  - https://salinieki.co.uk/par-mums/?fbclid=AbCdEf123 — what Facebook appends
+  when someone clicks a shared link
+  - https://salinieki.co.uk/par-mums/?utm_source=newsletter&utm_campaign=spring
+  - https://salinieki.co.uk/par-mums/?gclid=… — Google Ads click ID
+
+  To a search engine, every distinct URL is potentially a separate page. Without
+   a canonical, Google has to guess which one is "the real one" — and may split
+  your ranking signals across all the variants, or pick a tracking-parameter URL
+   as the canonical (which then shows up in search results looking ugly).
+
+  With a canonical, every variant declares "I'm a copy of
+  https://salinieki.co.uk/par-mums/" and Google consolidates everything onto
+  that one URL.
+
+  What about your bilingual setup?
+
+  This is not a canonical case — /par-mums/ (LV) and /en/par-mums/ (EN) are
+  different content in different languages. Those are handled by hreflang, not
+  canonical. Each page's canonical points to itself; the hreflang alternates
+  point to the translations.
+
+  What you'd observe after fixing it
+
+  Honestly: probably nothing visible day-to-day. This is a defensive measure,
+  not a growth lever like Open Graph. The wins are quiet:
+
+  - Facebook click-tracking URLs (?fbclid=…) don't leak into Google search 
+  results. Right now, if a popular FB post drives traffic, Google may end up
+  indexing …/news/foo/?fbclid=AbCdEf as the canonical version of that article.
+  With a <link rel="canonical"> it consolidates to the clean URL.
+  - Ranking signals consolidate. Backlinks pointing to slightly-different
+  variants of the same page all contribute to the canonical URL's authority
+  instead of being split.
+  - No accidental duplicate-content penalty if at some point the site becomes
+  reachable on both www. and bare domain, or both HTTP/HTTPS.
+  - Cleaner Search Console reports — fewer "Duplicate without user-selected
+  canonical" warnings.
+
+  It's a one-line edit and there's basically no downside, so it's worth doing
+  even though the upside is "insurance" rather than "growth".
+
+  The change
+
+  Just add this in layouts/_default/baseof.html <head>:
+
+  <link rel="canonical" href="{{ .Permalink }}">
+
+  .Permalink is Hugo's built-in for the absolute URL of the current page, so on
+  /par-mums/ it renders https://salinieki.co.uk/par-mums/, on /en/par-mums/ it
+  renders https://salinieki.co.uk/en/par-mums/, and so on.
+
+  Want me to add it?
+
+✻ Churned for 22s
+
+❯ Yes, please add it.                                                           
+
+⏺ Update(layouts/_default/baseof.html)
+  ⎿  Added 1 line
+      56    {{ else }}
+      57      <meta name="twitter:card" content="summary">
+      58    {{ end }}
+      59 +  <link rel="canonical" href="{{ .Permalink }}">               
+      60    <link rel="icon" type="image/png" href="{{ "images/logo.png" 
+          | relURL }}">
+      61    <link rel="preconnect" href="https://fonts.googleapis.com">
+      62    <link rel="preconnect" href="https://fonts.gstatic.com" cross
+          origin>
+
+⏺ Bash(hugo --minify --quiet && grep -o
+      'rel=canonical[^>]*\|rel="canonical"[^>]*' public/index.html
+      public/en/index.html public/news/2026-05-05-lestere-kulturas-diena…)
+  ⎿  public/news/2026-05-05-lestere-kulturas-diena/index.html:rel=canonical
+      href=https://salinieki.co.uk/news/2026-05-05-lestere-kulturas-diena/
+     public/en/index.html:rel=canonical href=https://salinieki.co.uk/en/
+     … +3 lines (ctrl+o to expand)
+
+⏺ Done. Each page now declares itself canonical with its absolute URL.
+
+✻ Sautéed for 16s
+
+❯ Next, can you action point 3. - hreflang only in sitemap, not in <head>       
+
+⏺ Update(layouts/_default/baseof.html)
+  ⎿  Added 6 lines
+      57      <meta name="twitter:card" content="summary">
+      58    {{ end }}
+      59    <link rel="canonical" href="{{ .Permalink }}">
+      60 +  {{ range .AllTranslations }}                                 
+      61 +    <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Perm
+         +alink }}">                                                     
+      62 +    {{ if eq .Lang $.Site.LanguageCode | or (eq .Lang "lv") }} 
+      63 +      <link rel="alternate" hreflang="x-default" href="{{ .Perm
+         +alink }}">                                                     
+      64 +    {{ end }}                                                  
+      65 +  {{ end }}                                                    
+      66    <link rel="icon" type="image/png" href="{{ "images/logo.png" 
+          | relURL }}">
+      67    <link rel="preconnect" href="https://fonts.googleapis.com">
+      68    <link rel="preconnect" href="https://fonts.gstatic.com" cross
+          origin>
+
+⏺ Update(layouts/_default/baseof.html)
+  ⎿  Added 1 line, removed 1 line
+      59    <link rel="canonical" href="{{ .Permalink }}">
+      60    {{ range .AllTranslations }}
+      61      <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Perm
+          alink }}">
+      62 -    {{ if eq .Lang $.Site.LanguageCode | or (eq .Lang "lv") }} 
+      62 +    {{ if eq .Lang "lv" }}                                     
+      63        <link rel="alternate" hreflang="x-default" href="{{ .Perm
+          alink }}">
+      64      {{ end }}
+      65    {{ end }}
+
+⏺ Bash(hugo --minify --quiet && echo "---LV HOME---" && grep -oE 'rel=alternate
+      hreflang=[a-z-]+ href=[^ >]*' public/index.html && echo "---EN HOME---" &&
+       grep -oE 're…)
+  ⎿  ---LV HOME---
+     rel=alternate hreflang=lv href=https://salinieki.co.uk/
+     rel=alternate hreflang=x-default href=https://salinieki.co.uk/
+     … +23 lines (ctrl+o to expand)
+
+⏺ Verified across LV/EN home and a news article: every page emits the same trio
+  of <link rel="alternate" hreflang> entries pointing at the LV URL, EN URL, and
+   an x-default that points to the LV (default content language) version. The LV
+   and EN pages also point at each other reciprocally — which is what Google
+  checks.
+
+✻ Cogitated for 29m 8s
+
+❯ Next, can you explain what you meant by "No structured data JSON-LD"?         
+
+⏺ What JSON-LD structured data is
+
+  It's a small block of JSON inside a <script type="application/ld+json"> tag
+  that tells search engines, in machine-readable form, what kind of thing a page
+   is about — not just the words on the page, but the entities: "this is an
+  organization, here's its address, founding date, social profiles" or "this is
+  an event, here's when, where, and what".
+
+  The format is schema.org (a shared vocabulary developed by Google, Bing,
+  Yahoo, Yandex) expressed in JSON-LD (the syntax Google recommends). Hugo
+  doesn't generate any of this — you add a template snippet that emits the JSON
+  from your existing front matter and site params.
+
+  Example for your group, sitting in <head>:
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "PerformingGroup",
+    "name": "Salinieki",
+    "alternateName": "Londonas TDK \"Salinieki\"",
+    "url": "https://salinieki.co.uk/",
+    "logo": "https://salinieki.co.uk/images/logo.png",
+    "foundingDate": "2012",
+    "location": {
+      "@type": "Place",
+      "name": "Daugavas Vanagu nams",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "72 Queensborough Terrace",
+        "postalCode": "W2 3SH",
+        "addressLocality": "London",
+        "addressCountry": "GB"
+      }
+    },
+    "email": "info@salinieki.co.uk",
+    "sameAs": [
+      "https://www.facebook.com/salinieki/",
+      "https://www.instagram.com/salinieki/",
+      "https://www.youtube.com/@saliniekitdk9717"
+    ]
+  }
+  </script>
+
+  Nothing visible to humans. Search engines read it.
+
+  Why it matters
+
+  Schema.org markup is what powers rich results in Google — the visually
+  distinct search listings that aren't just "blue title + grey URL + snippet".
+  The relevant ones for your site:
+
+  1. Organization / PerformingGroup (every page, baseline)
+
+  Builds a knowledge panel — the box that sometimes appears on the right side of
+   Google results when someone searches "Salinieki" or "Salinieki London".
+  Includes your logo, founding year, social links, location. Google often
+  constructs these automatically but markup makes it much more reliable, gets
+  the right logo, and ensures your social profiles (sameAs) are linked correctly
+   so the panel shows Facebook/Instagram/YouTube icons.
+
+  Visible change: a richer-looking entity in search results when people search
+  your name, with the correct logo and social links instead of whatever Google
+  scraped.
+
+  2. Event (highest practical value for you)
+
+  Your hugo.toml:19-21 already has a calendar entry:
+
+  [[languages.lv.params.calendar]]
+    date = "20.06.2026"
+    title = "\"(Pa) Saules Ceļu Izdejot\" Īrijā"
+
+  If that's emitted as Event JSON-LD on the relevant page, with startDate,
+  location, performer, then Google can show your event as a rich event listing —
+   a card with date, location, and a direct link. Events also flow into Google's
+   dedicated "Events" search filter and into Google Maps' "what's happening
+  nearby" surfaces.
+
+  For a folk dance group whose upcoming performances are the most
+  action-oriented thing on the site ("when can I go see them?"), this is the
+  highest-ROI structured data you can add. The threshold for eligibility is low
+  — you just need date, name, and location.
+
+  Visible change: instead of "Salinieki — Latvian Folk Dance Group" as a generic
+   blue link, search results for queries like "Latvian folk dance Ireland June
+  2026" or "Salinieki concerts" could show a card-style result with date and
+  venue. People searching for diaspora events can actually find yours.
+
+  3. Article / NewsArticle for news posts
+
+  Each /news/… page becomes eligible for richer treatment: prominent date,
+  author, cover image in carousels, "top stories"-style surfacing for queries
+  about specific events.
+
+  Visible change: news entries are more likely to appear with the cover photo as
+   a thumbnail in search results, with the publish date visible.
+
+  4. Place / LocalBusiness for /kontakti/
+
+  Your rehearsal venue is fixed and addressable. Markup on the contact page
+  tells Google "this organization meets at this address", which helps when
+  someone searches "Latvian dance class London" or similar local-intent queries.
+   Combined with Organization markup, it strengthens the local-SEO signal that
+  you're a London-based real-world group, not just a website.
+
+  What you'd observe after adding it
+
+  Realistically:
+
+  - Knowledge panel quality improves for searches of your name (more reliable
+  logo, social icons, founding date).
+  - Upcoming events become surfaceable — the biggest tangible win, because event
+   rich results have very prominent visual treatment in Google.
+  - News articles look better in search — cover thumbnails, dates.
+  - Google Search Console gets a new "Enhancements" section showing
+  event/organization markup status, with warnings if anything's malformed — a
+  useful health signal.
+  - No change to the human-visible site at all. It's pure machine readability.
+
+  You can preview the effect before/after with Google's Rich Results Test by
+  pasting a URL.
+
+  Scope of the change
+
+  Three template snippets:
+
+  1. Organization / PerformingGroup in baseof.html — included on every page.
+  2. Event template that loops over Site.Params.calendar — included on the home
+  page where the calendar is rendered.
+  3. Article block in layouts/_default/single.html for the news section.
+
+  Maybe ~80 lines of templates total. Want me to implement?
+
+✻ Cogitated for 35s
+
+❯ Can we add an event for the rehearsals, which take place every Monday?        
+
+⏺ Short answer: yes, but with one important caveat.
+
+  The caveat. Google's event rich-result documentation explicitly targets
+  individual scheduled performances. Recurring rehearsals — even ones that are
+  "open to new members" — are a gray area: they validate as schema.org Event,
+  but historically Google has been reluctant to award the prominent event-card
+  treatment to recurring/open-ended sessions. So adding the markup is correct
+  and useful as semantic data (knowledge graph, Bing, Yandex, AI assistants),
+  but you may not see a rich card in Google Search itself for it.
+
+  The good news. The modern, recommended schema.org pattern for "weekly Monday
+  rehearsal" is a single Event with an eventSchedule of type Schedule describing
+   the recurrence — much cleaner than emitting 52 events per year. It naturally
+  fits the "open rehearsal, new dancers welcome" framing because it lives on the
+   contact page next to the existing call to action.
+
+  Scoping question — the rehearsal event is one small piece of the larger
+  JSON-LD work. Two options:
+
+⏺ User answered Claude's questions:
+  ⎿  · How would you like to scope the JSON-LD work? → Organization + rehearsal
+
+⏺ Good. Let me explore what's needed and build it.
+
+  Read 2 files, listed 1 directory (ctrl+o to expand)
+
+⏺ I'll add the Organization JSON-LD sitewide and the conditional rehearsal
+  Event, then flag the contact pages.
+
+⏺ Update(layouts/_default/baseof.html)
+  ⎿  Added 56 lines
+       71    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gl
+           ightbox@3/dist/css/glightbox.min.css">
+       72    <script src="{{ "js/site.js" | relURL }}" defer></script>
+       73    <script src="https://cdn.jsdelivr.net/npm/glightbox@3/dist/j
+           s/glightbox.min.js" defer></script>
+       74 +  {{ $place := dict                                           
+       75 +    "@type" "Place"                                           
+       76 +    "name" "Daugavas Vanagu nams"                             
+       77 +    "address" (dict                                           
+       78 +      "@type" "PostalAddress"                                 
+       79 +      "streetAddress" "72 Queensborough Terrace"              
+       80 +      "postalCode" "W2 3SH"                                   
+       81 +      "addressLocality" "London"                              
+       82 +      "addressCountry" "GB"                                   
+       83 +    )                                                         
+       84 +  }}                                                          
+       85 +  {{ $org := dict                                             
+       86 +    "@context" "https://schema.org"                           
+       87 +    "@type" "DanceGroup"                                      
+       88 +    "name" "Salinieki"                                        
+       89 +    "alternateName" "Londonas TDK \"Salinieki\""              
+       90 +    "url" .Site.BaseURL                                       
+       91 +    "logo" (absURL "images/logo.png")                         
+       92 +    "email" .Site.Params.email                                
+       93 +    "foundingDate" "2012"                                     
+       94 +    "location" $place                                         
+       95 +    "sameAs" (slice .Site.Params.social.facebook .Site.Params.
+          +social.instagram .Site.Params.social.youtube)                 
+       96 +  }}                                                          
+       97 +  <script type="application/ld+json">{{ $org | jsonify }}</scr
+          +ipt>                                                          
+       98 +  {{ if .Params.showRehearsalEvent }}                         
+       99 +    {{ $isLv := eq .Site.Language.Lang "lv" }}                
+      100 +    {{ $eventName := cond $isLv "Salinieku tautas deju mēģināj
+          +ums" "Salinieki folk dance rehearsal" }}                      
+      101 +    {{ $eventDesc := cond $isLv "Iknedēļas atklātais mēģinājum
+          +s. Puiši un pāri laipni aicināti. Iepriekšēja deju pieredze na
+          +v nepieciešama." "Weekly open rehearsal. New dancers welcome —
+          + no prior dance experience required." }}                      
+      102 +    {{ $event := dict                                         
+      103 +      "@context" "https://schema.org"                         
+      104 +      "@type" "Event"                                         
+      105 +      "name" $eventName                                       
+      106 +      "description" $eventDesc                                
+      107 +      "startDate" "2012-01-09"                                
+      108 +      "eventSchedule" (dict                                   
+      109 +        "@type" "Schedule"                                    
+      110 +        "byDay" "https://schema.org/Monday"                   
+      111 +        "startTime" "19:00:00"                                
+      112 +        "endTime" "21:30:00"                                  
+      113 +        "repeatFrequency" "P1W"                               
+      114 +        "scheduleTimezone" "Europe/London"                    
+      115 +      )                                                       
+      116 +      "eventStatus" "https://schema.org/EventScheduled"       
+      117 +      "eventAttendanceMode" "https://schema.org/OfflineEventAt
+          +tendanceMode"                                                 
+      118 +      "isAccessibleForFree" true                              
+      119 +      "inLanguage" "lv"                                       
+      120 +      "location" $place                                       
+      121 +      "organizer" (dict                                       
+      122 +        "@type" "DanceGroup"                                  
+      123 +        "name" "Salinieki"                                    
+      124 +        "url" .Site.BaseURL                                   
+      125 +      )                                                       
+      126 +      "url" .Permalink                                        
+      127 +    }}                                                        
+      128 +    <script type="application/ld+json">{{ $event | jsonify }}<
+          +/script>                                                      
+      129 +  {{ end }}                                                   
+      130  </head>
+      131  <body class="{{ if .IsHome }}is-home{{ else }}is-page{{ end }}
+           ">
+      132    {{ partial "header.html" . }}
+
+⏺ Update(content/kontakti.md)
+  ⎿  Added 1 line
+      1  ---
+      2  title: "Kontakti"
+      3  url: "/kontakti/"
+      4 +showRehearsalEvent: true                                        
+      5  ---
+      6  
+      7  ## Nāc dejot!
+⏺ Update(content/kontakti.en.md)
+  ⎿  Added 1 line
+      1  ---
+      2  title: "Contact"
+      3 +showRehearsalEvent: true                                        
+      4  ---
+      5  
+      6  ## Join us!
+
+⏺ Bash(hugo --minify 2>&1 | tail -20)
+  ⎿  Start building sites …
+     hugo v0.161.1+extended+withdeploy darwin/arm64 BuildDate=2026-04-29T13
+     :56:01Z VendorInfo=Homebrew
+     … +13 lines (ctrl+o to expand)
+
+⏺ Clean build. Now let me verify the JSON-LD renders correctly on a few pages.
+
+⏺ Bash(echo "===HOME (Org only expected)==="; grep -o
+      'application/ld+json[^<]*</script>' public/index.html | python3 -c 'import
+       sys,json,re; [print(json.dumps(json.lo…)
+  ⎿  ===HOME (Org only expected)===
+     "{\"@context\":\"https://schema.org\",\"@type\":\"DanceGroup\",\"alter
+     nateName\":\"Londonas TDK \\\"Salinieki\\\"\",\"email\":\"info@salinie
+     … +80 lines (ctrl+o to expand)
+
+⏺ Let me rebuild to verify the final state.
+
+⏺ Bash(hugo --minify --quiet && grep -c 'application/ld+json'
+      public/kontakti/index.html public/en/kontakti/index.html public/index.html
+       public/news/2026-05-05-lestere…)
+  ⎿  public/kontakti/index.html:1
+     public/news/2026-05-05-lestere-kulturas-diena/index.html:1
+     public/en/kontakti/index.html:1
+     public/index.html:1
+
+⏺ grep -c counts lines, not matches — minified output is one line so it always
+  shows 1. Counting occurrences instead:
+
+⏺ Bash(for f in public/index.html public/kontakti/index.html
+      public/en/kontakti/index.html
+      public/news/2026-05-05-lestere-kulturas-diena/index.html; do n=$(grep -o
+      'ap…)
+  ⎿  public/index.html → 1 JSON-LD block(s)
+     public/kontakti/index.html → 2 JSON-LD block(s)
+     public/en/kontakti/index.html → 2 JSON-LD block(s)
+     … +2 lines (ctrl+o to expand)
+
+⏺ Correct: every page has the DanceGroup Organization block; only the contact
+  pages have the additional rehearsal Event block.
+
+  Summary
+
+  - layouts/_default/baseof.html — adds a sitewide DanceGroup JSON-LD block
+  (name, alternate name, URL, logo, email, founding year, rehearsal venue with
+  full postal address, and sameAs Facebook/Instagram/YouTube). Conditionally
+  adds a rehearsal Event block when .Params.showRehearsalEvent is true.
+  - content/kontakti.md and content/kontakti.en.md — set showRehearsalEvent: 
+  true in front matter.
+
+  The rehearsal Event uses an eventSchedule of type Schedule with byDay: Monday,
+   19:00–21:30, repeatFrequency: P1W, scheduleTimezone: Europe/London — the
+  modern schema.org pattern for recurring events.
+
+  Verify
+
+  Paste any URL into Google's Rich Results Test — it'll show whether Google
+  parses the DanceGroup and Event correctly. The contact page is the interesting
+   one. As mentioned, Google may not award a visible rich card for a recurring
+  rehearsal (its event docs target one-off performances), but the data is still
+  consumed by the knowledge graph and other search engines.
+
+✻ Brewed for 6m 27s
+
+❯ Can you also add the rehearsal Event block on the main homepage?              
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Update(content/_index.md)
+  ⎿  Added 1 line
+      1  ---
+      2  title: "Aktualitātes"
+      3  heroImage: "images/foto/2026-02-dejo-ar-mani/01-grupas-bilde.jpg
+         "
+      4 +showRehearsalEvent: true                                        
+      5  ---
+
+⏺ Update(content/_index.en.md)
+  ⎿  Added 1 line
+      1  ---
+      2  title: "News"
+      3  heroImage: "images/foto/2026-02-dejo-ar-mani/01-grupas-bilde.jpg
+         "
+      4 +showRehearsalEvent: true                                        
+      5  ---
+
+⏺ Bash(hugo --minify --quiet && for f in public/index.html public/en/index.html;
+       do n=$(grep -o 'application/ld+json' "$f" | wc -l | tr -d ' '); echo "$f
+      → $n JSON-LD…)
+  ⎿  public/index.html → 2 JSON-LD block(s)
+     public/en/index.html → 2 JSON-LD block(s)
+
+⏺ Done. Both home pages now emit DanceGroup + rehearsal Event JSON-LD.
+
+✻ Cooked for 24s
+
+❯ I get the following error when looking at the main page on the Google Rich    
+  Results Test page:                                                            
+                                                                                
+  "Invalid top level element 'string'"                                          
+
+⏺ Let me check what's actually in the rendered output — I suspect Hugo's
+  context-aware escaping is treating the script body as a JS string and
+  double-encoding it.
+
+  Searched for 1 pattern (ctrl+o to expand)
+
+⏺ Confirmed — Hugo's HTML template engine sees <script>...</script> and applies
+  JavaScript-context escaping, wrapping the JSON object in quotes and escaping
+  every " as \". The fix is to tell Hugo the content is already safe with
+  safeJS.
+
+  This is also what I missed when I "verified" earlier — my Python prettifier
+  was parsing the outer string and printing the inner, so it looked OK. My bad.
+
+⏺ Update(layouts/_default/baseof.html)
+  ⎿  Added 2 lines, removed 2 lines
+       94      "location" $place
+       95      "sameAs" (slice .Site.Params.social.facebook .Site.Params.
+           social.instagram .Site.Params.social.youtube)
+       96    }}
+       97 -  <script type="application/ld+json">{{ $org | jsonify }}</scr
+          -ipt>                                                          
+       97 +  <script type="application/ld+json">{{ $org | jsonify | safeJ
+          +S }}</script>                                                 
+       98    {{ if .Params.showRehearsalEvent }}
+       99      {{ $isLv := eq .Site.Language.Lang "lv" }}
+      100      {{ $eventName := cond $isLv "Salinieku tautas deju mēģināj
+           ums" "Salinieki folk dance rehearsal" }}
+     ...
+      125        )
+      126        "url" .Permalink
+      127      }}
+      128 -    <script type="application/ld+json">{{ $event | jsonify }}<
+          -/script>                                                      
+      128 +    <script type="application/ld+json">{{ $event | jsonify | s
+          +afeJS }}</script>                                             
+      129    {{ end }}
+      130  </head>
+      131  <body class="{{ if .IsHome }}is-home{{ else }}is-page{{ end }}
+           ">
+
+⏺ Bash(hugo --minify --quiet && grep -oE '<script
+      type=application/ld\+json>[^<]{0,200}' public/index.html)
+  ⎿  <script type=application/ld+json>{"@context":"https://schema.org","@ty
+     pe":"DanceGroup","alternateName":"Londonas TDK \"Salinieki\"","email":
+     "info@salinieki.co.uk","foundingDate":"2012","location":{"@type":"Plac
+     … +5 lines (ctrl+o to expand)
+
+⏺ Fixed. The script body is now a real JSON object ({...}) instead of a
+  JSON-encoded string ("{...}"). Rebuild + redeploy and the Rich Results Test
+  should parse it correctly.
+
+✻ Cooked for 42s
+❯ Can you fix the empty robots.txt?                                             
+
+  Listed 1 directory (ctrl+o to expand)
+
+⏺ Write(layouts/robots.txt)
+  ⎿  Wrote 4 lines to layouts/robots.txt
+      1 User-agent: *
+      2 Allow: /
+      3 
+      4 Sitemap: {{ "sitemap.xml" | absURL }}
+
+⏺ Bash(hugo --minify --quiet && cat public/robots.txt)
+  ⎿  User-agent: *
+     Allow: /
+
+     Sitemap: https://salinieki.co.uk/sitemap.xml
+
+⏺ Done. Crawlers now get an explicit allow-all and the absolute sitemap URL.
+
+✻ Sautéed for 57s
+
+❯ Please fix the empty taxonomy.                                                
+
+⏺ Update(hugo.toml)
+  ⎿  Added 1 line
+       5  enableRobotsTXT = true
+       6  enableEmoji = false
+       7  summaryLength = 40
+       8 +disableKinds = ["taxonomy", "term"]                            
+       9  
+      10  [languages]
+      11    [languages.lv]
+
+⏺ Bash(rm -rf public && hugo --minify --quiet && echo "---DIRS---" && ls public/
+       public/en/ | grep -E '^(categories|tags)$' || echo "(no categories/tags
+      dirs — good)";…)
+  ⎿  ---DIRS---
+     (no categories/tags dirs — good)
+     ---SITEMAP---
+     (no taxonomy URLs in sitemaps — good)
+
+⏺ Done. disableKinds = ["taxonomy", "term"] in hugo.toml — /categories/ and
+  /tags/ directories are no longer generated and the URLs are gone from both
+  language sitemaps. Four dead URLs removed.
+
+✻ Baked for 48s
+
+❯ So, now about the <h1> issue. I agree that having a richer <h1> would be      
+  good, but I still want to keep the existing design, where "Salinieki" is in   
+  larger font and the "Londonas Tautas Deju Kopa" is smaller. Is there any way  
+  to achieve that?                                                              
+
+⏺ Yes — visual hierarchy and HTML hierarchy are independent. Put both phrases
+  inside the <h1> as spans, and apply the existing eyebrow/title styles to those
+   spans. Google indexes the whole <h1> text; users still see the same two-line
+  treatment.
+
+  Let me check the current CSS so I match it exactly.
+
+  Searched for 1 pattern, read 1 file (ctrl+o to expand)
+
+⏺ I'll combine the eyebrow and title into one <h1> with two spans, applying the
+  existing classes so the visual result is unchanged. Then add display: block to
+   those classes so the spans break across lines, plus a small reset on the
+  outer <h1>.
+
+⏺ Update(layouts/partials/hero.html)
+  ⎿  Added 4 lines, removed 2 lines
+      13      {{ end }}
+      14    </div>
+      15    <div class="container hero-inner">
+      16 -    <p class="hero-eyebrow">{{ i18n "hero_eyebrow" }}</p>      
+      17 -    <h1 class="hero-title">Salinieki</h1>                      
+      16 +    <h1 class="hero-heading">                                  
+      17 +      <span class="hero-eyebrow">{{ i18n "hero_eyebrow" }}</spa
+         +n>                                                             
+      18 +      <span class="hero-title">Salinieki</span>                
+      19 +    </h1>                                                      
+      20    </div>
+      21  </section>
+
+⏺ Update(static/css/style.css)
+  ⎿  Added 7 lines, removed 1 line
+      235    z-index: 1;
+      236    max-width: 760px;
+      237  }
+      238 +.hero-heading {                                               
+      239 +  margin: 0 0 18px;                                           
+      240 +  font-weight: 400;                                           
+      241 +}                                                             
+      242  .hero-eyebrow {
+      243 +  display: block;                                             
+      244    font-family: var(--font-hero);
+      245    text-transform: uppercase;
+      246    letter-spacing: 0.25em;
+     ...
+      249    opacity: 0.9;
+      250  }
+      251  .hero-title {
+      252 +  display: block;                                             
+      253    font-family: var(--font-hero);
+      254    font-size: clamp(3.5rem, 8vw, 5.5rem);
+      255    color: #fff;
+      250 -  margin: 0 0 18px;                                           
+      256    font-weight: 400;
+      257    letter-spacing: 0.02em;
+      258 +  line-height: 1;                                             
+      259  }
+      260  .hero-tagline {
+      261    font-family: var(--font-sans);
+
+⏺ Bash(hugo --minify --quiet && grep -oE '<h1[^>]*>.{0,200}</h1>'
+      public/index.html public/en/index.html)
+  ⎿  No matches found
+
+  Searched for 1 pattern (ctrl+o to expand)
+
+⏺ Rendered as expected on both languages. The Google-visible <h1> is now the
+  full phrase ("Londonas Tautas Deju Kopa Salinieki" / "Latvian Folk Dance Group
+   in London Salinieki"), while the styled spans preserve the two-line
+  big-on-small layout.
+
+  One caveat: I verified the HTML output, but I can't render in a browser from
+  here. Worth eyeballing on the live page that vertical spacing between the
+  eyebrow line and "Salinieki" still looks the same as before — let me know if
+  the gap shifted and I'll tweak.
+
+✻ Cogitated for 1m 17s
+
+❯ The eyebrow text needs to be white like the main H1.                          
+
+⏺ Update(static/css/style.css)
+  ⎿  Added 1 line
+      245    text-transform: uppercase;
+      246    letter-spacing: 0.25em;
+      247    font-size: 0.85rem;
+      248 +  color: #fff;                                                
+      249    margin: 0 0 16px;
+      250    opacity: 0.9;
+      251  }
+
+⏺ Bash(hugo --minify --quiet)
+  ⎿  Interrupted · What should Claude do instead?
+❯ I am rebuilding the site live with hugo server.                               
+
+⏺ Got it — I'll skip the build step. The change is in; your live server will
+  pick it up.
+
+  Let me save that preference so I don't trip over it again.
+
+  Listed 1 directory, wrote 2 memories (ctrl+o to expand)
+
+⏺ Saved. Eyebrow text is now color: #fff with opacity: 0.9 — your live hugo 
+  server should show it as white.
+
+✻ Crunched for 23s
+
+❯ Can you add a bit more vertical space between the eyebrow and the title.      
+
+⏺ Update(static/css/style.css)
+  ⎿  Added 1 line, removed 1 line
+      246    letter-spacing: 0.25em;
+      247    font-size: 0.85rem;
+      248    color: #fff;
+      249 -  margin: 0 0 16px;                                           
+      249 +  margin: 0 0 24px;                                           
+      250    opacity: 0.9;
+      251  }
+      252  .hero-title {
+
+⏺ Bumped from 16px to 24px. Let me know if you want it bigger.
+
+✻ Cogitated for 15s
+
+❯ Can you add the missing height/width to the newscard img?                     
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Update(layouts/partials/news-card.html)
+  ⎿  Added 8 lines, removed 2 lines
+       2  <article class="news-card">
+       3    {{ with .Params.coverImage }}
+       4      {{ $src := . }}
+       5 +    {{ $w := "" }}                                             
+       6 +    {{ $h := "" }}                                             
+       7      {{ with resources.Get . }}
+       8        {{ $thumb := .Resize "800x q85" }}
+       9        {{ $src = $thumb.RelPermalink }}
+      10 +      {{ $w = $thumb.Width }}                                  
+      11 +      {{ $h = $thumb.Height }}                                 
+      12      {{ else }}
+      13        {{ $src = . | relURL }}
+      14      {{ end }}
+      15 +    {{ $dim := "" }}                                           
+      16 +    {{ with $w }}{{ $dim = printf ` width="%d" height="%d"` $w 
+         +$h }}{{ end }}                                                 
+      17      {{ if $hasLink }}
+      18        <a class="news-card-media" href="{{ $.RelPermalink }}">
+      13 -        <img src="{{ $src }}" alt="{{ $.Title }}" loading="lazy
+         -">                                                             
+      19 +        <img src="{{ $src }}" alt="{{ $.Title }}" loading="lazy
+         +"{{ $dim | safeHTMLAttr }}>                                    
+      20        </a>
+      21      {{ else }}
+      22        <div class="news-card-media">
+      17 -        <img src="{{ $src }}" alt="{{ $.Title }}" loading="lazy
+         -">                                                             
+      23 +        <img src="{{ $src }}" alt="{{ $.Title }}" loading="lazy
+         +"{{ $dim | safeHTMLAttr }}>                                    
+      24        </div>
+      25      {{ end }}
+      26    {{ end }}
+
+⏺ Width/height now come from Hugo's image processing so they're always accurate
+  (matching the actual resized output). Falls back to no attributes if
+  resources.Get can't find the file. Your hugo server will rebuild on save.
+
+✻ Cogitated for 44s
+
+❯ Finally, can you make Google Fonts and jsdeliver CDN local?                   
+
+⏺ I'll download both. Let me first see what's already in static/fonts/ and check
+   the existing CSS link locations.
+
+  Listed 1 directory (ctrl+o to expand)
+
+⏺ I'll fetch the Google Fonts CSS (using a browser UA so we get woff2), download
+   all referenced font files, and rewrite the URLs to local paths. Then download
+   glightbox.
+
+⏺ Bash(curl -sS -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)
+      AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+      "https://fonts.googleapis.com/cs…)
+  ⎿       225 /tmp/nunito-google.css
+     /* cyrillic-ext */
+     @font-face {
+     … +21 lines (ctrl+o to expand)
+
+⏺ I'll filter to just latin and latin-ext subsets (we don't need
+  cyrillic/vietnamese), download those woff2 files, and rewrite the URLs.
+
+⏺ Bash(mkdir -p /Users/martins.bruveris/code/salinieki/static/fonts/nunito &&
+      python3 <<'EOF'
+      import re, urllib.request, os…)
+  ⎿  downloaded XRXV3I6Li01BKofIO-aBTMnFcQIG.woff2
+     downloaded XRXV3I6Li01BKofINeaBTMnFcQ.woff2
+     exists    XRXV3I6Li01BKofIO-aBTMnFcQIG.woff2
+     … +12 lines (ctrl+o to expand)
+
+⏺ Google serves the same variable-font woff2 file for all 5 weights — so we end
+  up with just 2 files (~74KB total). Let me verify the generated CSS and then
+  download glightbox.
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Bash(curl -sS -o
+      /Users/martins.bruveris/code/salinieki/static/css/glightbox.min.css
+      https://cdn.jsdelivr.net/npm/glightbox@3/dist/css/glightbox.min.css &&
+      curl -sS…)
+  ⎿  -rw-r--r--@ 1 martins.bruveris  staff  13749  7 Jun 23:10 /Users/marti
+     ns.bruveris/code/salinieki/static/css/glightbox.min.css
+     -rw-r--r--@ 1 martins.bruveris  staff  56343  7 Jun 23:10 /Users/marti
+     ns.bruveris/code/salinieki/static/js/glightbox.min.js
+
+⏺ Now wire the local files into baseof.html and drop the CDN-related preconnect
+  hints.
+
+⏺ Update(layouts/_default/baseof.html)
+  ⎿  Added 3 lines, removed 5 lines
+      64      {{ end }}
+      65    {{ end }}
+      66    <link rel="icon" type="image/png" href="{{ "images/logo.png" 
+          | relURL }}">
+      67 -  <link rel="preconnect" href="https://fonts.googleapis.com">  
+      68 -  <link rel="preconnect" href="https://fonts.gstatic.com" cross
+         -origin>                                                        
+      69 -  <link rel="stylesheet" href="https://fonts.googleapis.com/css
+         -2?family=Nunito:wght@300;400;500;600;700&display=swap">        
+      67 +  <link rel="stylesheet" href="{{ "css/nunito.css" | relURL }}"
+         +>                                                              
+      68    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+      71 -  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gli
+         -ghtbox@3/dist/css/glightbox.min.css">                          
+      69 +  <link rel="stylesheet" href="{{ "css/glightbox.min.css" | rel
+         +URL }}">                                                       
+      70    <script src="{{ "js/site.js" | relURL }}" defer></script>
+      73 -  <script src="https://cdn.jsdelivr.net/npm/glightbox@3/dist/js
+         -/glightbox.min.js" defer></script>                             
+      71 +  <script src="{{ "js/glightbox.min.js" | relURL }}" defer></sc
+         +ript>                                                          
+      72    {{ $place := dict
+      73      "@type" "Place"
+      74      "name" "Daugavas Vanagu nams"
+⏺ Done. Summary of what's now self-hosted:
+
+  - Nunito font — 2 woff2 files (static/fonts/nunito/, ~74KB total) covering
+  latin + latin-ext (skipped cyrillic/vietnamese, which weren't needed).
+  Generated CSS at static/css/nunito.css keeps the original unicode-range
+  directives so browsers still only fetch the subset they need.
+  - glightbox — CSS (~14KB) at static/css/glightbox.min.css and JS (~56KB) at
+  static/js/glightbox.min.js.
+  - Removed the two <link rel="preconnect"> hints for Google's domains since
+  they're no longer needed.
+
+  Your hugo server should rebuild on save. Worth a glance at the live page to
+  confirm the Nunito font still renders correctly across the headings/body and
+  that the photo lightbox still opens. If you ever upgrade glightbox to a new
+  version, the manual step is: curl the new CSS/JS from jsdelivr into the same
+  files.
+
+✻ Worked for 1m 24s
+
+❯ Ok, so can I check that what are the suggested tips that have not been        
+  addressed yet?                                                                
+
+⏺ Going back over the original 10-item list from my second analysis, here's the
+  current state:
+
+  Done ✅
+
+  1. ~~No Open Graph / Twitter Card meta~~ — implemented
+  2. ~~No canonical link~~ — implemented
+  3. ~~hreflang only in sitemap, not in <head>~~ — implemented
+  4. ~~No structured data (JSON-LD)~~ — Organization sitewide + recurring
+  rehearsal Event on home + contact (per/per-concert Events and Article markup
+  still skipped, see #11 below)
+  5. ~~robots.txt is still empty~~ — fixed with Sitemap directive
+  6. ~~Empty taxonomy pages in the sitemap~~ — disabled
+  7. ~~Home <h1> is just "Salinieki"~~ — combined eyebrow + title into a single
+  semantic <h1> containing the full phrase
+  8. ~~News card <img> has no width/height~~ — added from Hugo's image processor
+  9. Minor polish — partially:
+  - ~~Google Fonts + jsdelivr CDN external~~ — self-hosted
+
+  Still open
+
+  8. English URLs use Latvian slugs — /en/par-mums/, /en/foto/, /en/kontakti/,
+  /en/video/ still use Latvian words. Translating to /en/about/, /en/photos/,
+  /en/contact/, /en/videos/ would give English-language keyword matches in URLs.
+
+  10. Remaining minor polish:
+  - Favicon variants — only images/logo.png declared. No apple-touch-icon, no
+  favicon.ico, no web app manifest. Browsers fall back to defaults on iOS home
+  screens etc.
+  - Footer NAP (Name/Address/Phone) — footer is just a copyright + social icons.
+   Adding the rehearsal venue address would reinforce local SEO and the Place
+  schema you already emit.
+  - Dual analytics — both Google gtag and Simple Analytics are loaded. Worth
+  confirming this is intentional; if not, dropping one shaves a third-party
+  request.
+
+  11. JSON-LD scope we deferred — when you picked "Organization + rehearsal", we
+   explicitly skipped:
+  - Event JSON-LD for each upcoming concert in Site.Params.calendar (currently
+  just one entry: "(Pa) Saules Ceļu Izdejot" in Ireland, 20.06.2026). This is
+  the highest-value structured data type Google actually rewards with rich event
+   cards.
+  - Article / NewsArticle JSON-LD on /news/... pages. Helps cover photo
+  thumbnails and publish-date display in search results.
+
+  12. From the very first analysis, never re-discussed:
+  - Home page lacks an intro paragraph. It goes hero → news list. A 2–3 sentence
+   intro under the hero would significantly help ranking for "Latvian folk dance
+   London" / equivalent Latvian queries.
+  - Figure-shortcode alt text is generic ("Mēģinājums", "Gājiens"). Slightly
+  more descriptive alts help image search.
+
+  Of these, the highest-impact remaining items are probably 11 (concert Event 
+  JSON-LD) and 12 (home intro paragraph) — both are direct ranking/visibility
+  wins. Everything else is polish or correctness.
+
+✻ Churned for 21s

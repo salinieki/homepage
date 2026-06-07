@@ -5,6 +5,7 @@ defaultContentLanguageInSubdir = false
 enableRobotsTXT = true
 enableEmoji = false
 summaryLength = 40
+disableKinds = ["taxonomy", "term"]
 
 [languages]
   [languages.lv]
