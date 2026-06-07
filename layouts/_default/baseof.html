@@ -57,6 +57,12 @@
     <meta name="twitter:card" content="summary">
   {{ end }}
   <link rel="canonical" href="{{ .Permalink }}">
+  {{ range .AllTranslations }}
+    <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
+    {{ if eq .Lang "lv" }}
+      <link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">
+    {{ end }}
+  {{ end }}
   <link rel="icon" type="image/png" href="{{ "images/logo.png" | relURL }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
