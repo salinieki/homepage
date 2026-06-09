@@ -1,6 +1,14 @@
 {{ define "main" }}
 {{ partial "hero.html" . }}
 
+{{ with .Content }}
+<section class="home-intro">
+  <div class="container home-intro-inner">
+    {{ . }}
+  </div>
+</section>
+{{ end }}
+
 <section class="home-main section-band">
   <div class="container home-grid">
     <div class="home-main-col">

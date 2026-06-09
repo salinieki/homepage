@@ -332,6 +332,23 @@ p { margin: 0 0 1em; }
   padding: 72px 0;
 }
 
+.home-intro {
+  padding: 56px 0 0;
+}
+.home-intro-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  text-align: center;
+}
+.home-intro-inner p { margin: 0; }
+@media (max-width: 820px) {
+  .home-intro { padding: 40px 0 0; }
+  .home-intro-inner { font-size: 1.05rem; }
+}
+
 .home-main-col .section-title { margin-bottom: 32px; }
 
 /* ===== News cards ========================================= */
