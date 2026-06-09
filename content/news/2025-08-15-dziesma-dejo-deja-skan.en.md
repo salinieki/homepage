@@ -19,14 +19,21 @@ rehearsals, plus additional rehearsals on two Sundays, since we were also
 simultaneously learning the repertoire for the ELKS concert. We danced four
 pieces: "Līku loku upe teka", "Alku deja", "Gapsis" and "Rūnu raksti".
 
-{{< figure src="images/foto/2025-08-dziesma-dejo/02-dzdds-alku-deja.jpg" alt="Alku deja" caption="Alku deja." >}}
+{{< figure
+  src="images/foto/2025-08-dziesma-dejo/02-dzdds-alku-deja.jpg"
+  alt="Dancers perform \"Alku deja\" on the Mežaparks Grand Stage during the \"Dziesma Dejo Deja Skan\" concert"
+  caption="Alku deja."
+>}}
 
 Once the dances were learnt, all the dancers — led by Aldis and Anna — set off
 for Latvia, to rehearse from 6 August and then perform on 8–9 August. Latvia
 greeted us with typical summer weather: sun for swimming in lake Ķīšezers, and
 rain to refresh us and wash away the sweat from rehearsals.
 
-{{< figure src="images/foto/2025-08-dziesma-dejo/03-dzdds-baseins.jpg" alt="Swimming in Ķīšezers" >}}
+{{< figure
+  src="images/foto/2025-08-dziesma-dejo/03-dzdds-baseins.jpg"
+  alt="Salinieki dancers cooling off in lake Ķīšezers between Song and Dance Festival rehearsals in Riga"
+>}}
 
 Wednesday and Thursday were spent in joint rehearsals, learning how the dances
 fit on the huge stage — how to enter the field following the winding bends of
@@ -40,7 +47,10 @@ Thursday evening was the dress rehearsal in front of an audience; Friday and
 Saturday brought two concerts. After the Saturday concert, once the spectators
 had gone home, the performers all gathered for a shared party.
 
-{{< figure src="images/foto/2025-08-dziesma-dejo/04-dzdds-dieva-zime.jpg" alt="Dieva zīme" >}}
+{{< figure
+  src="images/foto/2025-08-dziesma-dejo/04-dzdds-dieva-zime.jpg"
+  alt="Thousands of dancers arranged in the sign of Dievs on the Mežaparks Grand Stage at the close of \"Dziesma Dejo Deja Skan\""
+>}}
 
 It is hard to put into words the emotion of dancing at the Mežaparks Grand
 Stage alongside 8,000 dancers and singers. It does not matter that the dance
@@ -54,7 +64,10 @@ dancers arranged in the sign of Dievs (the Latvian dievaszīme), we sang
 "Saule, Pērkons, Daugava" — which turned into joy as we danced the closing
 piece "Upe" (which is neither the Venta, nor the Irbe, nor the Gauja).
 
-{{< figure src="images/foto/2025-08-dziesma-dejo/01-dzdds-kopbilde.jpg" alt="Salinieki group photo" >}}
+{{< figure
+  src="images/foto/2025-08-dziesma-dejo/01-dzdds-kopbilde.jpg"
+  alt="Group photo of Salinieki and Londona Dejo dancers on the Mežaparks Grand Stage after the \"Dziesma Dejo Deja Skan\" concert"
+>}}
 
 For dancers who had already taken part in the Song and Dance Festivals, this
 event brought back memories of the summer of 2023. For the newer dancers, it

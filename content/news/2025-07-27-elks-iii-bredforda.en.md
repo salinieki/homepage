@@ -16,7 +16,10 @@ European Latvian Cultural Festival (ELKS). Choirs, folklore ensembles and 8
 dance groups from across Europe gathered in Bradford to share Latvian culture
 over several days.
 
-{{< figure src="images/foto/2025-07-elks/02-elks-koncerts.jpg" alt="ELKS concert" >}}
+{{< figure
+  src="images/foto/2025-07-elks/02-elks-koncerts.jpg"
+  alt="Salinieki before the III European Latvian Cultural Festival gala concert in St George\"s Hall, Bradford"
+>}}
 
 The dancing began on Friday evening with an outdoor concert at the Fountains
 Square, where Dārta, Beāte, Kate and Aldis performed "Viņš ir mans".
@@ -28,9 +31,15 @@ sudrabota". Our dancers also supported the youngest dancers in "Čību čābu". 
 performed these dances together with "Dindaru Dandaru" from Edinburgh and
 "Zibenītis" from Stockholm.
 
-{{< figure src="images/foto/2025-07-elks/05-elks-buobu-dancis.jpg" alt="Buobu dancis" >}}
+{{< figure
+  src="images/foto/2025-07-elks/05-elks-buobu-dancis.jpg"
+  alt="Salinieki performing \"Buobu dancis\" at the ELKS III gala concert in Bradford"
+>}}
 
-{{< figure src="images/foto/2025-07-elks/06-elks-mugurdancis.jpg" alt="Mugurdancis" >}}
+{{< figure
+  src="images/foto/2025-07-elks/06-elks-mugurdancis.jpg"
+  alt="Salinieki performing \"Mugurdancis\" at the ELKS III gala concert in Bradford"
+>}}
 
 After the concert the roles swapped, and in the evening the performers could
 enjoy a show by Tautumeitas and Austrumkalns. Once the official programme was
@@ -38,7 +47,10 @@ over, Salinieki headed back to the centre of Bradford, where in the mild July
 night they played music through portable speakers at the Fountains Square and
 kept dancing…
 
-{{< figure src="images/foto/2025-07-elks/04-elks-finals.jpg" alt="Finale" >}}
+{{< figure
+  src="images/foto/2025-07-elks/04-elks-finals.jpg"
+  alt="Finale of the ELKS III gala concert at St George\"s Hall with Salinieki and other Latvian dance groups and choirs"
+>}}
 
 For several of our dancers these were particularly special concerts. For Kate
 and Artūrs it was their first performance with Salinieki, and for Jolanta and

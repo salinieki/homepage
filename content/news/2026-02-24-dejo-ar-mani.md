@@ -18,17 +18,26 @@ lai piedalītos Latviešu tautas deju lielkoncertā "Dejo ar Mani". Skotijas lai
 februārim atbilstošs, bet tas vienkārši deva papildus motivāciju mēģinājumā dejot un 
 kustēties.
 
-{{< figure src="images/foto/2026-02-dejo-ar-mani/08-meginajums.jpg" alt="Mēģinājums" >}}
+{{< figure
+  src="images/foto/2026-02-dejo-ar-mani/08-meginajums.jpg"
+  alt="Salinieki mēģina dejas pirms \"Dejo ar Mani\" koncerta Aberdīnā"
+>}}
 
 Koncertā mēs dejojām trīs dejas. Pirmā deja bija Alda Salma horeogrāfētā deja "Dzīvības
 koks", ko pēc 18. novembra koncerta dejojām otro reizi.
 
-{{< figure src="images/foto/2026-02-dejo-ar-mani/03-dzivibas-koks.jpg" alt="Dzīvības koks" >}}
+{{< figure
+  src="images/foto/2026-02-dejo-ar-mani/03-dzivibas-koks.jpg"
+  alt="Salinieki dejo Alda Salma horeogrāfēto deju \"Dzīvības koks\" koncertā \"Dejo ar Mani\" Aberdīnā"
+>}}
 
 Pēc tam dejojām "Mēc ciemiņus gaidīdami", deja ko mācījāmies jau pirms diviem gadiem,
 bet Aberdīnā pirmo reizi dejojām koncertā.
 
-{{< figure src="images/foto/2026-02-dejo-ar-mani/04-ciemini.jpg" alt="Mēs ciemiņus gaidīdami" >}}
+{{< figure
+  src="images/foto/2026-02-dejo-ar-mani/04-ciemini.jpg"
+  alt="Salinieki dejo \"Mēs ciemiņus gaidīdami\" latviešu deju koncertā \"Dejo ar Mani\" Aberdīnā"
+>}}
 
 Mūsu programmu noslēdzām, tieši pirms fināla ar deju "Ai, tēvu zeme".
 

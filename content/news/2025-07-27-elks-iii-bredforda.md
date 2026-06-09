@@ -15,7 +15,10 @@ hasFullArticle: true
 Kultūras Svētkos (ELKS). Bredfordā pulcējās kori, folkloristi un 8 deju kolektīvi no
 visas Eiropas, lai vairāku dienu garumā iepazīstinātu ar Latvijas kultūru.
 
-{{< figure src="images/foto/2025-07-elks/02-elks-koncerts.jpg" alt="ELKS koncerts" >}}
+{{< figure
+  src="images/foto/2025-07-elks/02-elks-koncerts.jpg"
+  alt="Salinieki pirms III Eiropas Latviešu Kultūras Svētku lielkoncerta St George\"s Hall, Bredfordā"
+>}}
 
 Dejošana sākās jau piektdienas vakarā āra koncertā Strūklaku laukumā, kur Dārta, Beāte,
 Kate un Aldis dejoja "Viņš ir mans".
@@ -26,16 +29,25 @@ mēs dejojām vairākas dejas: "Rūnu rakstus", "Reilenderu", "Mugurdanci", "Jur
 dejotāji arī atbalstīja pašus mazākos dejotājus dejā "Čību čābu". Dejas dejojām kopā ar
 "Dindaru Dandaru" no Edinburgas un "Zibenīti" no Stokholmas.
 
-{{< figure src="images/foto/2025-07-elks/05-elks-buobu-dancis.jpg" alt="Buobu dancis" >}}
+{{< figure
+  src="images/foto/2025-07-elks/05-elks-buobu-dancis.jpg"
+  alt="Salinieki dejo \"Buobu danci\" ELKS III lielkoncertā Bredfordā"
+>}}
 
-{{< figure src="images/foto/2025-07-elks/06-elks-mugurdancis.jpg" alt="Mugurdancis" >}}
+{{< figure
+  src="images/foto/2025-07-elks/06-elks-mugurdancis.jpg"
+  alt="Salinieki dejo \"Mugurdanci\" ELKS III lielkoncertā Bredfordā"
+>}}
 
 Pēc koncerta lomas mainījās, un vakarā dalībnieki varēja izbaudīt Tautumeitu un
 Austrumkalna priekšnesumu. Pēc oficiālās daļas Salinieki devās uz Bredfordas centru, kur
 maigajā jūlija naktī Strūklaku laukumā ar pārnēsājamiem skaļruņiem spēlēja mūziku un
 turpināja dejot…
 
-{{< figure src="images/foto/2025-07-elks/04-elks-finals.jpg" alt="Fināls" >}}
+{{< figure
+  src="images/foto/2025-07-elks/04-elks-finals.jpg"
+  alt="ELKS III lielkoncerta fināls St George\"s Hall ar Saliniekiem un citiem latviešu deju kolektīviem un koriem"
+>}}
 
 Vairākiem mūsu dejotājiem šie bija īpaši koncert. Katei un Artūram tā bija pirmā
 uzstāšanās ar Saliniekiem, bet Jolantai un Maijai šis vispār bija pirmais koncerts

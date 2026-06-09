@@ -18,18 +18,27 @@ Aberdeen, Scotland, to take part in the Latvian folk-dance concert "Dejo ar
 Mani". The Scottish weather was about as you'd expect for February — which
 just gave us extra motivation to dance and keep moving during the rehearsal.
 
-{{< figure src="images/foto/2026-02-dejo-ar-mani/08-meginajums.jpg" alt="Rehearsal" >}}
+{{< figure
+  src="images/foto/2026-02-dejo-ar-mani/08-meginajums.jpg"
+  alt="Salinieki rehearse before the \"Dejo ar Mani\" Latvian folk dance concert in Aberdeen"
+>}}
 
 At the concert we performed three dances. The first was Aldis Salms'
 choreography "Dzīvības koks", which we performed for the second time after
 its premiere at the 18 November concert.
 
-{{< figure src="images/foto/2026-02-dejo-ar-mani/03-dzivibas-koks.jpg" alt="Dzīvības koks" >}}
+{{< figure
+  src="images/foto/2026-02-dejo-ar-mani/03-dzivibas-koks.jpg"
+  alt="Salinieki perform Aldis Salms's choreography \"Dzīvības koks\" at \"Dejo ar Mani\" in Aberdeen"
+>}}
 
 We then danced "Mēs ciemiņus gaidīdami", a piece we'd learnt two years
 earlier but performed in concert for the first time in Aberdeen.
 
-{{< figure src="images/foto/2026-02-dejo-ar-mani/04-ciemini.jpg" alt="Mēs ciemiņus gaidīdami" >}}
+{{< figure
+  src="images/foto/2026-02-dejo-ar-mani/04-ciemini.jpg"
+  alt="Salinieki dance \"Mēs ciemiņus gaidīdami\" at the \"Dejo ar Mani\" Latvian folk dance concert in Aberdeen"
+>}}
 
 We closed our part of the programme, just before the finale, with "Ai, tēvu
 zeme".
