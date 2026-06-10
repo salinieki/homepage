@@ -46,7 +46,7 @@ disableKinds = ["taxonomy", "term"]
     label = "English"
     locale = "en"
     weight = 2
-    title = 'Salinieki — Latvian Folk Dance Group in London'
+    title = 'Salinieki – Latvian Folk Dance Group in London'
     [languages.en.params]
       description = "Salinieki is a Latvian folk dance group based in London, performing since 2012."
       flag = "images/flags/gb.svg"

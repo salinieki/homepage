@@ -1,6 +1,17 @@
 <footer class="site-footer">
   <div class="container footer-inner">
-    <p class="copyright">Copyright © {{ .Site.Params.copyrightYear }} Salinieki TDK</p>
-    {{ partial "social.html" . }}
+    <div class="footer-contact">
+      <p class="footer-name">{{ .Site.Title }}</p>
+      <address class="footer-address">
+        <span class="footer-label">{{ i18n "footer_rehearsals_label" }}:</span>
+        Daugavas Vanagu nams, 72 Queensborough Terrace, London, W2 3SH<br>
+        <span class="footer-label">{{ i18n "footer_email_label" }}:</span>
+        <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a>
+      </address>
+    </div>
+    <div class="footer-meta">
+      <p class="copyright">Copyright © {{ .Site.Params.copyrightYear }} Salinieki TDK</p>
+      {{ partial "social.html" . }}
+    </div>
   </div>
 </footer>
