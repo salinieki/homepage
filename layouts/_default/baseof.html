@@ -125,6 +125,38 @@
     }}
     <script type="application/ld+json">{{ $event | jsonify | safeJS }}</script>
   {{ end }}
+  {{ if and .IsPage (eq .Section "news") }}
+    {{ $article := dict
+      "@context" "https://schema.org"
+      "@type" "Article"
+      "headline" .Title
+      "datePublished" (.Date.Format "2006-01-02")
+      "dateModified" (.Lastmod.Format "2006-01-02")
+      "description" $desc
+      "inLanguage" .Site.Language.Lang
+      "mainEntityOfPage" .Permalink
+      "url" .Permalink
+      "publisher" (dict
+        "@type" "Organization"
+        "name" "Salinieki"
+        "url" .Site.BaseURL
+        "logo" (dict
+          "@type" "ImageObject"
+          "url" (absURL "images/logo.png")
+        )
+      )
+    }}
+    {{ with .Params.author }}
+      {{ $article = merge $article (dict "author" (dict "@type" "Person" "name" .)) }}
+    {{ end }}
+    {{ with $ogImageURL }}
+      {{ $img := dict "@type" "ImageObject" "url" . }}
+      {{ with $ogImageW }}{{ $img = merge $img (dict "width" .) }}{{ end }}
+      {{ with $ogImageH }}{{ $img = merge $img (dict "height" .) }}{{ end }}
+      {{ $article = merge $article (dict "image" $img) }}
+    {{ end }}
+    <script type="application/ld+json">{{ $article | jsonify | safeJS }}</script>
+  {{ end }}
 </head>
 <body class="{{ if .IsHome }}is-home{{ else }}is-page{{ end }}">
   {{ partial "header.html" . }}
