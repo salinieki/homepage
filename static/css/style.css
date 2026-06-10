@@ -101,6 +101,8 @@ p { margin: 0 0 1em; }
   font-family: var(--font-hero);
   font-size: 1.6rem;
   font-weight: 400;
+  line-height: 1;
+  transform: translateY(2px);
   color: var(--color-secondary);
 }
 .main-nav ul {
