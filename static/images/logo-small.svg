@@ -1,9 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" shape-rendering="crispEdges">
   <style>
-    .red  { fill: #B82626; }
-    .navy { fill: #042347; }
+    .red, .navy { fill: #042347; }
     @media (prefers-color-scheme: dark) {
-      .navy { fill: #8FB3D9; }
+      .red, .navy { fill: #4583c6; }
     }
   </style>
   <g class="red">
