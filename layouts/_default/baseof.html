@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
   {{ if hugo.IsProduction }}
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=GT-P3H9P3B9"></script>
@@ -63,11 +64,12 @@
       <link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">
     {{ end }}
   {{ end }}
-  <link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="any">
-  <link rel="icon" type="image/svg+xml" href="{{ "images/logo-small.svg" | relURL }}">
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ "images/logo-16.png" | relURL }}">
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ "images/logo-32.png" | relURL }}">
-  <link rel="icon" type="image/png" sizes="48x48" href="{{ "images/logo-48.png" | relURL }}">
+  {{/* 
+    We comment this out, because if left in, Chrome will prefer favicon over the
+    SVG, but only the SVG has dark mode support. 
+    <link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="any">
+  */}}
+  <link rel="icon" type="image/svg+xml" href="{{ "images/logo-small.svg" | relURL }}?v=2">
   <link rel="stylesheet" href="{{ "css/nunito.css" | relURL }}">
   <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
   <link rel="stylesheet" href="{{ "css/glightbox.min.css" | relURL }}">
