@@ -1,5 +1,6 @@
 ---
 title: "Contact"
+url: "/en/contact/"
 showRehearsalEvent: true
 ---
 

@@ -61,19 +61,19 @@ disableKinds = ["taxonomy", "term"]
         weight = 10
       [[languages.en.menu.main]]
         name = "Photos"
-        url = "/en/foto/"
+        url = "/en/photos/"
         weight = 20
       [[languages.en.menu.main]]
         name = "Videos"
-        url = "/en/video/"
+        url = "/en/videos/"
         weight = 30
       [[languages.en.menu.main]]
         name = "About us"
-        url = "/en/par-mums/"
+        url = "/en/about/"
         weight = 40
       [[languages.en.menu.main]]
         name = "Contact"
-        url = "/en/kontakti/"
+        url = "/en/contact/"
         weight = 50
 
 [params]

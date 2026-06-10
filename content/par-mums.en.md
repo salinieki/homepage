@@ -1,5 +1,6 @@
 ---
 title: "About us"
+url: "/en/about/"
 ---
 
 We are an active dance group of around 25 dancers, keeping the tradition of

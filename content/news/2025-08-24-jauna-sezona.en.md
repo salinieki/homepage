@@ -1,7 +1,8 @@
 ---
 title: Start of the new season
+url: /en/news/2025-08-24-new-season/
 date: 2025-08-24
-author: Mārtiņš Brūveris
+author: Katrina Zandere
 coverImage: images/foto/2025-09-jauna-sezona/01-grupas-bilde.jpg
 summary: >
   After resting up from the summer concerts, it's time to think about dancing

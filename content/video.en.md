@@ -1,5 +1,6 @@
 ---
 title: "Videos"
+url: "/en/videos/"
 ---
 
 ### 2026 – Zeme zeļ, zeme plaukst

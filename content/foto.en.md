@@ -1,5 +1,6 @@
 ---
 title: "Photos"
+url: "/en/photos/"
 ---
 
 ### 2026 – Latvian Culture Day in Leicester

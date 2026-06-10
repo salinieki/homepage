@@ -1,7 +1,7 @@
 ---
 title: Dejo ar Mani, Aberdeen
 date: 2026-02-24
-author: Mārtiņš Brūveris
+author: Martins Bruveris
 location: Aberdeen, United Kingdom
 coverImage: images/foto/2026-02-dejo-ar-mani/01-grupas-bilde.jpg
 summary: >

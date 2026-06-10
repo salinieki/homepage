@@ -1,7 +1,7 @@
 ---
 title: Jaunās sezonas sākums
 date: 2025-08-24
-author: Mārtiņš Brūveris
+author: Katrīna Zandere
 coverImage: images/foto/2025-09-jauna-sezona/01-grupas-bilde.jpg
 summary: >
   Atpūtušies pēc vasaras koncertiem, ir laiks atkal domāt par dejošanu. Jauno sezonu 

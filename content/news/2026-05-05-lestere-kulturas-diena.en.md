@@ -1,7 +1,8 @@
 ---
 title: 10th Culture Day in Leicester
+url: /en/news/2026-05-05-leicester-culture-day/
 date: 2026-05-05
-author: Mārtiņš Brūveris
+author: Martins Bruveris
 location: Leicester, United Kingdom
 coverImage: images/foto/2026-05-lestera-kulturas-diena/04-grupas-bilde.jpg
 summary: >
