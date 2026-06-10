@@ -1,0 +1,1635 @@
+╭─── Claude Code v2.1.142 ─────────────────────────────────────────────────────╮
+│                                                    │ Tips for getting        │
+│                Welcome back Martins!               │ started                 │
+│                                                    │ Run /init to create a … │
+│                       ▐▛███▜▌                      │ ─────────────────────── │
+│                      ▝▜█████▛▘                     │ What's new              │
+│                        ▘▘ ▝▝                       │ Internal infrastructur… │
+│ Opus 4.7 · Claude Pro · martins.bruveris@gmx.at's  │ `/usage` now shows a p… │
+│ Organization                                       │ `/diff` detail view ca… │
+│                  ~/code/salinieki                  │ /release-notes for more │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Fable 5 is now available with the latest version of Claude Code! Run "claude update" to update to v2.1.170+
+
+❯ /clear                                                                        
+  ⎿  (no content)
+
+❯ From our previus conversation on SEO optimisation, these were the             
+  not-yet-addressed action points                                               
+                                                                                
+  Still open                                                                    
+                                                                                
+    8. English URLs use Latvian slugs — /en/par-mums/, /en/foto/,               
+  /en/kontakti/,                                                                
+    /en/video/ still use Latvian words. Translating to /en/about/, /en/photos/, 
+    /en/contact/, /en/videos/ would give English-language keyword matches in    
+  URLs.                                                                         
+                                                                                
+    10. Remaining minor polish:                                                 
+    - Favicon variants — only images/logo.png declared. No apple-touch-icon, no 
+    favicon.ico, no web app manifest. Browsers fall back to defaults on iOS     
+  home                                                                          
+    screens etc.                                                                
+    - Footer NAP (Name/Address/Phone) — footer is just a copyright + social     
+  icons.                                                                        
+     Adding the rehearsal venue address would reinforce local SEO and the Place 
+    schema you already emit.                                                    
+    - Dual analytics — both Google gtag and Simple Analytics are loaded. Worth  
+    confirming this is intentional; if not, dropping one shaves a third-party   
+    request.                                                                    
+                                                                                
+    11. JSON-LD scope we deferred — when you picked "Organization + rehearsal", 
+   we                                                                           
+     explicitly skipped:                                                        
+    - Event JSON-LD for each upcoming concert in Site.Params.calendar           
+  (currently                                                                    
+    just one entry: "(Pa) Saules Ceļu Izdejot" in Ireland, 20.06.2026). This is 
+    the highest-value structured data type Google actually rewards with rich    
+  event                                                                         
+     cards.                                                                     
+    - Article / NewsArticle JSON-LD on /news/... pages. Helps cover photo       
+    thumbnails and publish-date display in search results.                      
+                                                                                
+    12. From the very first analysis, never re-discussed:                       
+    - Home page lacks an intro paragraph. It goes hero → news list. A 2–3       
+  sentence                                                                      
+     intro under the hero would significantly help ranking for "Latvian folk    
+  dance                                                                         
+     London" / equivalent Latvian queries.                                      
+    - Figure-shortcode alt text is generic ("Mēģinājums", "Gājiens"). Slightly  
+    more descriptive alts help image search.                                    
+                                                                                
+    Of these, the highest-impact remaining items are probably 11 (concert Event 
+                                                                                
+    JSON-LD) and 12 (home intro paragraph) — both are direct ranking/visibility 
+    wins. Everything else is polish or correctness.                             
+                                                                                
+  Let's start with the missing intro paragraph. Please add a two-sentence       
+  paragraph in both the Latvian and English versions.                           
+
+  Searched for 3 patterns, read 9 files, listed 4 directories (ctrl+o to expand)
+
+⏺ I'll add a 2-sentence intro paragraph by putting it as the body content of
+  _index.md (both languages) and rendering it in the home template just below
+  the hero.
+
+⏺ Update(content/_index.md)
+  ⎿  Added 5 lines
+       3  heroImage: "images/foto/2026-02-dejo-ar-mani/01-grupas-bilde.jp
+          g"
+       4  showRehearsalEvent: true
+       5  ---
+       6 +                                                               
+       7 +Salinieki ir Londonas latviešu tautas deju kopa, kas kopš 2012.
+         + gada uztur un                                                 
+       8 +izkopj latviešu deju tradīcijas Lielbritānijā. Mēs uzstājamies 
+         +koncertos                                                      
+       9 +Apvienotajā Karalistē un Eiropā, bet mēģinājumi notiek pirmdien
+         +u vakaros                                                      
+      10 +Daugavas Vanagu namā Londonā.                                  
+
+⏺ Update(content/_index.en.md)
+  ⎿  Added 5 lines
+       3  heroImage: "images/foto/2026-02-dejo-ar-mani/01-grupas-bilde.jp
+          g"
+       4  showRehearsalEvent: true
+       5  ---
+       6 +                                                               
+       7 +Salinieki is a Latvian folk dance group based in London, keepin
+         +g the tradition                                                
+       8 +of Latvian folk dance alive in the United Kingdom since 2012. W
+         +e perform at                                                   
+       9 +concerts across the UK and Europe, and rehearse every Monday ev
+         +ening at                                                       
+      10 +Daugavas Vanagu nams in London.                                
+
+⏺ Now wire it into the home layout so the content renders below the hero.
+
+⏺ Update(layouts/index.html)
+  ⎿  Added 8 lines
+       1  {{ define "main" }}
+       2  {{ partial "hero.html" . }}
+       3  
+       4 +{{ with .Content }}                                            
+       5 +<section class="home-intro">                                   
+       6 +  <div class="container home-intro-inner">                     
+       7 +    {{ . }}                                                    
+       8 +  </div>                                                       
+       9 +</section>                                                     
+      10 +{{ end }}                                                      
+      11 +                                                               
+      12  <section class="home-main section-band">
+      13    <div class="container home-grid">
+      14      <div class="home-main-col">
+
+⏺ Now add styling for .home-intro. Let me check existing media query
+  breakpoints.
+
+  Searched for 1 pattern, read 1 file (ctrl+o to expand)
+
+⏺ Update(static/css/style.css)
+  ⎿  Added 16 lines
+      332    padding: 72px 0;
+      333  }
+      334  
+      335 +.home-intro {                                                 
+      336 +  padding: 56px 0 0;                                          
+      337 +}                                                             
+      338 +.home-intro-inner {                                           
+      339 +  max-width: 760px;                                           
+      340 +  font-size: 1.15rem;                                         
+      341 +  line-height: 1.6;                                           
+      342 +  color: var(--color-text);                                   
+      343 +  text-align: center;                                         
+      344 +}                                                             
+      345 +.home-intro-inner p { margin: 0; }                            
+      346 +@media (max-width: 820px) {                                   
+      347 +  .home-intro { padding: 40px 0 0; }                          
+      348 +  .home-intro-inner { font-size: 1.05rem; }                   
+      349 +}                                                             
+      350 +                                                              
+      351  .home-main-col .section-title { margin-bottom: 32px; }
+      352  
+      353  /* ===== News cards ========================================= 
+           */
+
+⏺ Update(static/css/style.css)
+  ⎿  Added 1 line
+      337  }
+      338  .home-intro-inner {
+      339    max-width: 760px;
+      340 +  margin: 0 auto;                                             
+      341    font-size: 1.15rem;
+      342    line-height: 1.6;
+      343    color: var(--color-text);
+
+⏺ Added a 2-sentence intro paragraph to both home pages:
+
+  - content/_index.md (LV) and content/_index.en.md (EN) — intro text in body.
+  - layouts/index.html:4 — renders .Content in a new .home-intro section between
+   hero and news (only renders if content exists).
+  - static/css/style.css:335 — added .home-intro styling: centered, 760px
+  max-width, larger font for emphasis.
+
+  Both intros lead with "Salinieki" and surface the keywords "Latvian folk
+  dance", "London", "United Kingdom" plus the founding year — the SEO targets
+  you flagged. Refresh hugo server to see it.
+
+✻ Baked for 2m 48s
+
+❯ Can you suggest alternative formulations for "keeping alive"                  
+
+⏺ A few options that drop cleanly into the same slot ("…based in London, X in
+  the United Kingdom since 2012."):
+
+  - carrying on the tradition of Latvian folk dance — closest in tone;
+  emphasises continuity without sounding endangered.
+  - preserving the tradition of Latvian folk dance — more formal; good for SEO
+  (preserve + tradition is a strong pairing).
+  - upholding the tradition of Latvian folk dance — slight sense of
+  duty/heritage; fits diaspora framing.
+  - continuing the tradition of Latvian folk dance — neutral, plain; no
+  implication that it's at risk.
+  - nurturing the tradition of Latvian folk dance — warmer; suggests active
+  growth rather than rescue.
+  - championing Latvian folk dance — more outward/promotional; drops "tradition"
+   so reads punchier.
+
+  If you want it to sound less like the group is on a rescue mission and more
+  like a living, growing community, carrying on or nurturing read best.
+  Preserving is the safest SEO play because "Latvian folk dance tradition" is
+  the keyword cluster Google clusters around.
+
+✻ Churned for 10s
+
+❯ Can you suggest better figure alt texts for the images? Feel free to make     
+  edits, I will review them with git diff.                                      
+
+  Searched for 1 pattern, read 13 files, listed 1 directory (ctrl+o to expand)
+
+⏺ I have full context now. I'll improve each figure alt to describe the subject,
+   location, and dance name where applicable — that's what helps both screen
+  readers and image search.
+
+  Let me start with the Leicester (Lestera) article (LV + EN).
+
+⏺ Update(content/news/2026-05-05-lestere-kulturas-diena.md)  ⎿  Added 1 line, removed 1 line
+      18  laukumos un vecpilsētas ielās. Nepieciešamība izvairīties no gā
+          jējiem un velosipēdistiem
+      19  prasīja īpašu koncentrēšanās un improvizācijas spējas.
+      20  
+      21 -{{< figure src="images/foto/2026-05-lestera-kulturas-diena/06-m
+         -eginajums-ciemini.jpg" alt="Mēģinājums" >}}                    
+      21 +{{< figure src="images/foto/2026-05-lestera-kulturas-diena/06-m
+         +eginajums-ciemini.jpg" alt="Salinieku dejotāji mēģina deju Lest
+         +eras pilsētas laukumā pirms 10. Kultūras Dienas koncerta" >}}  
+      22  
+      23  Kultūras Dienas programma sākās ar svinīgu gājienu pa pilsētu u
+          z koncerta norises vietu
+      24  Jubilee Square.
+
+⏺ Update(content/news/2026-05-05-lestere-kulturas-diena.md)
+  ⎿  Added 1 line, removed 1 line
+      23  Kultūras Dienas programma sākās ar svinīgu gājienu pa pilsētu u
+          z koncerta norises vietu
+      24  Jubilee Square.
+      25  
+      26 -{{< figure src="images/foto/2026-05-lestera-kulturas-diena/01-g
+         -ajiens.jpg" alt="Gājiens" >}}                                  
+      26 +{{< figure src="images/foto/2026-05-lestera-kulturas-diena/01-g
+         +ajiens.jpg" alt="Salinieki tautastērpos svinīgā gājienā cauri L
+         +esteras vecpilsētai uz Jubilee Square" >}}                     
+      27  
+      28  Lielkoncertā dejojām divas dejas, Alda Salma horeogrāfēto deju 
+          "Dzīvības koks" un 
+      29  "Zeme zeļ, zeme plaukst".
+
+⏺ Update(content/news/2026-05-05-lestere-kulturas-diena.md)
+  ⎿  Added 1 line, removed 1 line
+      33  Lielkoncerta laikā notika arī zibakciju koncerts St Peter's Squ
+          are, kur dejojām deju
+      34  "Mēs ciemiņus gaidīdami".
+      35  
+      36 -{{< figure src="images/foto/2026-05-lestera-kulturas-diena/03-c
+         -iemini.jpg" alt="Mēs ciemiņus gaidīdami" >}}                   
+      36 +{{< figure src="images/foto/2026-05-lestera-kulturas-diena/03-c
+         +iemini.jpg" alt="Salinieki dejo 'Mēs ciemiņus gaidīdami' zibakc
+         +ijā St Peter's Square laukumā Lesterā" >}}                     
+      37  
+      38  Mēs pateicamies organizatoriem par brīnišķīgo pasākumu un par i
+          espēju parādīt Latvijas
+      39  kultūru Lesterā.
+
+⏺ Update(content/news/2026-05-05-lestere-kulturas-diena.md)
+  ⎿  Added 1 line, removed 1 line
+      38  Mēs pateicamies organizatoriem par brīnišķīgo pasākumu un par i
+          espēju parādīt Latvijas
+      39  kultūru Lesterā.
+      40  
+      41 -{{< figure src="images/foto/2026-05-lestera-kulturas-diena/05-g
+         -rupas-selfie.jpg" alt="Salinieki" >}}                          
+      41 +{{< figure src="images/foto/2026-05-lestera-kulturas-diena/05-g
+         +rupas-selfie.jpg" alt="Salinieku dejotāju kopbilde pēc 10. Kult
+         +ūras Dienas koncerta Lesterā" >}}                              
+
+⏺ Update(content/news/2026-05-05-lestere-kulturas-diena.en.md)
+  ⎿  Added 1 line, removed 1 line
+      18  morning in Leicester's town squares and old-town streets. Avoid
+          ing pedestrians
+      19  and cyclists called for particular focus and a knack for improv
+          isation.
+      20  
+      21 -{{< figure src="images/foto/2026-05-lestera-kulturas-diena/06-m
+         -eginajums-ciemini.jpg" alt="Rehearsal" >}}                     
+      21 +{{< figure src="images/foto/2026-05-lestera-kulturas-diena/06-m
+         +eginajums-ciemini.jpg" alt="Salinieki dancers rehearse in a Lei
+         +cester town square before the 10th Latvian Culture Day concert"
+         + >}}                                                           
+      22  
+      23  The Culture Day programme began with a festive parade through t
+          he city to the
+      24  concert venue at Jubilee Square.
+
+⏺ Update(content/news/2026-05-05-lestere-kulturas-diena.en.md)
+  ⎿  Added 1 line, removed 1 line
+      23  The Culture Day programme began with a festive parade through t
+          he city to the
+      24  concert venue at Jubilee Square.
+      25  
+      26 -{{< figure src="images/foto/2026-05-lestera-kulturas-diena/01-g
+         -ajiens.jpg" alt="Parade" >}}                                   
+      26 +{{< figure src="images/foto/2026-05-lestera-kulturas-diena/01-g
+         +ajiens.jpg" alt="Salinieki in Latvian folk costume during the f
+         +estive parade through Leicester to Jubilee Square" >}}         
+      27  
+      28  At the main concert we performed two dances: Aldis Salms' chore
+          ography
+      29  "Dzīvības koks" and "Zeme zeļ, zeme plaukst".
+
+⏺ Update(content/news/2026-05-05-lestere-kulturas-diena.en.md)
+  ⎿  Added 1 line, removed 1 line
+      33  At the same time as the main concert there was also a flash-mob
+           performance at St Peter's
+      34  Square, where we danced "Mēs ciemiņus gaidīdami".
+      35  
+      36 -{{< figure src="images/foto/2026-05-lestera-kulturas-diena/03-c
+         -iemini.jpg" alt="Mēs ciemiņus gaidīdami" >}}                   
+      36 +{{< figure src="images/foto/2026-05-lestera-kulturas-diena/03-c
+         +iemini.jpg" alt="Salinieki performing the dance 'Mēs ciemiņus g
+         +aidīdami' at a flash-mob in St Peter's Square, Leicester" >}}  
+      37  
+      38  We thank the organisers for the wonderful event and for the opp
+          ortunity to
+      39  share Latvian culture in Leicester.
+
+⏺ Update(content/news/2026-05-05-lestere-kulturas-diena.en.md)
+  ⎿  Added 1 line, removed 1 line
+      38  We thank the organisers for the wonderful event and for the opp
+          ortunity to
+      39  share Latvian culture in Leicester.
+      40  
+      41 -{{< figure src="images/foto/2026-05-lestera-kulturas-diena/05-g
+         -rupas-selfie.jpg" alt="Salinieki" >}}                          
+      41 +{{< figure src="images/foto/2026-05-lestera-kulturas-diena/05-g
+         +rupas-selfie.jpg" alt="Group selfie of Salinieki dancers after 
+         +the 10th Latvian Culture Day concert in Leicester" >}}         
+
+⏺ Now the Aberdeen "Dejo ar Mani" article.
+
+⏺ Update(content/news/2026-02-24-dejo-ar-mani.md)
+  ⎿  Added 1 line, removed 1 line
+      18  februārim atbilstošs, bet tas vienkārši deva papildus motivācij
+          u mēģinājumā dejot un 
+      19  kustēties.
+      20  
+      21 -{{< figure src="images/foto/2026-02-dejo-ar-mani/08-meginajums.
+         -jpg" alt="Mēģinājums" >}}                                      
+      21 +{{< figure src="images/foto/2026-02-dejo-ar-mani/08-meginajums.
+         +jpg" alt="Salinieki mēģina dejas pirms 'Dejo ar Mani' koncerta 
+         +Aberdīnā" >}}                                                  
+      22  
+      23  Koncertā mēs dejojām trīs dejas. Pirmā deja bija Alda Salma hor
+          eogrāfētā deja "Dzīvības
+      24  koks", ko pēc 18. novembra koncerta dejojām otro reizi.
+
+⏺ Update(content/news/2026-02-24-dejo-ar-mani.md)
+  ⎿  Added 1 line, removed 1 line
+      23  Koncertā mēs dejojām trīs dejas. Pirmā deja bija Alda Salma hor
+          eogrāfētā deja "Dzīvības
+      24  koks", ko pēc 18. novembra koncerta dejojām otro reizi.
+      25  
+      26 -{{< figure src="images/foto/2026-02-dejo-ar-mani/03-dzivibas-ko
+         -ks.jpg" alt="Dzīvības koks" >}}                                
+      26 +{{< figure src="images/foto/2026-02-dejo-ar-mani/03-dzivibas-ko
+         +ks.jpg" alt="Salinieki dejo Alda Salma horeogrāfēto deju 'Dzīvī
+         +bas koks' koncertā 'Dejo ar Mani' Aberdīnā" >}}                
+      27  
+      28  Pēc tam dejojām "Mēc ciemiņus gaidīdami", deja ko mācījāmies ja
+          u pirms diviem gadiem,
+      29  bet Aberdīnā pirmo reizi dejojām koncertā.
+
+⏺ Update(content/news/2026-02-24-dejo-ar-mani.md)
+  ⎿  Added 1 line, removed 1 line
+      28  Pēc tam dejojām "Mēc ciemiņus gaidīdami", deja ko mācījāmies ja
+          u pirms diviem gadiem,
+      29  bet Aberdīnā pirmo reizi dejojām koncertā.
+      30  
+      31 -{{< figure src="images/foto/2026-02-dejo-ar-mani/04-ciemini.jpg
+         -" alt="Mēs ciemiņus gaidīdami" >}}                             
+      31 +{{< figure src="images/foto/2026-02-dejo-ar-mani/04-ciemini.jpg
+         +" alt="Salinieki dejo 'Mēs ciemiņus gaidīdami' latviešu deju ko
+         +ncertā 'Dejo ar Mani' Aberdīnā" >}}                            
+      32  
+      33  Mūsu programmu noslēdzām, tieši pirms fināla ar deju "Ai, tēvu 
+          zeme".
+      34  
+
+⏺ Update(content/news/2026-02-24-dejo-ar-mani.en.md)
+  ⎿  Added 1 line, removed 1 line
+      18  Mani". The Scottish weather was about as you'd expect for Febru
+          ary — which
+      19  just gave us extra motivation to dance and keep moving during t
+          he rehearsal.
+      20  
+      21 -{{< figure src="images/foto/2026-02-dejo-ar-mani/08-meginajums.
+         -jpg" alt="Rehearsal" >}}                                       
+      21 +{{< figure src="images/foto/2026-02-dejo-ar-mani/08-meginajums.
+         +jpg" alt="Salinieki rehearse before the 'Dejo ar Mani' Latvian 
+         +folk dance concert in Aberdeen" >}}                            
+      22  
+      23  At the concert we performed three dances. The first was Aldis S
+          alms'
+      24  choreography "Dzīvības koks", which we performed for the second
+           time after
+
+⏺ Update(content/news/2026-02-24-dejo-ar-mani.en.md)
+  ⎿  Added 1 line, removed 1 line
+      24  choreography "Dzīvības koks", which we performed for the second
+           time after
+      25  its premiere at the 18 November concert.
+      26  
+      27 -{{< figure src="images/foto/2026-02-dejo-ar-mani/03-dzivibas-ko
+         -ks.jpg" alt="Dzīvības koks" >}}                                
+      27 +{{< figure src="images/foto/2026-02-dejo-ar-mani/03-dzivibas-ko
+         +ks.jpg" alt="Salinieki perform Aldis Salms's choreography 'Dzīv
+         +ības koks' at 'Dejo ar Mani' in Aberdeen" >}}                  
+      28  
+      29  We then danced "Mēs ciemiņus gaidīdami", a piece we'd learnt tw
+          o years
+      30  earlier but performed in concert for the first time in Aberdeen
+          .
+
+⏺ Update(content/news/2026-02-24-dejo-ar-mani.en.md)
+  ⎿  Added 1 line, removed 1 line
+      29  We then danced "Mēs ciemiņus gaidīdami", a piece we'd learnt tw
+          o years
+      30  earlier but performed in concert for the first time in Aberdeen
+          .
+      31  
+      32 -{{< figure src="images/foto/2026-02-dejo-ar-mani/04-ciemini.jpg
+         -" alt="Mēs ciemiņus gaidīdami" >}}                             
+      32 +{{< figure src="images/foto/2026-02-dejo-ar-mani/04-ciemini.jpg
+         +" alt="Salinieki dance 'Mēs ciemiņus gaidīdami' at the 'Dejo ar
+         + Mani' Latvian folk dance concert in Aberdeen" >}}             
+      33  
+      34  We closed our part of the programme, just before the finale, wi
+          th "Ai, tēvu
+      35  zeme".
+
+⏺ Now ELKS III Bradford.
+
+⏺ Update(content/news/2025-07-27-elks-iii-bredforda.md)
+  ⎿  Added 1 line, removed 1 line
+      15  Kultūras Svētkos (ELKS). Bredfordā pulcējās kori, folkloristi u
+          n 8 deju kolektīvi no
+      16  visas Eiropas, lai vairāku dienu garumā iepazīstinātu ar Latvij
+          as kultūru.
+      17  
+      18 -{{< figure src="images/foto/2025-07-elks/02-elks-koncerts.jpg" 
+         -alt="ELKS koncerts" >}}                                        
+      18 +{{< figure src="images/foto/2025-07-elks/02-elks-koncerts.jpg" 
+         +alt="Salinieki uz skatuves III Eiropas Latviešu Kultūras Svētku
+         + lielkoncertā St George's Hall, Bredfordā" >}}                 
+      19  
+      20  Dejošana sākās jau piektdienas vakarā āra koncertā Strūklaku la
+          ukumā, kur Dārta, Beāte,
+      21  Kate un Aldis dejoja "Viņš ir mans".
+
+⏺ Update(content/news/2025-07-27-elks-iii-bredforda.md)
+  ⎿  Added 1 line, removed 1 line
+      26  dejotāji arī atbalstīja pašus mazākos dejotājus dejā "Čību čābu
+          ". Dejas dejojām kopā ar
+      27  "Dindaru Dandaru" no Edinburgas un "Zibenīti" no Stokholmas.
+      28  
+      29 -{{< figure src="images/foto/2025-07-elks/05-elks-buobu-dancis.j
+         -pg" alt="Buobu dancis" >}}                                     
+      29 +{{< figure src="images/foto/2025-07-elks/05-elks-buobu-dancis.j
+         +pg" alt="Salinieki dejo 'Buobu danci' ELKS III lielkoncertā Bre
+         +dfordā" >}}                                                    
+      30  
+      31  {{< figure src="images/foto/2025-07-elks/06-elks-mugurdancis.jp
+          g" alt="Mugurdancis" >}}
+      32  
+
+⏺ Update(content/news/2025-07-27-elks-iii-bredforda.md)
+  ⎿  Added 1 line, removed 1 line
+      28  
+      29  {{< figure src="images/foto/2025-07-elks/05-elks-buobu-dancis.j
+          pg" alt="Salinieki dejo 'Buobu danci' ELKS III lielkoncertā Bre
+          dfordā" >}}
+      30  
+      31 -{{< figure src="images/foto/2025-07-elks/06-elks-mugurdancis.jp
+         -g" alt="Mugurdancis" >}}                                       
+      31 +{{< figure src="images/foto/2025-07-elks/06-elks-mugurdancis.jp
+         +g" alt="Salinieki dejo 'Mugurdanci' ELKS III lielkoncertā Bredf
+         +ordā" >}}                                                      
+      32  
+      33  Pēc koncerta lomas mainījās, un vakarā dalībnieki varēja izbaud
+          īt Tautumeitu un
+      34  Austrumkalna priekšnesumu. Pēc oficiālās daļas Salinieki devās 
+          uz Bredfordas centru, kur
+
+⏺ Update(content/news/2025-07-27-elks-iii-bredforda.md)
+  ⎿  Added 1 line, removed 1 line
+      35  maigajā jūlija naktī Strūklaku laukumā ar pārnēsājamiem skaļruņ
+          iem spēlēja mūziku un
+      36  turpināja dejot…
+      37  
+      38 -{{< figure src="images/foto/2025-07-elks/04-elks-finals.jpg" al
+         -t="Fināls" >}}                                                 
+      38 +{{< figure src="images/foto/2025-07-elks/04-elks-finals.jpg" al
+         +t="ELKS III lielkoncerta fināls St George's Hall ar Saliniekiem
+         + un citiem latviešu deju kolektīviem" >}}                      
+      39  
+      40  Vairākiem mūsu dejotājiem šie bija īpaši koncert. Katei un Artū
+          ram tā bija pirmā
+      41  uzstāšanās ar Saliniekiem, bet Jolantai un Maijai šis vispār bi
+          ja pirmais koncerts
+
+⏺ Update(content/news/2025-07-27-elks-iii-bredforda.en.md)
+  ⎿  Added 1 line, removed 1 line
+      16  dance groups from across Europe gathered in Bradford to share L
+          atvian culture
+      17  over several days.
+      18  
+      19 -{{< figure src="images/foto/2025-07-elks/02-elks-koncerts.jpg" 
+         -alt="ELKS concert" >}}                                         
+      19 +{{< figure src="images/foto/2025-07-elks/02-elks-koncerts.jpg" 
+         +alt="Salinieki on stage at the III European Latvian Cultural Fe
+         +stival gala concert in St George's Hall, Bradford" >}}         
+      20  
+      21  The dancing began on Friday evening with an outdoor concert at 
+          the Fountains
+      22  Square, where Dārta, Beāte, Kate and Aldis performed "Viņš ir m
+          ans".
+
+⏺ Update(content/news/2025-07-27-elks-iii-bredforda.en.md)  ⎿  Added 1 line, removed 1 line
+      28  performed these dances together with "Dindaru Dandaru" from Edi
+          nburgh and
+      29  "Zibenītis" from Stockholm.
+      30  
+      31 -{{< figure src="images/foto/2025-07-elks/05-elks-buobu-dancis.j
+         -pg" alt="Buobu dancis" >}}                                     
+      31 +{{< figure src="images/foto/2025-07-elks/05-elks-buobu-dancis.j
+         +pg" alt="Salinieki performing 'Buobu dancis' at the ELKS III ga
+         +la concert in Bradford" >}}                                    
+      32  
+      33  {{< figure src="images/foto/2025-07-elks/06-elks-mugurdancis.jp
+          g" alt="Mugurdancis" >}}
+      34  
+
+⏺ Update(content/news/2025-07-27-elks-iii-bredforda.en.md)
+  ⎿  Added 1 line, removed 1 line
+      30  
+      31  {{< figure src="images/foto/2025-07-elks/05-elks-buobu-dancis.j
+          pg" alt="Salinieki performing 'Buobu dancis' at the ELKS III ga
+          la concert in Bradford" >}}
+      32  
+      33 -{{< figure src="images/foto/2025-07-elks/06-elks-mugurdancis.jp
+         -g" alt="Mugurdancis" >}}                                       
+      33 +{{< figure src="images/foto/2025-07-elks/06-elks-mugurdancis.jp
+         +g" alt="Salinieki performing 'Mugurdancis' at the ELKS III gala
+         + concert in Bradford" >}}                                      
+      34  
+      35  After the concert the roles swapped, and in the evening the per
+          formers could
+      36  enjoy a show by Tautumeitas and Austrumkalns. Once the official
+           programme was
+
+⏺ Update(content/news/2025-07-27-elks-iii-bredforda.en.md)
+  ⎿  Added 1 line, removed 1 line
+      38  night they played music through portable speakers at the Founta
+          ins Square and
+      39  kept dancing…
+      40  
+      41 -{{< figure src="images/foto/2025-07-elks/04-elks-finals.jpg" al
+         -t="Finale" >}}                                                 
+      41 +{{< figure src="images/foto/2025-07-elks/04-elks-finals.jpg" al
+         +t="Finale of the ELKS III gala concert at St George's Hall with
+         + Salinieki and other Latvian dance groups" >}}                 
+      42  
+      43  For several of our dancers these were particularly special conc
+          erts. For Kate
+      44  and Artūrs it was their first performance with Salinieki, and f
+          or Jolanta and
+
+⏺ Now Dziesma Dejo Deja Skan.
+
+⏺ Update(content/news/2025-08-15-dziesma-dejo-deja-skan.md)
+  ⎿  Added 1 line, removed 1 line
+      19  repertuāram bija jāmācās dejas arī ELKS koncertam. Mēs dejojām 
+          četras dejas: "Līku loku
+      20  upe teka", "Alku deju", "Gapsi" un "Rūnu rakstus".
+      21  
+      22 -{{< figure src="images/foto/2025-08-dziesma-dejo/02-dzdds-alku-
+         -deja.jpg" alt="Alku deja" caption="Alku deja." >}}             
+      22 +{{< figure src="images/foto/2025-08-dziesma-dejo/02-dzdds-alku-
+         +deja.jpg" alt="Dejotāji izpilda 'Alku deju' Mežaparka Lielajā e
+         +strādē 'Dziesma Dejo Deja Skan' koncertā" caption="Alku deja." 
+         +>}}                                                            
+      23  
+      24  Dejas iemācījušies, visi dejotāji, Alda un Annas vadībā, devās 
+          uz Latviju, lai no 6.–9.
+      25  augustam vispirms mēģinātu un pēc tam uzstātos. Latvijā mūs sag
+          aidīja parastais vasaras
+
+⏺ Update(content/news/2025-08-15-dziesma-dejo-deja-skan.md)
+  ⎿  Added 1 line, removed 1 line
+      26  laiks: gan saule, lai peldētu Ķīšezerā, gan lietus, lai atsvaid
+          zinātu un nomazgātu
+      27  mēģinājuma sviedrus.
+      28  
+      29 -{{< figure src="images/foto/2025-08-dziesma-dejo/03-dzdds-basei
+         -ns.jpg" alt="Peldēšanās Ķīšezerā" >}}                          
+      29 +{{< figure src="images/foto/2025-08-dziesma-dejo/03-dzdds-basei
+         +ns.jpg" alt="Salinieku dejotāji peldas Ķīšezerā starpbrīdī star
+         +p Dejo Svētku mēģinājumiem Rīgā" >}}                           
+      30  
+      31  Trešdiena un ceturtdiena pagāja kopmēģinājumos, mācoties deju i
+          zvietojumus uz lielā
+      32  laukuma, kā, upes līkločiem sekojot, uznākt uz laukuma un kā pē
+          c dejas pārtapt par
+
+⏺ Update(content/news/2025-08-15-dziesma-dejo-deja-skan.md)
+  ⎿  Added 1 line, removed 1 line
+      38  koncerti. Un pēc sestdienas koncerta, kad skatītāji bija aizgāj
+          uši mājās, koncerta
+      39  dalībniekiem bija kopīga ballīte.
+      40  
+      41 -{{< figure src="images/foto/2025-08-dziesma-dejo/04-dzdds-dieva
+         --zime.jpg" alt="Dieva zīme" >}}                                
+      41 +{{< figure src="images/foto/2025-08-dziesma-dejo/04-dzdds-dieva
+         +-zime.jpg" alt="Tūkstošiem dejotāju sastājušies Dieva zīmē Meža
+         +parka Lielajā estrādē 'Dziesma Dejo Deja Skan' koncerta noslēgu
+         +mā" >}}                                                        
+      42  
+      43  Ar vārdiem grūti aprakstīt emocijas, kas radās, dejojot Mežapar
+          ka Lielajā estrādē kopā
+      44  ar 8,000 dejotājiem un dziedātājiem. Nav svarīgi, ka deju lauku
+          ms ir slīps un polka
+
+⏺ Update(content/news/2025-08-15-dziesma-dejo-deja-skan.md)
+  ⎿  Added 1 line, removed 1 line
+      50  visi dejotāji dziedāja "Saule, Pērkons, Daugava", kas pārvērtās
+           priekā, dejojot fināla
+      51  deju "Upe" (kas nav ne Venta, ne Irbe, ne Gauja).
+      52  
+      53 -{{< figure src="images/foto/2025-08-dziesma-dejo/01-dzdds-kopbi
+         -lde.jpg" alt="Salinieki kopbilde" >}}                          
+      53 +{{< figure src="images/foto/2025-08-dziesma-dejo/01-dzdds-kopbi
+         +lde.jpg" alt="Salinieku un Londona Dejo dejotāju kopbilde Mežap
+         +arka Lielajā estrādē pēc 'Dziesma Dejo Deja Skan' koncerta" >}}
+      54  
+      55  Tiem dejotājiem, kas jau bija piedalījušies Dziesmu un Dejo svē
+          tkos, šis pasākums
+      56  noteikti atsauca atmiņas par 2023. gada vasaru. Un jaunajiem de
+          jotājiem šī bija pirmā
+
+⏺ Update(content/news/2025-08-15-dziesma-dejo-deja-skan.en.md)
+  ⎿  Added 1 line, removed 1 line
+      19  simultaneously learning the repertoire for the ELKS concert. We
+           danced four
+      20  pieces: "Līku loku upe teka", "Alku deja", "Gapsis" and "Rūnu r
+          aksti".
+      21  
+      22 -{{< figure src="images/foto/2025-08-dziesma-dejo/02-dzdds-alku-
+         -deja.jpg" alt="Alku deja" caption="Alku deja." >}}             
+      22 +{{< figure src="images/foto/2025-08-dziesma-dejo/02-dzdds-alku-
+         +deja.jpg" alt="Dancers perform 'Alku deja' on the Mežaparks Gra
+         +nd Stage during the 'Dziesma Dejo Deja Skan' concert" caption="
+         +Alku deja." >}}                                                
+      23  
+      24  Once the dances were learnt, all the dancers — led by Aldis and
+           Anna — set off
+      25  for Latvia, to rehearse from 6 August and then perform on 8–9 A
+          ugust. Latvia
+
+⏺ Update(content/news/2025-08-15-dziesma-dejo-deja-skan.en.md)
+  ⎿  Added 1 line, removed 1 line
+      26  greeted us with typical summer weather: sun for swimming in lak
+          e Ķīšezers, and
+      27  rain to refresh us and wash away the sweat from rehearsals.
+      28  
+      29 -{{< figure src="images/foto/2025-08-dziesma-dejo/03-dzdds-basei
+         -ns.jpg" alt="Swimming in Ķīšezers" >}}                         
+      29 +{{< figure src="images/foto/2025-08-dziesma-dejo/03-dzdds-basei
+         +ns.jpg" alt="Salinieki dancers cooling off in lake Ķīšezers bet
+         +ween Song and Dance Festival rehearsals in Riga" >}}           
+      30  
+      31  Wednesday and Thursday were spent in joint rehearsals, learning
+           how the dances
+      32  fit on the huge stage — how to enter the field following the wi
+          nding bends of
+
+⏺ Update(content/news/2025-08-15-dziesma-dejo-deja-skan.en.md)
+  ⎿  Added 1 line, removed 1 line
+      40  Saturday brought two concerts. After the Saturday concert, once
+           the spectators
+      41  had gone home, the performers all gathered for a shared party.
+      42  
+      43 -{{< figure src="images/foto/2025-08-dziesma-dejo/04-dzdds-dieva
+         --zime.jpg" alt="Dieva zīme" >}}                                
+      43 +{{< figure src="images/foto/2025-08-dziesma-dejo/04-dzdds-dieva
+         +-zime.jpg" alt="Thousands of dancers arranged in the sign of Di
+         +evs on the Mežaparks Grand Stage at the close of 'Dziesma Dejo 
+         +Deja Skan'" >}}                                                
+      44  
+      45  It is hard to put into words the emotion of dancing at the Meža
+          parks Grand
+      46  Stage alongside 8,000 dancers and singers. It does not matter t
+          hat the dance
+
+⏺ Update(content/news/2025-08-15-dziesma-dejo-deja-skan.en.md)
+  ⎿  Added 1 line, removed 1 line
+      54  "Saule, Pērkons, Daugava" — which turned into joy as we danced 
+          the closing
+      55  piece "Upe" (which is neither the Venta, nor the Irbe, nor the 
+          Gauja).
+      56  
+      57 -{{< figure src="images/foto/2025-08-dziesma-dejo/01-dzdds-kopbi
+         -lde.jpg" alt="Salinieki group photo" >}}                       
+      57 +{{< figure src="images/foto/2025-08-dziesma-dejo/01-dzdds-kopbi
+         +lde.jpg" alt="Group photo of Salinieki and Londona Dejo dancers
+         + on the Mežaparks Grand Stage after the 'Dziesma Dejo Deja Skan
+         +' concert" >}}                                                 
+      58  
+      59  For dancers who had already taken part in the Song and Dance Fe
+          stivals, this
+      60  event brought back memories of the summer of 2023. For the newe
+          r dancers, it
+
+⏺ Now Latvian Independence Day. The LV file has a clear bug — image
+  02-runu-raksti has alt="Dzīvības Koks" but the file is Rūnu Raksti — I'll fix
+  that as part of the rewrite.
+
+⏺ Update(content/news/2025-11-22-latvijas-neatkaribas-diena.md)
+  ⎿  Added 1 line, removed 1 line
+      14  Latvijas Neatkarības Dienas koncerts notika St Colomba's Church
+           zālē. Koncertā pirmo
+      15  reizi izdejoja vadītāja Alda Salma horeogrāfēto deju "Dzīvības 
+          koks".
+      16  
+      17 -{{< figure src="images/foto/2025-11-neatkaribas-diena/04-dzivib
+         -as-koks.jpg" alt="Dzīvības Koks" >}}                           
+      17 +{{< figure src="images/foto/2025-11-neatkaribas-diena/04-dzivib
+         +as-koks.jpg" alt="Salinieki dejo Alda Salma horeogrāfētās dejas
+         + 'Dzīvības koks' pirmizrādi Latvijas Neatkarības Dienas koncert
+         +ā Londonā" >}}                                                 
+      18  
+      19  Koncertā deju dejojām ar četriem pāriem, bet deja veidota tā, l
+          ai būtu pielāgojama 
+      20  dažādam pāru skaitam, kas ir īpaši nozīmīgi diasporas kolektīvi
+          em.
+
+⏺ Update(content/news/2025-11-22-latvijas-neatkaribas-diena.md)
+  ⎿  Added 1 line, removed 1 line
+      21  
+      22  Koncertā dejojām arī "Buobu Danci" un "Rūnu Rakstus".
+      23  
+      24 -{{< figure src="images/foto/2025-11-neatkaribas-diena/02-runu-r
+         -aksti.jpg" alt="Dzīvības Koks" >}}                             
+      24 +{{< figure src="images/foto/2025-11-neatkaribas-diena/02-runu-r
+         +aksti.jpg" alt="Salinieki dejo 'Rūnu Rakstus' Latvijas Neatkarī
+         +bas Dienas koncertā Londonā" >}}                               
+      25  
+      26  "Rūnu Raksti" bija koncerta fināldeja, ko dejoja gan uz skatuve
+          s, gan arī ailē.
+      27  
+
+⏺ Update(content/news/2025-11-22-latvijas-neatkaribas-diena.md)
+  ⎿  Added 1 line, removed 1 line
+      25  
+      26  "Rūnu Raksti" bija koncerta fināldeja, ko dejoja gan uz skatuve
+          s, gan arī ailē.
+      27  
+      28 -{{< figure src="images/foto/2025-11-neatkaribas-diena/03-runu-r
+         -aksti-2.jpg" alt="Rūnu Raksti" >}}                             
+      28 +{{< figure src="images/foto/2025-11-neatkaribas-diena/03-runu-r
+         +aksti-2.jpg" alt="Salinieki dejo 'Rūnu Rakstu' fināldeju uz ska
+         +tuves un ailē Latvijas Neatkarības Dienas koncertā Londonā" >}}
+      29  
+      30  Koncerts bija piepildīts ar prieku, sirsnību un patiesu mīlestī
+          bu pret deju.
+      31  
+
+⏺ Update(content/news/2025-11-22-latvijas-neatkaribas-diena.md)
+  ⎿  Added 1 line, removed 1 line
+      29  
+      30  Koncerts bija piepildīts ar prieku, sirsnību un patiesu mīlestī
+          bu pret deju.
+      31  
+      32 -{{< figure src="images/foto/2025-11-neatkaribas-diena/06-grupas
+         --bilde-rokas.jpg" alt="Salinieki grupas bilde" >}}             
+      32 +{{< figure src="images/foto/2025-11-neatkaribas-diena/06-grupas
+         +-bilde-rokas.jpg" alt="Salinieku dejotāju kopbilde pēc Latvijas
+         + Neatkarības Dienas koncerta St Columba's Church zālē Londonā" 
+         +>}}                                                            
+
+⏺ Update(content/news/2025-11-22-latvijas-neatkaribas-diena.en.md)
+  ⎿  Added 1 line, removed 1 line
+      16  hall. The concert featured the premiere of "Dzīvības koks" ("Tr
+          ee of Life"),
+      17  a dance choreographed by our leader Aldis Salms.
+      18  
+      19 -{{< figure src="images/foto/2025-11-neatkaribas-diena/04-dzivib
+         -as-koks.jpg" alt="Dzīvības koks" >}}                           
+      19 +{{< figure src="images/foto/2025-11-neatkaribas-diena/04-dzivib
+         +as-koks.jpg" alt="Salinieki perform the premiere of Aldis Salms
+         +'s 'Dzīvības koks' at the Latvian Independence Day concert in L
+         +ondon" >}}                                                     
+      20  
+      21  At the concert we performed the dance with four couples, but th
+          e choreography
+      22  is designed to scale to different numbers of couples — particul
+          arly important
+
+⏺ Update(content/news/2025-11-22-latvijas-neatkaribas-diena.en.md)
+  ⎿  Added 1 line, removed 1 line
+      24  
+      25  We also danced "Buobu Dancis" and "Rūnu Raksti".
+      26  
+      27 -{{< figure src="images/foto/2025-11-neatkaribas-diena/02-runu-r
+         -aksti.jpg" alt="Rūnu Raksti" >}}                               
+      27 +{{< figure src="images/foto/2025-11-neatkaribas-diena/02-runu-r
+         +aksti.jpg" alt="Salinieki perform 'Rūnu Raksti' at the Latvian 
+         +Independence Day concert in London" >}}                        
+      28  
+      29  "Rūnu Raksti" was the closing dance of the concert, performed b
+          oth on stage
+      30  and in the aisle.
+
+⏺ Update(content/news/2025-11-22-latvijas-neatkaribas-diena.en.md)
+  ⎿  Added 1 line, removed 1 line
+      29  "Rūnu Raksti" was the closing dance of the concert, performed b
+          oth on stage
+      30  and in the aisle.
+      31  
+      32 -{{< figure src="images/foto/2025-11-neatkaribas-diena/03-runu-r
+         -aksti-2.jpg" alt="Rūnu Raksti" >}}                             
+      32 +{{< figure src="images/foto/2025-11-neatkaribas-diena/03-runu-r
+         +aksti-2.jpg" alt="Salinieki dance 'Rūnu Raksti' as the closing 
+         +piece, on stage and in the aisle, at the Latvian Independence D
+         +ay concert in London" >}}                                      
+      33  
+      34  The concert was filled with joy, warmth and genuine love for da
+          nce.
+      35  
+
+⏺ Update(content/news/2025-11-22-latvijas-neatkaribas-diena.en.md)
+  ⎿  Added 1 line, removed 1 line
+      33  
+      34  The concert was filled with joy, warmth and genuine love for da
+          nce.
+      35  
+      36 -{{< figure src="images/foto/2025-11-neatkaribas-diena/06-grupas
+         --bilde-rokas.jpg" alt="Salinieki group photo" >}}              
+      36 +{{< figure src="images/foto/2025-11-neatkaribas-diena/06-grupas
+         +-bilde-rokas.jpg" alt="Group photo of Salinieki dancers after t
+         +he Latvian Independence Day concert at St Columba's Church hall
+         + in London" >}}                                                
+⏺ Let me verify no figure tags were missed.
+
+  Searched for 1 pattern (ctrl+o to expand)
+
+⏺ All 38 figure shortcodes now have descriptive alt text — each one names the
+  group, the specific dance or activity, and the location, with keywords like
+  "Latvian folk dance", "Salinieki", "Bradford", "Aberdeen", "Leicester",
+  "London", "Mežaparks" surfacing naturally.
+
+  Two small extras while I was in there:
+  - Fixed the LV Independence Day file where 02-runu-raksti.jpg had
+  alt="Dzīvības Koks" — clearly a paste error since it's the Rūnu Raksti image;
+  updated to match.
+  - Kept the caption="Alku deja." on the Mežaparks figure intact.
+
+  The gallery shortcode (layouts/shortcodes/gallery.html) shares a single alt
+  across all images in a gallery, so it's a weaker case for SEO — let me know if
+   you'd like me to look at how it's invoked too.
+
+✻ Sautéed for 5m 42s
+
+❯ Is there a way to format the  figure shortcodes so the lines are not so long? 
+
+⏺ Yes — Hugo's shortcode parser accepts line breaks inside {{< >}}, so you can
+  split named params across lines:
+
+  {{< figure
+    src="images/foto/2025-07-elks/02-elks-koncerts.jpg"
+    alt="Salinieki on stage at the III European Latvian Cultural Festival gala
+  concert in St George's Hall, Bradford"
+  >}}
+
+  The closing >}} on its own line is fine, and indentation inside the tag is
+  ignored. Markdown around it still renders normally because Hugo strips the
+  shortcode before the Markdown parser runs.
+
+  Want me to reformat all 38 figures this way? I'd suggest the rule: split when
+  the line goes past ~100 chars, leave short ones (the two ~67-char Bredforda
+  ones, for instance) on a single line for consistency-by-length. Or — split all
+   of them so the format is uniform. Your call.
+
+✻ Churned for 13s
+
+❯ Yes, please. I want to maintain a line length of 88 characters.               
+
+⏺ I'll write a Python script to reformat all of them consistently.
+
+⏺ Bash(python3 <<'EOF'
+      import re…)
+  ⎿  content/news/2025-07-27-elks-iii-bredforda.en.md: 4 figure(s) reformat
+     ted
+     content/news/2025-08-15-dziesma-dejo-deja-skan.en.md: 4 figure(s) refo
+     … +15 lines (ctrl+o to expand)
+
+⏺ All 38 figures reformatted to the 4-line block style.
+
+  One caveat though: several alt="..." lines still exceed 88 chars because the
+  alt string itself is longer than ~79 chars (you have ~9 chars of overhead:   
+  alt="…"). The longest one is now ~138 chars:
+
+    alt="Salinieki dance 'Rūnu Raksti' as the closing piece, on stage and in the
+   aisle, at the Latvian Independence Day concert in London"
+
+  Two reasonable ways to hit a true 88-char limit:
+
+  1. Treat the alt string as non-breakable (the usual convention — long URLs,
+  long string literals, and translation keys are commonly exempt from
+  line-length rules). Format-wise everything else fits.
+  2. Shorten the alt texts to ~79 chars each. That costs some of the SEO
+  keywords we just added — e.g. drop "Latvian folk dance" since the article's
+  title already establishes context.
+
+  Which one do you want? If (2), I can do a pass and tighten each alt to ≤79
+  chars while keeping the most search-relevant terms (group name + dance name +
+  city).
+
+✻ Baked for 1m 1s
+
+❯ We keep alt strings as non-breakable.                                         
+
+⏺ Sounds good — alt strings stay as-is. Everything else fits the 88-char limit;
+  no further changes needed.
+
+✻ Sautéed for 3s
+
+❯ I want to use double quotes for the dance names in figure alt texts. Can you  
+  change that please.                                                           
+
+⏺ I'll switch the inner quotes from single to double, and change the outer alt
+  delimiter to backticks so the double quotes don't conflict with the HTML
+  attribute quoting. Hugo supports backtick-delimited shortcode params just like
+   Go does.
+
+⏺ Bash(python3 <<'EOF'
+      import re…)
+  ⎿  Interrupted · What should Claude do instead?
+
+❯ No, keep the double quotes for params. Instead, escape the double quotation   
+  marks inside the alt text.                                                    
+
+⏺ Bash(python3 <<'EOF'
+      import re…)
+  ⎿  content/news/2025-07-27-elks-iii-bredforda.en.md: 4 alt(s) updated
+     content/news/2025-08-15-dziesma-dejo-deja-skan.en.md: 4 alt(s) updated
+     content/news/2026-05-05-lestere-kulturas-diena.md: 3 alt(s) updated
+     … +8 lines (ctrl+o to expand)
+
+⏺ Let me check why the LV Independence Day file only shows 1 update — and also
+  verify the script handled the apostrophe in "St Columba's" correctly (which is
+   not a dance name).
+
+  Searched for 1 pattern (ctrl+o to expand)
+
+⏺ The script wrongly turned the apostrophe in "St Columba's" into an escaped
+  quote. Let me also check the EN files for the same issue (since they have
+  "Aldis Salms's", "St George's", "St Peter's", etc.).
+
+  Searched for 2 patterns (ctrl+o to expand)
+
+⏺ Let me check why St Peter's survived correctly (likely a curly apostrophe) and
+   inspect the file state.
+
+⏺ Bash(python3 -c "
+      with open('/Users/martins.bruveris/code/salinieki/content/news/2026-05-05-
+      lestere-kulturas-diena.md', 'rb') as f:…)
+  ⎿  Interrupted · What should Claude do instead?
+
+❯ What do you mean by NewsArticle JSON-LD on the news/ pages?                   
+⏺ NewsArticle (or Article / BlogPosting) is a schema.org JSON-LD type you put in
+   <head> on each news page to tell Google "this is a dated article with an
+  author and a headline." It gives search results:
+
+  - Date stamps ("Posted Jul 27, 2025") shown next to the snippet.
+  - Author name in the result.
+  - Image thumbnail alongside the result (only with valid image + proper
+  dimensions).
+  - Eligibility for the Top Stories / Discover surfaces — those are mostly for
+  journalism publishers in practice, but the markup is the same.
+
+  For a concert recap or season update, Article or BlogPosting is more accurate
+  than NewsArticle (which is really for journalism). Behaviour in Google is
+  effectively the same; just pick the truthful type.
+
+  The block would live in a head.html partial that runs on single news pages,
+  populated from frontmatter you already have — title, date, author, coverImage,
+   summary. Roughly:
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "ELKS III, Bredforda",
+    "datePublished": "2025-07-27",
+    "author":  { "@type": "Person",       "name": "Mārtiņš Brūveris" },
+    "publisher": { "@type": "Organization", "name": "Salinieki",
+                   "logo": { "@type": "ImageObject", "url":
+  "https://salinieki.uk/images/logo.png" } },
+    "image":
+  "https://salinieki.uk/images/foto/2025-07-elks/01-elks-iii-cover.jpg",
+    "description": "{{ .Params.summary }}",
+    "inLanguage": "lv",
+    "mainEntityOfPage": "{{ .Permalink }}"
+  }
+
+  Want me to wire that up next? It's a small change — one conditional block in
+  the head partial that fires when .Section == "news".
+
+  Also note: the earlier alt-text task is not finished — 6–7 alt lines have
+  wrongly-escaped apostrophes (St George\"s, St Columba\"s, Aldis Salms\"s) that
+   need reverting to '. Happy to fix those whenever you'd like.
+
+✻ Cooked for 23s
+
+❯ I manually fixed the apostrophes...                                           
+                                                                                
+  Yes, please wire up the JSON-LD for articles. I think using Article as type   
+  would make sense.                                                             
+
+  Read 1 file, listed 1 directory (ctrl+o to expand)
+
+⏺ Looking at the existing structure, I can reuse $ogImageURL/$ogImageW/$ogImageH
+   (already computed for OpenGraph) and $desc. I'll add the Article JSON-LD
+  block right after the rehearsal event block.
+
+⏺ Update(layouts/_default/baseof.html)
+  ⎿  Added 35 lines
+      125      }}
+      126      <script type="application/ld+json">{{ $event | jsonify | s
+           afeJS }}</script>
+      127    {{ end }}
+      128 +  {{ if and .IsPage (eq .Section "news") }}                   
+      129 +    {{ $articleImage := dict }}                               
+      130 +    {{ with $ogImageURL }}                                    
+      131 +      {{ $articleImage = dict "@type" "ImageObject" "url" . }}
+      132 +      {{ with $ogImageW }}{{ $articleImage = merge $articleIma
+          +ge (dict "width" .) }}{{ end }}                               
+      133 +      {{ with $ogImageH }}{{ $articleImage = merge $articleIma
+          +ge (dict "height" .) }}{{ end }}                              
+      134 +    {{ end }}                                                 
+      135 +    {{ $article := dict                                       
+      136 +      "@context" "https://schema.org"                         
+      137 +      "@type" "Article"                                       
+      138 +      "headline" .Title                                       
+      139 +      "datePublished" (.Date.Format "2006-01-02")             
+      140 +      "dateModified" (.Lastmod.Format "2006-01-02")           
+      141 +      "description" $desc                                     
+      142 +      "inLanguage" .Site.Language.Lang                        
+      143 +      "mainEntityOfPage" .Permalink                           
+      144 +      "url" .Permalink                                        
+      145 +      "publisher" (dict                                       
+      146 +        "@type" "Organization"                                
+      147 +        "name" "Salinieki"                                    
+      148 +        "url" .Site.BaseURL                                   
+      149 +        "logo" (dict                                          
+      150 +          "@type" "ImageObject"                               
+      151 +          "url" (absURL "images/logo.png")                    
+      152 +        )                                                     
+      153 +      )                                                       
+      154 +    }}                                                        
+      155 +    {{ with .Params.author }}                                 
+      156 +      {{ $article = merge $article (dict "author" (dict "@type
+          +" "Person" "name" .)) }}                                      
+      157 +    {{ end }}                                                 
+      158 +    {{ if $articleImage }}                                    
+      159 +      {{ $article = merge $article (dict "image" $articleImage
+          +) }}                                                          
+      160 +    {{ end }}                                                 
+      161 +    <script type="application/ld+json">{{ $article | jsonify |
+          + safeJS }}</script>                                           
+      162 +  {{ end }}                                                   
+      163  </head>
+      164  <body class="{{ if .IsHome }}is-home{{ else }}is-page{{ end }}
+           ">
+      165    {{ partial "header.html" . }}
+
+⏺ Let me make one small fix — dict with zero args may not be portable across
+  Hugo versions. I'll restructure to skip the empty-dict init.
+
+⏺ Update(layouts/_default/baseof.html)
+  ⎿  Added 5 lines, removed 8 lines
+      126      <script type="application/ld+json">{{ $event | jsonify | s
+           afeJS }}</script>
+      127    {{ end }}
+      128    {{ if and .IsPage (eq .Section "news") }}
+      129 -    {{ $articleImage := dict }}                               
+      130 -    {{ with $ogImageURL }}                                    
+      131 -      {{ $articleImage = dict "@type" "ImageObject" "url" . }}
+      132 -      {{ with $ogImageW }}{{ $articleImage = merge $articleIma
+          -ge (dict "width" .) }}{{ end }}                               
+      133 -      {{ with $ogImageH }}{{ $articleImage = merge $articleIma
+          -ge (dict "height" .) }}{{ end }}                              
+      134 -    {{ end }}                                                 
+      129      {{ $article := dict
+      130        "@context" "https://schema.org"
+      131        "@type" "Article"
+     ...
+      149      {{ with .Params.author }}
+      150        {{ $article = merge $article (dict "author" (dict "@type
+           " "Person" "name" .)) }}
+      151      {{ end }}
+      158 -    {{ if $articleImage }}                                    
+      159 -      {{ $article = merge $article (dict "image" $articleImage
+          -) }}                                                          
+      152 +    {{ with $ogImageURL }}                                    
+      153 +      {{ $img := dict "@type" "ImageObject" "url" . }}        
+      154 +      {{ with $ogImageW }}{{ $img = merge $img (dict "width" .
+          +) }}{{ end }}                                                 
+      155 +      {{ with $ogImageH }}{{ $img = merge $img (dict "height" 
+          +.) }}{{ end }}                                                
+      156 +      {{ $article = merge $article (dict "image" $img) }}     
+      157      {{ end }}
+      158      <script type="application/ld+json">{{ $article | jsonify |
+            safeJS }}</script>
+      159    {{ end }}
+
+⏺ Added Article JSON-LD at layouts/_default/baseof.html:128. It fires only on
+  news single pages (and .IsPage (eq .Section "news")) and reuses the OpenGraph
+  image variables already in scope.
+
+  Each article emits:
+  - headline from .Title
+  - datePublished / dateModified from .Date and .Lastmod
+  - description from the existing $desc (which is or .Description 
+  .Params.summary .Site.Params.description)
+  - author from .Params.author (omitted if missing)
+  - image as ImageObject with width/height from the 1200×630 OG fill (omitted if
+   no cover/hero)
+  - publisher as Salinieki Organization with logo
+  - inLanguage, mainEntityOfPage, url
+
+  Refresh hugo server, view-source on any news page, and you should see three
+  JSON-LD blocks: the existing DanceGroup, then the new Article. The home page
+  still only emits DanceGroup + rehearsal Event since the condition gates on
+  .IsPage and section. Validate one with Google's Rich Results Test once you've
+  pushed.
+
+✻ Cogitated for 1m 30s
+
+❯ Can you action the Footer NAP suggestion?                                     
+
+  Searched for 1 pattern, read 3 files (ctrl+o to expand)
+
+⏺ I'll add a NAP block to the footer (Name + venue address + email — there's no
+  phone in the data, email is the contact handle). Adding i18n keys for the
+  label, then the markup and CSS.
+
+⏺ Update(i18n/lv.toml)
+  ⎿  Added 6 lines
+      66  
+      67  [facebook_title]
+      68  other = "Salinieki Facebook"
+      69 +                                                               
+      70 +[footer_rehearsals_label]                                      
+      71 +other = "Mēģinājumi"                                           
+      72 +                                                               
+      73 +[footer_email_label]                                           
+      74 +other = "E-pasts"                                              
+
+⏺ Update(i18n/en.toml)
+  ⎿  Added 6 lines
+      66  
+      67  [facebook_title]
+      68  other = "Salinieki Facebook"
+      69 +                                                               
+      70 +[footer_rehearsals_label]                                      
+      71 +other = "Rehearsals"                                           
+      72 +                                                               
+      73 +[footer_email_label]                                           
+      74 +other = "Email"                                                
+
+⏺ Write(layouts/partials/footer.html)
+  ⎿  Added 13 lines, removed 2 lines
+       1  <footer class="site-footer">
+       2    <div class="container footer-inner">
+       3 -    <p class="copyright">Copyright © {{ .Site.Params.copyrightY
+         -ear }} Salinieki TDK</p>                                       
+       4 -    {{ partial "social.html" . }}                              
+       3 +    <div class="footer-contact">                               
+       4 +      <p class="footer-name">{{ .Site.Title }}</p>             
+       5 +      <address class="footer-address">                         
+       6 +        <span class="footer-label">{{ i18n "footer_rehearsals_l
+         +abel" }}:</span>                                               
+       7 +        Daugavas Vanagu nams, 72 Queensborough Terrace, London,
+         + W2 3SH<br>                                                    
+       8 +        <span class="footer-label">{{ i18n "footer_email_label"
+         + }}:</span>                                                    
+       9 +        <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Para
+         +ms.email }}</a>                                                
+      10 +      </address>                                               
+      11 +    </div>                                                     
+      12 +    <div class="footer-meta">                                  
+      13 +      <p class="copyright">Copyright © {{ .Site.Params.copyrigh
+         +tYear }} Salinieki TDK</p>                                     
+      14 +      {{ partial "social.html" . }}                            
+      15 +    </div>                                                     
+      16    </div>
+      17  </footer>
+
+⏺ Now CSS — split footer into two columns, keep mobile-friendly via flex-wrap.
+
+⏺ Update(static/css/style.css)
+  ⎿  Added 23 lines, removed 1 line
+      551  }
+      552  .footer-inner {
+      553    display: flex;
+      554 -  align-items: center;                                        
+      554 +  align-items: flex-start;                                    
+      555    justify-content: space-between;
+      556    gap: 24px;
+      557    flex-wrap: wrap;
+      558  }
+      559 +.footer-contact { max-width: 480px; }                         
+      560 +.footer-name {                                                
+      561 +  margin: 0 0 6px;                                            
+      562 +  font-weight: 700;                                           
+      563 +  color: #fff;                                                
+      564 +}                                                             
+      565 +.footer-address {                                             
+      566 +  margin: 0;                                                  
+      567 +  font-style: normal;                                         
+      568 +  line-height: 1.55;                                          
+      569 +}                                                             
+      570 +.footer-address a { color: inherit; text-decoration: underline
+          +; }                                                           
+      571 +.footer-label { opacity: 0.7; }                               
+      572 +.footer-meta {                                                
+      573 +  display: flex;                                              
+      574 +  flex-direction: column;                                     
+      575 +  align-items: flex-end;                                      
+      576 +  gap: 12px;                                                  
+      577 +}                                                             
+      578  .copyright { margin: 0; }
+      579  .site-footer .social-list a {
+      580    background: rgba(255,255,255,0.1);
+     ...
+      582    height: 36px;
+      583  }
+      584  .site-footer .social-list a svg { width: 18px; height: 18px; }
+      585 +@media (max-width: 820px) {                                   
+      586 +  .footer-meta { align-items: flex-start; }                   
+      587 +}                                                             
+      588  
+      589  /* ===== Generic page ======================================= 
+           */
+      590  .page-header {
+
+⏺ Footer NAP wired up:
+
+  - layouts/partials/footer.html — restructured into a contact column (group
+  name + venue address + email) and a meta column (copyright + social).
+  - i18n/lv.toml / i18n/en.toml — added footer_rehearsals_label and
+  footer_email_label strings.
+  - static/css/style.css:552 — two-column flex layout, right-aligned meta on
+  desktop, left-aligned on ≤820px so social icons don't drift away from the
+  copyright on mobile.
+
+  The address line ("Daugavas Vanagu nams, 72 Queensborough Terrace, London, W2
+  3SH") now appears on every page, reinforcing the Place schema already in
+  DanceGroup JSON-LD. Reload hugo server to check the layout.
+
+✻ Sautéed for 1m 24s
+
+❯ Can you remove the empty line between "Londonas TDK Salinieki" and the        
+  rehearsals info?                                                              
+
+⏺ Update(static/css/style.css)
+  ⎿  Added 1 line, removed 1 line
+      558  }
+      559  .footer-contact { max-width: 480px; }
+      560  .footer-name {
+      561 -  margin: 0 0 6px;                                            
+      561 +  margin: 0;                                                  
+      562    font-weight: 700;
+      563    color: #fff;
+      564  }
+
+⏺ Removed the 6px bottom margin on .footer-name. The name and rehearsals line
+  should now stack tightly. If you still see a gap, it's likely browser default
+  <address> styling — let me know and I'll add line-height overrides.
+
+✻ Churned for 31s
+❯ What is your opinion about the CTA section on the website ("Join us! with the 
+   email button"). Do you think it is useful / fits the design, etc.?           
+
+⏺ Honest take: it's not bad, but it's redundant. The sidebar CTA already shows
+  on every page with the same "Nāc dejot! / Join us!" title, the same email
+  button, and more concrete info (venue + Monday 19:00). By the time a reader
+  scrolls to the bottom band they've already been pitched once. It currently
+  reads as "same pitch, second time, fewer details."
+
+  Two ways to make it earn its place:
+
+  1. Differentiate it — let the sidebar own the logistics (where, when, who's
+  welcome), and let the bottom band own the feeling. Something like a wider
+  full-bleed photo (a smiling group shot), a one-line emotional pitch ("Atrodi
+  savus Londonas latviešus uz deju grīdas" / "Find your Latvian London on the
+  dance floor"), and the email button. That makes it a closer, not a duplicate.
+  2. Replace it with something the sidebar can't do — e.g. the upcoming concert
+  calendar (Event JSON-LD candidate), or a "next rehearsal" card with the actual
+   date computed. That converts to information value rather than a second ask.
+
+  Design fit is OK — the dark band breaks up the page rhythm — but right now
+  it's saying nothing new. My vote, if you don't want a bigger change, would be
+  (1) with a photo background to give it visual weight distinct from the
+  sidebar's plain text. Cheap, high impact.
+
+✻ Sautéed for 20s
+
+❯ Thanks, I will think about it.                                                
+
+⏺ Sounds good — let me know when you'd like to tackle it or any of the other
+  open SEO items (concert Event JSON-LD, favicon variants, English URL slugs,
+  dual analytics).
+
+✻ Cooked for 4s
+
+❯ How much impact does it have that the english pages use latvian URLs? And how 
+   much effort would it be to change that?                                      
+
+⏺ Impact: modest.
+
+  For pure SEO ranking, URL slugs are a weak signal — Google decides what a page
+   is about from content, title, headings, and links far more than from the URL.
+   So changing /en/par-mums/ → /en/about/ won't move you up the search results
+  meaningfully.
+
+  Where it does help:
+  - Credibility on share: when someone pastes /en/par-mums/ into a
+  Slack/WhatsApp/LinkedIn link preview, the URL undermines the "this is the
+  English version" signal. /en/about/ reads as legitimately English.
+  - CTR from search: Google sometimes shows the URL breadcrumb under results.
+  English slug = one more keyword match for an English-speaking searcher's
+  query.
+  - A small image-search / anchor-text boost — links shared with descriptive
+  anchors do better.
+
+  Overall it's a polish item, not a ranking unlock.
+
+  Effort: small, ~30–60 minutes. The Hugo-specific pieces:
+
+  1. Per-page URL override in each .en.md frontmatter:
+  url: "/en/about/"
+  1. This is the cleanest path. It doesn't break Hugo's translation-pairing
+  (which links by base filename, so the files stay as par-mums.en.md etc.), and
+  .Permalink / hreflang / canonical all use the override automatically.
+  2. Update hugo.toml — the four English menu URLs.
+  3. Grep for hardcoded paths — quick sweep through content/, layouts/, static/
+  for any literal /en/par-mums/, /en/foto/, etc.
+  4. 301 redirects from the old URLs — important if anything is already indexed.
+   Hugo doesn't emit redirects natively; this depends on your host (Netlify
+  _redirects, Cloudflare Pages _redirects, Vercel, or a meta refresh page).
+  Without redirects, any current Google ranking on the old URL evaporates.
+
+  So: real work is steps 1–3 (small), and step 4 is conditional on where you
+  deploy. Want me to do 1–3 and tell you what the redirect file would look like
+  for whichever host you use?
+
+✻ Baked for 37s
+
+❯ Yes, please do steps 1-3.                                                     
+
+  Read 2 files (ctrl+o to expand)
+
+⏺ Update(content/par-mums.en.md)
+  ⎿  Added 1 line
+      1  ---
+      2  title: "About us"
+      3 +url: "/en/about/"                                               
+      4  ---
+      5  
+      6  We are an active dance group of around 25 dancers, keeping the t
+         radition of
+
+⏺ Update(content/foto.en.md)
+  ⎿  File must be read first
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Update(content/foto.en.md)
+  ⎿  Added 1 line
+      1  ---
+      2  title: "Photos"
+      3 +url: "/en/photos/"                                              
+      4  ---
+      5  
+      6  ### 2026 – Latvian Culture Day in Leicester
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Update(content/kontakti.en.md)
+  ⎿  Added 1 line
+      1  ---
+      2  title: "Contact"
+      3 +url: "/en/contact/"                                             
+      4  showRehearsalEvent: true
+      5  ---
+      6  
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Update(content/video.en.md)
+  ⎿  Added 1 line
+      1  ---
+      2  title: "Videos"
+      3 +url: "/en/videos/"                                              
+      4  ---
+      5  
+      6  ### 2026 – Zeme zeļ, zeme plaukst
+
+⏺ Now update the English menu URLs in hugo.toml.
+
+⏺ Update(hugo.toml)
+  ⎿  Error editing file
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Update(hugo.toml)
+  ⎿  Added 4 lines, removed 4 lines
+      61          weight = 10
+      62        [[languages.en.menu.main]]
+      63          name = "Photos"
+      64 -        url = "/en/foto/"                                      
+      64 +        url = "/en/photos/"                                    
+      65          weight = 20
+      66        [[languages.en.menu.main]]
+      67          name = "Videos"
+      68 -        url = "/en/video/"                                     
+      68 +        url = "/en/videos/"                                    
+      69          weight = 30
+      70        [[languages.en.menu.main]]
+      71          name = "About us"
+      72 -        url = "/en/par-mums/"                                  
+      72 +        url = "/en/about/"                                     
+      73          weight = 40
+      74        [[languages.en.menu.main]]
+      75          name = "Contact"
+      76 -        url = "/en/kontakti/"                                  
+      76 +        url = "/en/contact/"                                   
+      77          weight = 50
+      78  
+      79  [params]
+
+⏺ Now grep for any hardcoded paths.
+
+  Searched for 2 patterns (ctrl+o to expand)
+
+⏺ Steps 1–3 done:
+
+  1. url: overrides added to the four English section pages:
+    - par-mums.en.md → /en/about/
+    - foto.en.md → /en/photos/
+    - kontakti.en.md → /en/contact/
+    - video.en.md → /en/videos/
+  2. hugo.toml English menu URLs updated to match.
+  3. Grep check — no hardcoded /en/par-mums/, /en/foto/, /en/video/,
+  /en/kontakti/ left anywhere in content/layouts/static. The only remaining
+  par-mums references are the images/par-mums/leader-*.jpg filenames (image
+  directory name, not a URL) and a CSS comment — both harmless.
+
+  Translation pairing (and therefore hreflang) still works because Hugo links
+  translations by base filename (par-mums.md ↔ par-mums.en.md), not by URL.
+
+  Step 4 — redirects depends on where the site is hosted. What's the host?
+  Common options:
+  - Netlify / Cloudflare Pages → static/_redirects with lines like /en/par-mums/
+   /en/about/ 301
+  - Vercel → vercel.json with a redirects array
+  - GitHub Pages / S3 + CloudFront → trickier, usually a meta-refresh fallback
+  page
+  - Self-hosted nginx / Apache → server config
+
+  Tell me the host and I'll generate the redirect file. Refresh hugo server
+  first to confirm the new URLs work end-to-end.
+✻ Churned for 1m 40s
+
+❯ I am not worried about redirects. The webpage is new (less than one week      
+  old).                                                                         
+
+⏺ Makes sense — no inbound links or indexed pages to preserve yet. You're all
+  set; just refresh hugo server and click through the English nav to verify.
+
+✻ Worked for 6s
+
+❯ What about english URLs for news articles?                                    
+
+⏺ Same approach works, but the trade-off is less clear-cut. News slugs are a mix
+   of translatable phrases (places, generic words) and proper Latvian nouns
+  (concert names) that shouldn't be translated.
+
+  Suggested mapping:
+
+  LV slug: 2025-07-27-elks-iii-bredforda
+  Proposed EN slug: 2025-07-27-elks-iii-bradford
+  Why: ELKS = proper noun, "Bredforda" → English city
+  ────────────────────────────────────────
+  LV slug: 2025-08-15-dziesma-dejo-deja-skan
+  Proposed EN slug: (unchanged)
+  Why: Concert name — proper noun in any language
+  ────────────────────────────────────────
+  LV slug: 2025-08-24-jauna-sezona
+  Proposed EN slug: 2025-08-24-new-season
+  Why: Generic phrase, clean translation
+  ────────────────────────────────────────
+  LV slug: 2025-11-22-latvijas-neatkaribas-diena
+  Proposed EN slug: 2025-11-22-latvian-independence-day
+  Why: Standard English term
+  ────────────────────────────────────────
+  LV slug: 2026-02-24-dejo-ar-mani
+  Proposed EN slug: (unchanged)
+  Why: "Dejo ar Mani" = concert title, proper noun
+  ────────────────────────────────────────
+  LV slug: 2026-05-05-lestere-kulturas-diena
+  Proposed EN slug: 2026-05-05-leicester-culture-day
+  Why: Place name + generic phrase
+
+  Impact is smaller than for the top-nav sections (people rarely share deep news
+   URLs), so this is mostly polish. Effort is ~5 minutes — same per-file url:
+  frontmatter trick.
+
+  Want me to apply this mapping? Or if you'd prefer to translate all of them
+  (including concert names — e.g. dance-with-me for "Dejo ar Mani"), say so and
+  I'll do that instead.
+
+✻ Worked for 29s
+
+❯ Yes, please apply this mapping.                                               
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Update(content/news/2025-07-27-elks-iii-bredforda.en.md)
+  ⎿  Added 1 line
+      1  ---
+      2  title: ELKS III, Bradford
+      3 +url: /en/news/2025-07-27-elks-iii-bradford/                     
+      4  date: 2025-07-27
+      5  author: Mārtiņš Brūveris
+      6  coverImage: images/foto/2025-07-elks/01-elks-iii-cover.jpg
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Update(content/news/2025-08-24-jauna-sezona.en.md)
+  ⎿  Added 1 line
+      1  ---
+      2  title: Start of the new season
+      3 +url: /en/news/2025-08-24-new-season/                            
+      4  date: 2025-08-24
+      5  author: Mārtiņš Brūveris
+      6  coverImage: images/foto/2025-09-jauna-sezona/01-grupas-bilde.jpg
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Update(content/news/2025-11-22-latvijas-neatkaribas-diena.en.md)
+  ⎿  Added 1 line
+      1  ---
+      2  title: Latvian Independence Day Concert
+      3 +url: /en/news/2025-11-22-latvian-independence-day/              
+      4  date: 2025-11-22
+      5  author: Mārtiņš Brūveris
+      6  coverImage: images/foto/2025-11-neatkaribas-diena/01-grupas-bild
+         e.jpg
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Update(content/news/2026-05-05-lestere-kulturas-diena.en.md)
+  ⎿  Added 1 line
+      1  ---
+      2  title: 10th Culture Day in Leicester
+      3 +url: /en/news/2026-05-05-leicester-culture-day/                 
+      4  date: 2026-05-05
+      5  author: Mārtiņš Brūveris
+      6  location: Leicester, United Kingdom
+
+⏺ Four English news articles now have explicit English URLs:
+
+  - /en/news/2025-07-27-elks-iii-bradford/
+  - /en/news/2025-08-24-new-season/
+  - /en/news/2025-11-22-latvian-independence-day/
+  - /en/news/2026-05-05-leicester-culture-day/
+
+  The other two (dziesma-dejo-deja-skan and dejo-ar-mani) keep their Latvian
+  slugs since they're concert proper-nouns. Translation pairing is preserved
+  (Hugo uses base filename). Refresh hugo server and the English news cards
+  should link to the new URLs.
+
+✻ Cooked for 54s
+
+❯ What did you mean by "Favicon variants"?                                      
+
+⏺ Right now baseof.html:66 declares just one favicon:
+
+  <link rel="icon" type="image/png" href="{{ "images/logo.png" | relURL }}">
+
+  That's enough for a browser tab, but it skips four other contexts:
+
+  1. apple-touch-icon (180×180) — what iOS uses when someone taps "Add to Home
+  Screen." Without it, the iPhone home-screen icon is a generic gray screenshot
+  of the page instead of your logo.
+  2. favicon.ico — legacy fallback at /favicon.ico that some browsers, RSS
+  readers, and crawlers request directly regardless of what the HTML declares.
+  3. Smaller PNG variants (16×16, 32×32) — sharper rendering in browser tabs at
+  low DPI; the current 512+px logo gets downscaled poorly.
+  4. Web app manifest + Android icons (192×192, 512×512) — needed for Android
+  Chrome's "Add to Home Screen" to install with your icon, name, and theme
+  colour rather than a generic fallback. Also a Lighthouse PWA criterion.
+
+  Effort: ~20 minutes. Two reasonable paths:
+
+  - Hugo-native — use resources.Get "images/logo.png" and .Resize to generate
+  all variants at build time from the existing logo. Plus a small
+  site.webmanifest template. No new assets in the repo.
+  - External generator — drop images/logo.png into realfavicongenerator.net,
+  download a zip, copy the files into static/, paste their <link> snippet into
+  baseof.html. Less elegant, more bytes in the repo, but turnkey.
+
+  The Hugo-native route is the same effort and keeps the repo clean. Want me to
+  do that?
+
+✻ Baked for 21s
+
+❯ No, we first need to improve the logo...                                      
+
+⏺ Fair enough — favicon variants only pay off once the source logo is itself
+  crisp at small sizes. Let me know when the logo's ready and I'll wire up the
+  variants then.
+
+✻ Churned for 3s
