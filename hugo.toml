@@ -20,6 +20,12 @@ disableKinds = ["taxonomy", "term"]
     [[languages.lv.params.calendar]]
       date = "20.06.2026"
       title = "\"(Pa) Saules Ceļu Izdejot\" Īrijā"
+    [[languages.lv.params.calendar]]
+      date = "20.02.2027"
+      title = "\"Dejo ar Mani\" Aberdīnā"
+    [[languages.lv.params.calendar]]
+      date = "01.05.2027"
+      title = "11. Kultūras Diena Edinburgā"
     [languages.lv.menu]
       [[languages.lv.menu.main]]
         name = "Aktualitātes"
@@ -54,6 +60,12 @@ disableKinds = ["taxonomy", "term"]
     [[languages.en.params.calendar]]
       date = "20.06.2026"
       title = "\"(Pa) Saules Ceļu Izdejot\" in Ireland"
+    [[languages.en.params.calendar]]
+      date = "20.02.2027"
+      title = "\"Dejo ar Mani\" in Aberdeen"
+    [[languages.en.params.calendar]]
+      date = "01.05.2027"
+      title = "11. Latvian Culture Day in Edinburgh"
     [languages.en.menu]
       [[languages.en.menu.main]]
         name = "News"
