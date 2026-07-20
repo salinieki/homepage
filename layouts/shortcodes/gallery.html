@@ -5,7 +5,8 @@
 <div class="gallery">
   {{- range $images -}}
     {{- $thumb := .Resize "800x q85" -}}
-    <a href="{{ .RelPermalink }}" class="glightbox" data-gallery="{{ $id }}">
+    {{- $full := .Resize "1200x q85" -}}
+    <a href="{{ $full.RelPermalink }}" class="glightbox" data-gallery="{{ $id }}">
       <img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" alt="{{ $alt }}" loading="lazy">
     </a>
   {{- end -}}

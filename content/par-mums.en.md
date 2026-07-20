@@ -52,6 +52,7 @@ perform at concerts and prepare for the next Latvian Song and Dance Festival.
 ## Concerts
 
 <ul class="concert-list">
+<li><strong>June 2026</strong><span>Dancing the Sun's Journey, Portlaoise, Ireland</span></li>
 <li><strong>May 2026</strong><span>10th Latvian Culture Day in the United Kingdom, Leicester, UK</span></li>
 <li><strong>February 2026</strong><span>Dejo Ar Mani, Aberdeen, UK</span></li>
 <li><strong>November 2025</strong><span>Latvian Independence Day concert, London, UK</span></li>

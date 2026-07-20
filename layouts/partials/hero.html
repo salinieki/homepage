@@ -5,7 +5,7 @@
     {{ range $i, $s := $slides }}
       {{ $url := "" }}
       {{ with resources.Get $s.image }}
-        {{ $url = .RelPermalink }}
+        {{ $url = (.Resize "1920x q85").RelPermalink }}
       {{ else }}
         {{ $url = $s.image | relURL }}
       {{ end }}

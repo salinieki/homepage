@@ -51,6 +51,7 @@ gatavojamies nākamajiem Dziesmu un Deju svētkiem.
 ## Koncerti
 
 <ul class="concert-list">
+<li><strong>2026. Jūnijs</strong><span>(Pa) Saules Ceļu Izdejot, Portlīza, Īrija</span></li>
 <li><strong>2026. Maijs</strong><span>10. Kultūras Dienā Apvienotā Karalistē, Lestera, Lielbritānija</span></li>
 <li><strong>2026. Februāris</strong><span>Dejo Ar Mani, Aberdīna, Lielbritānija</span></li>
 <li><strong>2025. Novembris</strong><span>Latvijas valsts svētku koncerts, Londona, Lielbritānija</span></li>

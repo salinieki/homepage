@@ -18,8 +18,8 @@ disableKinds = ["taxonomy", "term"]
       flag = "images/flags/lv.svg"
       flagAlt = "Latviski"
     [[languages.lv.params.calendar]]
-      date = "20.06.2026"
-      title = "\"(Pa) Saules Ceļu Izdejot\" Īrijā"
+      date = "07.09.2026"
+      title = "Jaunās sezonas sākums"
     [[languages.lv.params.calendar]]
       date = "20.02.2027"
       title = "\"Dejo ar Mani\" Aberdīnā"
@@ -58,8 +58,8 @@ disableKinds = ["taxonomy", "term"]
       flag = "images/flags/gb.svg"
       flagAlt = "English"
     [[languages.en.params.calendar]]
-      date = "20.06.2026"
-      title = "\"(Pa) Saules Ceļu Izdejot\" in Ireland"
+      date = "07.09.2026"
+      title = "Start of the new season"
     [[languages.en.params.calendar]]
       date = "20.02.2027"
       title = "\"Dejo ar Mani\" in Aberdeen"
@@ -105,6 +105,8 @@ disableKinds = ["taxonomy", "term"]
   image = "images/foto/2026-02-dejo-ar-mani/01-grupas-bilde.jpg"
 [[params.heroSlides]]
   image = "images/foto/2026-05-lestera-kulturas-diena/04-grupas-bilde.jpg"
+[[params.heroSlides]]
+  image = "images/foto/2026-06-karbunkulis/02-salinieki-grupa.jpg"
 
 [params.social]
   facebook = "https://www.facebook.com/salinieki/"

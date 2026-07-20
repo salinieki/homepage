@@ -3,6 +3,10 @@ title: "Photos"
 url: "/en/photos/"
 ---
 
+### 2026 - Dancing the Sun's Journey
+
+{{< gallery id="2026-06-karbunkulis" alt="Dancing the Sun's Journey" >}}
+
 ### 2026 – Latvian Culture Day in Leicester
 
 {{< gallery id="2026-05-lestera-kulturas-diena" alt="Culture Day in Leicester" >}}

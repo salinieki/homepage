@@ -3,6 +3,10 @@ title: "Foto"
 url: "/foto/"
 ---
 
+### 2026 - (Pa) Saules Ceļu Izdejot
+
+{{< gallery id="2026-06-karbunkulis" alt="(Pa) Saules Ceļu Izdejot" >}}
+
 ### 2026 – Kultūras Diena Lesterā
 
 {{< gallery id="2026-05-lestera-kulturas-diena" alt="Kultūras Diena Lesterā" >}}
