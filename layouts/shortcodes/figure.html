@@ -1,15 +1,18 @@
 {{- $src := .Get "src" -}}
 {{- $alt := .Get "alt" | default "" -}}
 {{- $caption := .Get "caption" -}}
+{{- $width := .Get "width" -}}
+{{- $style := "" -}}
+{{- with $width }}{{ $style = printf ` style="max-width: %s; margin-left: auto; margin-right: auto;"` . }}{{ end -}}
 {{- $img := resources.Get $src -}}
 {{- if $img -}}
   {{- $display := $img.Resize "1200x q85" -}}
-  <figure>
+  <figure{{ $style | safeHTMLAttr }}>
     <img src="{{ $display.RelPermalink }}" width="{{ $display.Width }}" height="{{ $display.Height }}" alt="{{ $alt }}" loading="lazy">
     {{- with $caption }}<figcaption>{{ . | safeHTML }}</figcaption>{{ end -}}
   </figure>
 {{- else -}}
-  <figure>
+  <figure{{ $style | safeHTMLAttr }}>
     <img src="{{ $src | relURL }}" alt="{{ $alt }}" loading="lazy">
     {{- with $caption }}<figcaption>{{ . | safeHTML }}</figcaption>{{ end -}}
   </figure>

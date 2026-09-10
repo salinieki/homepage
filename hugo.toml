@@ -18,14 +18,23 @@ disableKinds = ["taxonomy", "term"]
       flag = "images/flags/lv.svg"
       flagAlt = "Latviski"
     [[languages.lv.params.calendar]]
-      date = "07.09.2026"
-      title = "Jaunās sezonas sākums"
+      date = "24.10.2026"
+      title = "Meistarklase ar Dagmāru Bārbali Pīterboro"
+    [[languages.lv.params.calendar]]
+      date = "21.11.2026"
+      title = "Latvijas Neatkarības Dienas koncerts"
     [[languages.lv.params.calendar]]
       date = "20.02.2027"
       title = "\"Dejo ar Mani\" Aberdīnā"
     [[languages.lv.params.calendar]]
+      date = "13.03.2027"
+      title = "Londona Dejo 50 gadu jubilejas koncerts"
+    [[languages.lv.params.calendar]]
       date = "01.05.2027"
       title = "11. Kultūras Diena Edinburgā"
+    [[languages.lv.params.calendar]]
+      date = "04-07.08.2027"
+      title = "No Zobena Saule Lēca"
     [languages.lv.menu]
       [[languages.lv.menu.main]]
         name = "Aktualitātes"
@@ -58,14 +67,23 @@ disableKinds = ["taxonomy", "term"]
       flag = "images/flags/gb.svg"
       flagAlt = "English"
     [[languages.en.params.calendar]]
-      date = "07.09.2026"
-      title = "Start of the new season"
+      date = "24.10.2026"
+      title = "Masterclass with Dagmāra Bārbale in Peterborough"
+    [[languages.en.params.calendar]]
+      date = "21.11.2026"
+      title = "Latvian Independence Day concert"
     [[languages.en.params.calendar]]
       date = "20.02.2027"
       title = "\"Dejo ar Mani\" in Aberdeen"
     [[languages.en.params.calendar]]
+      date = "13.03.2027"
+      title = "\"Londona Dejo\" 50th anniversary concert"
+    [[languages.en.params.calendar]]
       date = "01.05.2027"
       title = "11. Latvian Culture Day in Edinburgh"
+    [[languages.en.params.calendar]]
+      date = "04-07.08.2027"
+      title = "No Zobena Saule Lēca"
     [languages.en.menu]
       [[languages.en.menu.main]]
         name = "News"
