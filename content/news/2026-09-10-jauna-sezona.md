@@ -21,7 +21,7 @@ Latviju.
 {{< figure
   src="images/foto/2026-09-jauna-sezona/02-kalendars.jpg"
   alt="2026/27. gada sezonas kalendārs"
-  width="60%"
+  width="max(60%, 420px)"
 >}}
 
 Jaunā sezona būs aizņemta ar koncertiem un sākšanu gatavoties nākamajiem Deju Svētkiem.
@@ -29,5 +29,5 @@ Jaunā sezona būs aizņemta ar koncertiem un sākšanu gatavoties nākamajiem D
 {{< figure
   src="images/foto/2026-09-jauna-sezona/01-grupas-bilde.jpg"
   alt="Salinieku dejotāju grupas bilde sezonas sākumā"
-  width="60%"
+  width="max(60%, 420px)"
 >}}

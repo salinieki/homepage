@@ -12,7 +12,7 @@ hasFullArticle: true
 ---
 
 Īsi pirms Jāņiem Salinieki devās uz Īrijas pilsētu Portlīzu, lai 20. jūnijā piedalītos 
-TDK "Karbunklis" 20. dzimšanas dienas jubilejas koncertā "(Pa) Saules Ceļu Izdejot".
+TDK "Karbunkulis" 20. dzimšanas dienas jubilejas koncertā "(Pa) Saules Ceļu Izdejot".
 
 {{< figure
   src="images/foto/2026-06-karbunkulis/01-grupas-bilde.jpg"
@@ -35,7 +35,7 @@ koncertu atklājām ar J. Purviņa deju "Iedzirkstīties".
   alt="Kolektīva meitenes dejo &quot;Saule brida rudzu lauku&quot;"
 >}}
 
-Tūlīt pēc tam kolektīva meitenes dejoja "Saule brida rudzu lauku". Šī bija pirmā reize
+Tūlīt pēc tam kolektīva meitenes dejoja "Saule brida rudzu lauku". Šī bija pirmā reize,
 kad šo deju dejojām koncertā.
 
 {{< figure
@@ -51,7 +51,7 @@ tika rādīta pirmo reizi.
   alt="Salinieki dejo &quot;Rūnu raksti&quot;"
 >}}
 
-Otrā koncerta daļā mūsu kolektīva pirmā deja bija "Rūnu raksi".
+Otrā koncerta daļā mūsu kolektīva pirmā deja bija "Rūnu raksti".
 
 {{< figure
   src="images/foto/2026-06-karbunkulis/11-dzivibas-koks.jpg"
