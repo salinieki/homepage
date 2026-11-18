@@ -7,7 +7,7 @@ and which are personal (*Personīgi*) or come from the group's inventory (*Kolek
 |---|---|
 | `viriesi.html` | Men's sheet (Vīriešiem) |
 | `sievietes.html` | Women's sheet (Sievietēm) |
-| `fonts.css`, `fonts/` | Cormorant Garamond and Great Vibes (SIL Open Font License) plus the Arkhip face |
+| `fonts.css`, `fonts/` | Spectral (all text) and Great Vibes ("Tiekamies dejā!"), both SIL Open Font License, plus the Arkhip face |
 | `assets/logo.png` | Salinieki tree logo, recoloured to the sheet red `#B82626` and navy `#042347` |
 | `assets/Arkhip.ttf` | Arkhip font, used only for "Londonas TDK / Salinieki" under the logo |
 | `assets/lielvardes-josta.svg` | Repeating footer tile from the Lielvārde belt (rows 1080–1413) |
@@ -31,11 +31,11 @@ Each sheet is a single HTML file with inline styles — edit the text directly.
 - **Colours:** red `#B82626`, navy `#042347`, paper `#F8F2EA`, dotted rules `#CDB9A4`.
 - **Rows:** each item is one `<tr>`; a navy dot in the 2nd cell = Personīgi, a red dot in
   the 3rd cell = Kolektīva, dots in both = either.
-- **Lowercase "š":** Cormorant Garamond draws a tall, detached caron on `š`, so every
-  lowercase `š` is written as a plain `s` with a small SVG caron on top
-  (`<span style="position: relative; display: inline-block">s<svg …></svg></span>`).
-  Copy one of the existing ones when you add a word with `š`; the italic version has
-  `skewX(-12deg)` and a slightly different `left`. Capital `Š` is fine as is.
+- **Font:** Spectral draws all Latvian letters (ā ē ī ū č ģ ķ ļ ņ š ž) correctly, so just
+  type them. (An earlier version used Cormorant Garamond, whose lowercase `š` has a tall,
+  detached caron and needed an SVG workaround; that is gone.)
+- **Sizes:** title 43 px, VĪRIEŠIEM/SIEVIETĒM 40 px, items 23 px (weight 500),
+  column headings 14 px, notes 16 px italic.
 - **Ornaments:** *Saule* (navy, beside the title) and *Aka* (red, under the title and
   beside "Tiekamies dejā!") are inline SVGs drawn for these sheets.
 - **Layout:** the free space is split 1/3 above and 2/3 below the table
@@ -54,3 +54,13 @@ These are the source files from the Claude Design canvas. They use `{{accent}}` 
 
 To continue in a new canvas, give Claude this folder and ask it to rebuild the canvas
 from `canvas/` (re-uploading the three assets).
+
+## Licences
+
+- Spectral and Great Vibes: SIL Open Font License (see `fonts/*-LICENSE`).
+- **Arkhip** is a commercial font from the Salinieki website. Its licence allows use in
+  your own printed material but **forbids redistributing the font file**. Keep this
+  repository private, or remove `assets/Arkhip.ttf` before sharing it publicly.
+- The Lielvārde belt pattern was extracted from
+  `Canonical_Lielvarde_belt_full_vector.svg` on Wikimedia Commons — check that file's
+  licence before wider publication.
