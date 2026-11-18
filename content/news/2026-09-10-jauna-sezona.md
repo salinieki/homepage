@@ -5,17 +5,17 @@ author: Mārtiņš Brūveris
 location: Londona, Lielbritānija
 coverImage: images/foto/2026-09-jauna-sezona/01-grupas-bilde.jpg
 summary: >
-  Pēc vasaras atpūtas, pirmdien Salienieki atkal pulcējās Daugavas Vanagu namā lai 
-  sāktu jauno sezonu. Priecājāmies saktikt jau labi pazīstamās sejas, ar prieku uzņēmām
-  mūsu vidū jaunus dejotājus, un ar skumjām pieminējām tos kas pārcēlās atpakaļ uz 
-  Latviju. Jaunā sezona būs aizņemta ar koncertiem un sākšanu gatavoties nākamajiem
+  Pēc vasaras atpūtas, pirmdien Salinieki atkal pulcējās Daugavas Vanagu namā, lai 
+  sāktu jauno sezonu. Priecājāmies satikt jau labi pazīstamās sejas, ar prieku uzņēmām
+  mūsu vidū jaunus dejotājus un ar skumjām pieminējām tos, kuri pārcēlās atpakaļ uz 
+  Latviju. Jaunā sezona būs piepildīta ar koncertiem un sākšanu gatavoties nākamajiem
   Deju Svētkiem.
 hasFullArticle: true
 ---
 
-Pēc vasaras atpūtas, pirmdien Salienieki atkal pulcējās Daugavas Vanagu namā lai 
-sāktu jauno sezonu. Priecājāmies saktikt jau labi pazīstamās sejas, ar prieku uzņēmām
-mūsu vidū jaunus dejotājus, un ar skumjām pieminējām tos kas pārcēlās atpakaļ uz 
+Pēc vasaras atpūtas, pirmdien Salienieki atkal pulcējās Daugavas Vanagu namā, lai 
+sāktu jauno sezonu. Priecājāmies satikt jau labi pazīstamās sejas, ar prieku uzņēmām
+mūsu vidū jaunus dejotājus un ar skumjām pieminējām tos, kuri pārcēlās atpakaļ uz 
 Latviju. 
 
 {{< figure
@@ -24,7 +24,7 @@ Latviju.
   width="max(60%, 420px)"
 >}}
 
-Jaunā sezona būs aizņemta ar koncertiem un sākšanu gatavoties nākamajiem Deju Svētkiem.
+Jaunā sezona būs piepildīta ar koncertiem un sākšanu gatavoties nākamajiem Deju Svētkiem.
 
 {{< figure
   src="images/foto/2026-09-jauna-sezona/01-grupas-bilde.jpg"
